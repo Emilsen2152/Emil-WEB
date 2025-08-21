@@ -28,7 +28,7 @@ async function searchMovies() {
         const data = await response.json();
         resultsContainer.innerHTML = "";
 
-        const movies = data.slice(0, 10);
+        const movies = data.slice(0, 20);
 
         movies.forEach(movie => {
             const box = document.createElement("div");
