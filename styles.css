@@ -97,3 +97,16 @@ p {
     text-align: center;
     color: white;
 }
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 25px;
+    display: block;
+    margin: 0 auto;
+    background-color: #0d47a1;
+    color: white;
+}
