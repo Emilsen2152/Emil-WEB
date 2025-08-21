@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glimredal - EmilWEB</title>
+    <link rel="stylesheet" type="text/css" href="../../styles.css">
+</head>
+
+<body>
+    <main class="container">
+        <!--#include virtual="/sidebar.html" -->
+        <div class="content">
+            <h1>Velkommen til Glimredal!</h1>
+            <p>Glimredal er ein fantastisk Minecraft Server med mange kjekke spelarar + ein Svenske</p>
+            <h2>Kart</h2>
+            <iframe height="500" width="500" src="http://glimredal.my.pebble.host:8134/"></iframe>
+        </div>
+    </main>
+</body>
+
+</html>

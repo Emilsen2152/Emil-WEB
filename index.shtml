@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmilWEB</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <main class="container">
+        <!--#include virtual="/sidebar.html" -->
+        <div class="content">
+            <h1>Velkommen til Emil si proffe nettsida!</h1>
+            <h2>Her kan du se kor proff eg er</h2>
+            <figure>
+                <img src="./bilder/index/tog.jpg" alt="Emil er proff" width="500" height="375">
+                <figcaption>Emil er veldig <strong><em>proff</em></strong></figcaption>
+            </figure>
+        </div>
+    </main>
+</body>
+
+</html>

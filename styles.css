@@ -1,0 +1,105 @@
+/* Generelt */
+body {
+    font-family: monospace;
+    background-color: #100c0c;
+    margin: 0;
+    color: white;
+}
+
+h1, h2 {
+    color: white;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    font-family: monospace;
+}
+
+/* Container layout */
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.sidebarHeader {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Sidebar knappar */
+.sidebarItem button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+.sidebarItem button:hover {
+    background-color: #1b5e20;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+figure {
+    margin: 20px 0;
+    text-align: center;
+}
+
+figcaption {
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Responsivt design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+
+iframe {
+    display: block; /* Ensures the iframe behaves as a block element */
+    margin: 0 auto; /* Centers the iframe horizontally */
+}
+
+p {
+    text-align: center;
+    color: white;
+}
