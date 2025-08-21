@@ -9,9 +9,10 @@
 </head>
 
 <body>
-    <main class="container">
+    <div class="container">
         <!--#include virtual="/sidebar.html" -->
-        <div class="content">
+
+        <main class="content">
             <h1>Peter sine crusty føtter</h1>
             <figure>
                 <a href="https://www.feetfinder.com/" target="_blank">
@@ -22,8 +23,8 @@
                     Peter har veldig <strong><em>crusty</em></strong> føtter, klikk på bildet for meir feetpics
                 </figcaption>
             </figure>
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 
 </html>

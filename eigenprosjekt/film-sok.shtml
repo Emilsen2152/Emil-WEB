@@ -10,18 +10,16 @@
 </head>
 
 <body>
-    <main class="container">
+    <div class="container">
         <!--#include virtual="/sidebar.html" -->
-        <div class="content">
+
+        <main class="content">
             <h1>Film søk</h1>
             <input type="text" id="searchInput" placeholder="Søk etter film...">
 
-            <!-- Results container -->
             <div class="results" id="results"></div>
-
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <script src="./film-søk-script.js"></script>
 </body>

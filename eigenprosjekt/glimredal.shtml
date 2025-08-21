@@ -9,15 +9,16 @@
 </head>
 
 <body>
-    <main class="container">
+    <div class="container">
         <!--#include virtual="/sidebar.html" -->
-        <div class="content">
+
+        <main class="content">
             <h1>Velkommen til Glimredal!</h1>
             <p>Glimredal er ein fantastisk Minecraft Server med mange kjekke spelarar</p>
             <h2>Kart</h2>
             <iframe height="500" width="500" src="http://glimredal.my.pebble.host:8134/"></iframe>
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 
 </html>
