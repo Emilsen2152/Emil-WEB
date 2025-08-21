@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Film søk - EmilWEB</title>
     <link rel="stylesheet" type="text/css" href="../../styles.css">
+    <link rel="stylesheet" type="text/css" href="./film-søk-styles.css">
 </head>
 
 <body>
@@ -14,8 +15,15 @@
         <div class="content">
             <h1>Film søk</h1>
             <input type="text" id="searchInput" placeholder="Søk etter film...">
+
+            <!-- Results container -->
+            <div class="results" id="results"></div>
+
+            </div>
         </div>
     </main>
+
+    <script src="./film-søk-script.js"></script>
 </body>
 
 </html>
