@@ -4,10 +4,10 @@ const resultsContainer = document.getElementById("results");
 
 // TMDB genre mapping
 const genreMap = {
-    28:"Action",12:"Adventure",16:"Animation",35:"Comedy",80:"Crime",
-    99:"Documentary",18:"Drama",10751:"Family",14:"Fantasy",36:"History",
-    27:"Horror",10402:"Music",9648:"Mystery",10749:"Romance",878:"Sci-Fi",
-    10770:"TV Movie",53:"Thriller",10752:"War",37:"Western"
+    28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime",
+    99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History",
+    27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Sci-Fi",
+    10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"
 };
 
 // Main search function
@@ -36,9 +36,9 @@ async function searchMovies() {
 
             // Poster
             const img = document.createElement("img");
-            img.src = movie.poster_path 
-                ? `https://image.tmdb.org/t/p/w200${movie.poster_path}` 
-                : "https://placehold.co/200x300?text=No+Image";
+            img.src = movie.poster_path
+                ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+                : "https://placehold.co/200x300?text=Ingen+Bilde";
             img.alt = movie.title;
 
             // Title
@@ -47,7 +47,7 @@ async function searchMovies() {
             title.textContent = movie.title;
 
             // Genres & release date
-            const genres = movie.genre_ids.map(id => genreMap[id] || "Unknown").join(", ");
+            const genres = (movie.genre_ids || []).map(id => genreMap[id] || "Unknown").join(", ");
             const info = document.createElement("div");
             info.classList.add("result-info");
             info.textContent = `${movie.release_date || "Unknown"} • ${genres}`;
