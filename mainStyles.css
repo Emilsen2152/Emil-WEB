@@ -7,9 +7,11 @@ body {
     font-size: 1rem;
 }
 
-h1, h2 {
+h1,
+h2 {
     color: white;
-    margin: 0 0 0.625rem 0; /* '10px' converted to 'rem' */
+    margin: 0 0 0.625rem 0;
+    /* '10px' converted to 'rem' */
     text-align: center;
 }
 
@@ -20,19 +22,27 @@ button {
 
 .container {
     display: flex;
-    flex-direction: column; /* Default to column for small screens */
-    align-items: center; /* Center items on small screens */
-    gap: 1.25rem; /* '20px' converted to 'rem' */
-    padding: 1.25rem; /* '20px' converted to 'rem' */
+    flex-direction: column;
+    /* Default to column for small screens */
+    align-items: center;
+    /* Center items on small screens */
+    gap: 1.25rem;
+    /* '20px' converted to 'rem' */
+    padding: 1.25rem;
+    /* '20px' converted to 'rem' */
 }
 
 .sidebar {
-    width: 100%; /* Sidebar takes full width on small screens */
-    max-width: 250px; /* Max width prevents it from getting too wide on large screens */
+    width: 100%;
+    /* Sidebar takes full width on small screens */
+    max-width: 350px;
+    /* Max width prevents it from getting too wide on large screens */
     padding: 1.25rem;
     background-color: #1a1a1a;
-    border-radius: 0.625rem; /* '10px' converted to 'rem' */
-    box-shadow: 0.125rem 0 0.3125rem rgba(0,0,0,0.5); /* '2px' and '5px' converted to 'rem' */
+    border-radius: 0.625rem;
+    /* '10px' converted to 'rem' */
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+    /* '2px' and '5px' converted to 'rem' */
 }
 
 .sidebar nav ul {
@@ -49,12 +59,14 @@ button {
 
 .sidebarItem button {
     width: 100%;
-    margin: 0.3125rem 0; /* '5px' converted to 'rem' */
+    margin: 0.3125rem 0;
+    /* '5px' converted to 'rem' */
     padding: 0.625rem;
     background-color: #0d47a1;
     color: white;
     border: none;
-    border-radius: 0.3125rem; /* '5px' converted to 'rem' */
+    border-radius: 0.3125rem;
+    /* '5px' converted to 'rem' */
     transition: background 0.3s;
     text-align: center;
 }
@@ -64,7 +76,8 @@ button {
 }
 
 .content {
-    width: 100%; /* Content takes full width on small screens */
+    width: 100%;
+    /* Content takes full width on small screens */
     padding: 1.25rem;
 }
 
@@ -79,12 +92,22 @@ figcaption {
     margin-top: 0.3125rem;
 }
 
-iframe {
-    width: 100%; /* Make iframe responsive */
-    max-width: 560px; /* Optional: Set a max-width for large screens */
-    height: auto; /* Maintain aspect ratio */
-    display: block; 
+.aspect-ratio-container {
+    /* Use the modern aspect-ratio property */
+    aspect-ratio: var(--aspect-ratio);
+    
+    /* Sets the container's max-width, with a default if not specified */
+    max-width: var(--max-width, 1200px);
+    
+    /* Ensures the container fills the available width and centers it */
+    width: 100%;
     margin: 0 auto;
+}
+
+.aspect-ratio-container iframe {
+    /* The iframe is now sized by its parent container */
+    width: 100%;
+    height: 100%;
 }
 
 p {
@@ -93,10 +116,13 @@ p {
 }
 
 input[type="text"] {
-    width: 90%; /* Use a percentage for better responsiveness */
-    max-width: 500px; /* Set a max-width to prevent it from becoming too wide */
+    width: 90%;
+    /* Use a percentage for better responsiveness */
+    max-width: 500px;
+    /* Set a max-width to prevent it from becoming too wide */
     padding: 0.625rem;
-    border: 0.0625rem solid #ccc; /* '1px' converted to 'rem' */
+    border: 0.0625rem solid #ccc;
+    /* '1px' converted to 'rem' */
     border-radius: 0.3125rem;
     margin: 1.25rem auto;
     display: block;
@@ -107,11 +133,14 @@ input[type="text"] {
 /* Media query for larger screens (e.g., tablets and desktops) */
 @media (min-width: 768px) {
     .container {
-        flex-direction: row; /* Change to row layout for wider screens */
-        align-items: flex-start; /* Align items to the top */
+        flex-direction: row;
+        /* Change to row layout for wider screens */
+        align-items: flex-start;
+        /* Align items to the top */
     }
 
     .sidebar {
-        width: 250px; /* Set a fixed width for the sidebar on larger screens */
+        width: 350px;
+        /* Set a fixed width for the sidebar on larger screens */
     }
 }
