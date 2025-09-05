@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memes - EmilWEB</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar"></aside>
+
+        <script>
+            // Dynamically load the sidebar content
+            fetch('/sidebar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.sidebar').innerHTML = data;
+                })
+                .catch(err => console.error("Failed to load sidebar:", err));
+        </script>
+
+        <main class="content">
+            <h1>Proffe memes</h1>
+            <h2>Robin moment</h2>
+            <img src="/bilder/eigenprosjekt/memes/Robin.png" alt="Robin er ei skitten hora" width="398" height="256">
+        </main>
+    </div>
+</body>
+
+</html>
