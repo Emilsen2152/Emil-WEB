@@ -19,7 +19,7 @@ async function searchMovies() {
     }
 
     try {
-        const response = await fetch(`http://emil-web-api-production.up.railway.app/movies?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`https://emil-web-api-production.up.railway.app/movies?query=${encodeURIComponent(query)}`);
 
         if (!response.ok) {
             throw new Error(`Server returned ${response.status}`);
