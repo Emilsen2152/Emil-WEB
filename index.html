@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmilWEB</title>
-    <link rel="stylesheet" type="text/css" href="mainStyles.css">
+    <link rel="stylesheet" type="text/css" href="/emil/mainStyles.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
         <aside class="sidebar"></aside>
 
         <script>
-            fetch('/sidebar.html')
+            fetch('/emil/sidebar.html')
                 .then(response => response.text())
                 .then(data => {
                     document.querySelector('.sidebar').innerHTML = data;
