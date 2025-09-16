@@ -109,20 +109,6 @@ input[type="text"] {
     text-align: center;
 }
 
-.sidebar-style-button {
-     width: 100%;
-    margin: 0.3125rem 0;
-    /* '5px' converted to 'rem' */
-    padding: 0.625rem;
-    background-color: #0d47a1;
-    color: white;
-    border: none;
-    border-radius: 0.3125rem;
-    /* '5px' converted to 'rem' */
-    transition: background 0.3s;
-    text-align: center;
-}
-
 .sidebar-item button:hover {
     background-color: #1b5e20;
 }
