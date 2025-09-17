@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>#Bading - EmilWEB</title>
-    <link rel="stylesheet" type="text/css" href="/emil/mainStyles.css">
+    <link rel="stylesheet" type="text/css" href="../../mainStyles.css">
 </head>
 
 <body>
@@ -13,7 +13,13 @@
         <aside class="sidebar"></aside>
 
         <script>
-            fetch('/emil/sidebar.html')
+            const base = '../../';
+
+            function goToUrl(url) {
+                window.location.href = `${base}${url}`;
+            }
+
+            fetch(`${base}sidebar.html`)
                 .then(response => response.text())
                 .then(data => {
                     document.querySelector('.sidebar').innerHTML = data;
@@ -31,11 +37,11 @@
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <figure>
-                <img class="size-image" src="/emil/images/eigenprosjekt/bading/waterFlow.JPG" alt="Straumen i Raundalselve er sterk og kald." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
+                <img class="size-image" src="../../images/eigenprosjekt/bading/waterFlow.JPG" alt="Straumen i Raundalselve er sterk og kald." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
                 <figcaption>Straumen i Raundalselve er sterk og kald.</figcaption> 
             </figure>
             <figure>
-                <img class="size-image" src="/emil/images/eigenprosjekt/bading/social.JPG" alt="Bading er sosialt." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
+                <img class="size-image" src="../../images/eigenprosjekt/bading/social.JPG" alt="Bading er sosialt." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
                 <figcaption>Bading er sosialt.</figcaption>
             </figure>
         </main>

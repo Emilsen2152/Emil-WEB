@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgåve 1 - EmilWEB</title>
+    <link rel="stylesheet" type="text/css" href="../../mainStyles.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar"></aside>
+
+        <script>
+            const base = '../../';
+
+            function goToUrl(url) {
+                window.location.href = `${base}${url}`;
+            }
+
+            fetch(`${base}sidebar.html`)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.sidebar').innerHTML = data;
+                })
+                .catch(err => console.error("Failed to load sidebar:", err));
+        </script>
+
+        <main class="content">
+            <!-- Overskrift -->
+            <h1>Oppgåve 1 - Formatering</h1>
+            <!-- Mange lenker -->
+            <p>Sjekk ut hovedsida! <a href="../../">Her er en lenke til startsida.</a></p>
+            <p>Sjekk ut film-søk sida! <a href="../../eigenprosjekt/film-søk">Her er en lenke til film-søk sida.</a></p>
+            <p>Sjekk ut Google! <a target="_blank" href="https://www.google.com">Her er en lenke til Google.</a></p>
+            <p>Sjekk ut YouTube! <a target="_blank" href="https://www.youtube.com">Her er en lenke til YouTube.</a></p>
+            <!-- Tekst om meg sjølv -->
+            <h2>Om meg</h2>
+            <p>Hei! Eg heiter <b><i><u>Emil</u></i></b>! Eg likar å <b><i><u>programmera</u></i></b>.</p>
+            <h2>Lorem Ipsum 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+            <h2>Lorem Ipsum 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+            <h2>Lorem Ipsum 3</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+            <h2>Lorem Ipsum 4</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+            <h2>Lorem Ipsum 5</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+        </main>
+    </div>
+</body>
+
+</html>

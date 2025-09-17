@@ -4,33 +4,33 @@
             <button onclick="window.location.href='/'">Tilbake til elevweb</button>
         </li>
         <li class="sidebar-item">
-            <button onclick="window.location.href='/emil'">Heim</button>
+            <button onclick="window.location.href=`${base}`">Heim</button>
         </li>
     </ul>
 
     <h2 class="sidebar-header">Eigenprosjekt</h2>
     <ul>
         <li class="sidebar-item">
-            <button onclick="window.location.href='/emil/eigenprosjekt/peter-sine-føtter'">Peter sine føtter</button>
+            <button onclick="goToUrl('eigenprosjekt/peter-sine-føtter')">Peter sine føtter</button>
         </li>
         <li class="sidebar-item">
-            <button onclick="window.location.href='/emil/eigenprosjekt/glimredal'">Glimredal</button>
+            <button onclick="goToUrl('eigenprosjekt/glimredal')">Glimredal</button>
         </li>
         <li class="sidebar-item">
-            <button onclick="window.location.href='/emil/eigenprosjekt/film-søk'">Film søk</button>
+            <button onclick="goToUrl('eigenprosjekt/film-søk')">Film søk</button>
         </li>
         <li class="sidebar-item">
-            <button onclick="window.location.href='/emil/eigenprosjekt/bading'">#Bading</button>
+            <button onclick="goToUrl('eigenprosjekt/bading')">#Bading</button>
         </li>
         <li class="sidebar-item">
-            <button onclick="window.location.href='/emil/eigenprosjekt/memes'">Memes</button>
+            <button onclick="goToUrl('eigenprosjekt/memes')">Memes</button>
         </li>
     </ul>
 
     <h2 class="sidebar-header">Oppgåver</h2>
     <ul>
         <li class="sidebar-item">
-            <button onclick="alert('Ingen oppgåver endå')">Eksempel oppgåve</button>
+            <button onclick="goToUrl('oppgaver/oppgave1')">Oppgåve 1</button>
         </li>
     </ul>
 </nav>

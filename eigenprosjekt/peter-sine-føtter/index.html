@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peter sine føtter - EmilWEB</title>
-    <link rel="stylesheet" type="text/css" href="/emil/mainStyles.css">
+    <link rel="stylesheet" type="text/css" href="../../mainStyles.css">
 </head>
 
 <body>
@@ -13,7 +13,13 @@
         <aside class="sidebar"></aside>
 
         <script>
-            fetch('/emil/sidebar.html')
+            const base = '../../';
+
+            function goToUrl(url) {
+                window.location.href = `${base}${url}`;
+            }
+
+            fetch(`${base}sidebar.html`)
                 .then(response => response.text())
                 .then(data => {
                     document.querySelector('.sidebar').innerHTML = data;
@@ -25,7 +31,7 @@
             <h1>Peter sine crusty føtter</h1>
             <figure>
                 <a href="https://www.feetfinder.com/" target="_blank">
-                    <img class="size-image" src="/emil/images/eigenprosjekt/peterSineFøtter/peter-sine-føtter.webp"
+                    <img class="size-image" src="../../images/eigenprosjekt/peterSineFøtter/peter-sine-føtter.webp"
                         alt="Peter sine føtter er testikulerande" style="--max-width: 390px; --aspect-ratio: 1.39 / 1;">
                 </a>
                 <figcaption>
