@@ -11,21 +11,7 @@
 <body>
     <div class="container">
         <aside class="sidebar"></aside>
-
-        <script>
-            const base = '../../';
-
-            function goToUrl(url) {
-                window.location.href = `${base}${url}`;
-            }
-
-            fetch(`${base}sidebar.html`)
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.sidebar').innerHTML = data;
-                })
-                .catch(err => console.error("Failed to load sidebar:", err));
-        </script>
+        <script src="../../sidebar.js"></script>
 
         <main class="content">
             <h1>Velkommen til Glimredal!</h1>

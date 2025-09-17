@@ -5,33 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmilWEB</title>
-    <link rel="stylesheet" type="text/css" href="./mainStyles.css">
+    <link rel="stylesheet" type="text/css" href="mainStyles.css">
 </head>
 
 <body>
     <div class="container">
         <aside class="sidebar"></aside>
+        <script src="sidebar.js"></script>
 
-        <script>
-            const base = './';
-
-            function goToUrl(url) {
-                window.location.href = `${base}${url}`;
-            }
-
-            fetch('./sidebar.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.sidebar').innerHTML = data;
-                })
-                .catch(err => console.error("Failed to load sidebar:", err));
-        </script>
 
         <main class="content">
             <h1>Velkommen til Emil si proffe nettsida!</h1>
             <h2>Her kan du se kor proff eg er</h2>
             <figure>
-                <img class="size-image" src="./images/index/tog.jpg" alt="Emil er proff" style="--max-width: 500px; --aspect-ratio: 4 / 3;">
+                <img class="size-image" src="./images/index/tog.jpg" alt="Emil er proff"
+                    style="--max-width: 500px; --aspect-ratio: 4 / 3;">
                 <figcaption>Emil er veldig <strong><em>proff</em></strong></figcaption>
             </figure>
             <h2>Kven er Emil?</h2>
