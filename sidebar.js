@@ -4,7 +4,7 @@ const base = (location.hostname === "localhost")
   : `${location.origin}/${location.pathname.split('/').filter(p=>p)[0]}/`;
 
 // Last sidebar
-fetch("sidebar.html")
+fetch(`${base}sidebar.html`)
   .then(res => res.text())
   .then(data => {
     const sidebar = document.querySelector(".sidebar");
