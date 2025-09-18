@@ -98,7 +98,7 @@ input[type="text"] {
     background-color: #1b5e20;
 }
 
-.sidebar-item a.btn-link {
+.btn-link {
     display: inline-block;
     width: 100%;
     margin: 0.3125rem 0;
@@ -117,8 +117,29 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
-.sidebar-item a.btn-link:hover,
-.sidebar-item a.btn-link:focus {
+.btn-link-small {
+    display: inline-block;
+    width: 15%;
+    margin: 0.3125rem 0;
+    padding: 0.625rem;
+    background-color: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 0.3125rem;
+    transition: background 0.3s;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 1rem;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.btn-link:hover,
+.btn-link:focus,
+.btn-link-small:hover,
+.btn-link-small:focus {
     background-color: #1b5e20;
 }
 .content {
