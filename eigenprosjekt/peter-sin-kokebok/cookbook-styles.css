@@ -12,3 +12,15 @@
 .recipe-image {
     flex: 1; /* bildet får mindre plass */
 }
+
+@media (max-width: 768px) {
+    .recipe-layout {
+        flex-direction: column; /* på små skjermer, legg bilde under tekst */
+        align-items: center;    /* midtstill innhald */
+    }
+
+    .recipe-text, .recipe-image {
+        flex: unset;            /* fjern fleksinnstillingar */
+        width: 100%;           /* ta opp full breidde */
+    }
+}
