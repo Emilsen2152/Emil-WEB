@@ -1,0 +1,14 @@
+.recipe-layout {
+    display: flex;
+    align-items: flex-start; /* toppen på tekst og bilde starter likt */
+    gap: 30px;              /* luft mellom tekst og bilde */
+    margin-top: 20px;
+}
+
+.recipe-text {
+    flex: 2; /* tekstdelen får meir plass */
+}
+
+.recipe-image {
+    flex: 1; /* bildet får mindre plass */
+}
