@@ -1,7 +1,0 @@
-.recipies {
-    display: flex;
-    flex-wrap: wrap;       /* allow buttons to wrap into rows */
-    justify-content: center; /* center the whole row of buttons */
-    gap: 10px;             /* space between buttons */
-    margin-top: 20px;
-}

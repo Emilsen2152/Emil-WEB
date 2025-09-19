@@ -161,6 +161,14 @@ input[type="text"] {
     height: 100%;
 }
 
+.button-grid {
+    display: flex;
+    flex-wrap: wrap;       /* allow buttons to wrap into rows */
+    justify-content: center; /* center the whole row of buttons */
+    gap: 10px;             /* space between buttons */
+    margin-top: 20px;
+}
+
 @media (min-width: 768px) {
     .container {
         flex-direction: row;
