@@ -195,7 +195,9 @@ input[type="text"] {
     .sidebar {
         width: 350px;
     }
+}
 
+@media (max-width: 600px) {
     .btn-link-small {
         width: 100%;
     }
