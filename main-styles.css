@@ -1,49 +1,45 @@
+/* ============================= */
+/*        CSS VARIABLER           */
+/* ============================= */
+:root {
+    --font-family: monospace;
+    --color-text: white;
+    --color-bg: #100c0c;
+    --color-primary: #0d47a1;
+    --color-primary-hover: #1b5e20;
+    --color-sidebar: #1a1a1a;
+    --footer-radius: 0.625rem;
+    --base-padding: 1.25rem;
+}
+
+/* ============================= */
+/*          GLOBALT               */
+/* ============================= */
 body {
-    font-family: monospace;
-    background-color: #100c0c;
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
     margin: 0;
-    color: white;
+    color: var(--color-text);
     font-size: 1rem;
 }
 
-h1,
-h2 {
-    color: white;
+h1, h2 {
+    color: var(--color-text);
     margin: 0 0 0.625rem 0;
     text-align: center;
 }
 
-button {
-    cursor: pointer;
-    font-family: monospace;
+p, figcaption {
+    text-align: center;
+    color: var(--color-text);
 }
 
+/* ============================= */
+/*           FIGURES              */
+/* ============================= */
 figure {
-    margin: 1.25rem 0;
+    margin: var(--base-padding) 0;
     text-align: center;
-}
-
-figcaption {
-    color: white;
-    text-align: center;
-    margin-top: 0.3125rem;
-}
-
-p {
-    text-align: center;
-    color: white;
-}
-
-input[type="text"] {
-    width: 90%;
-    max-width: 500px;
-    padding: 0.625rem;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.3125rem;
-    margin: 1.25rem auto;
-    display: block;
-    background-color: #0d47a1;
-    color: white;
 }
 
 .size-image {
@@ -59,27 +55,42 @@ input[type="text"] {
     margin-right: auto;
 }
 
+/* ============================= */
+/*          INPUT                 */
+/* ============================= */
+input[type="text"] {
+    width: 90%;
+    max-width: 500px;
+    padding: 0.625rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+    margin: var(--base-padding) auto;
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+/* ============================= */
+/*          CONTAINER             */
+/* ============================= */
 .container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 1.25rem;
-    padding: 1.25rem;
+    gap: var(--base-padding);
+    padding: var(--base-padding);
 }
 
+/* ============================= */
+/*           SIDEBAR              */
+/* ============================= */
 .sidebar {
     width: 350px;
     max-width: 350px;
-    padding: 1.25rem;
-    background-color: #1a1a1a;
-    border-radius: 0.625rem;
+    padding: var(--base-padding);
+    background-color: var(--color-sidebar);
+    border-radius: var(--footer-radius);
     box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
-}
-
-.sidebar nav ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
 }
 
 .sidebar-header {
@@ -88,76 +99,74 @@ input[type="text"] {
     margin-bottom: 0.625rem;
 }
 
+.sidebar nav ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
 .sidebar-item button {
     width: 100%;
     margin: 0.3125rem 0;
     padding: 0.625rem;
-    background-color: #0d47a1;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text);
     border: none;
     border-radius: 0.3125rem;
     transition: background 0.3s;
     text-align: center;
+    cursor: pointer;
+    font-family: var(--font-family);
 }
 
 .sidebar-item button:hover {
-    background-color: #1b5e20;
+    background-color: var(--color-primary-hover);
 }
 
+/* ============================= */
+/*           BUTTONS              */
+/* ============================= */
 .btn-link {
     display: inline-block;
+    padding: 0.625rem;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    border-radius: 0.3125rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    line-height: 1;
+    box-sizing: border-box;
     width: 100%;
     margin: 0.3125rem 0;
-    padding: 0.625rem;
-    background-color: #0d47a1;
-    color: white;
-    border: none;
-    border-radius: 0.3125rem;
     transition: background 0.3s;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: monospace;
-    font-size: 1rem;
-    line-height: 1;
-    box-sizing: border-box;
 }
 
-.btn-link-small {
-    display: inline-block;
+.btn-link--small {
     width: 15%;
-    margin: 0.3125rem 0;
-    padding: 0.625rem;
-    background-color: #0d47a1;
-    color: white;
-    border: none;
-    border-radius: 0.3125rem;
-    transition: background 0.3s;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: monospace;
-    font-size: 1rem;
-    line-height: 1;
-    box-sizing: border-box;
 }
 
 .btn-link:hover,
 .btn-link:focus,
-.btn-link-small:hover,
-.btn-link-small:focus {
-    background-color: #1b5e20;
+.btn-link--small:hover,
+.btn-link--small:focus {
+    background-color: var(--color-primary-hover);
 }
+
+/* ============================= */
+/*           CONTENT              */
+/* ============================= */
 .content {
     width: 100%;
-    padding: 1.25rem;
+    padding: var(--base-padding);
 }
 
 .aspect-ratio-container {
     aspect-ratio: var(--aspect-ratio);
-    
     max-width: var(--max-width, 1200px);
-    
     width: 100%;
     margin: 0 auto;
 }
@@ -167,42 +176,51 @@ input[type="text"] {
     height: 100%;
 }
 
+/* ============================= */
+/*           BUTTON GRID          */
+/* ============================= */
 .button-grid {
     display: flex;
-    flex-wrap: wrap;       /* allow buttons to wrap into rows */
-    justify-content: center; /* center the whole row of buttons */
-    gap: 10px;             /* space between buttons */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     margin-top: 20px;
 }
 
 .center-list-text {
     padding-left: 0;
     margin: 0 auto;
-    list-style-position: inside; /* så punkta blir med i senter */
-    text-align: center;          /* midtstill tekst på kvar linje */
+    list-style-position: inside;
+    text-align: center;
 }
 
 .extra-padding-top {
     padding-top: 20px;
 }
 
+/* ============================= */
+/*           FOOTER               */
+/* ============================= */
 .footer {
     text-align: center;
-    padding: 1.25rem;
-    background-color: #1a1a1a;
-    color: white;
-    margin-top: 1.25rem;
-    border-radius: 0.625rem 0.625rem 0 0;
+    padding: var(--base-padding);
+    background-color: var(--color-sidebar);
+    color: var(--color-text);
+    margin-top: var(--base-padding);
+    border-radius: var(--footer-radius) var(--footer-radius) 0 0; /* avrunda opp, skarpe ned */
     box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
 }
 
+/* ============================= */
+/*           MEDIA QUERIES        */
+/* ============================= */
 @media (max-width: 900px) {
     .sidebar {
         width: 100%;
         max-width: 100%;
     }
 
-    .btn-link-small {
+    .btn-link--small {
         width: 100%;
     }
 
