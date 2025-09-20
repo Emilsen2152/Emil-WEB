@@ -150,9 +150,7 @@ input[type="text"] {
 }
 
 .btn-link:hover,
-.btn-link:focus,
-.btn-link--small:hover,
-.btn-link--small:focus {
+.btn-link:focus {
     background-color: var(--color-primary-hover);
 }
 
