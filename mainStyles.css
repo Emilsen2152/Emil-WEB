@@ -61,14 +61,14 @@ input[type="text"] {
 
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 1.25rem;
     padding: 1.25rem;
 }
 
 .sidebar {
-    width: 100%;
+    width: 350px;
     max-width: 350px;
     padding: 1.25rem;
     background-color: #1a1a1a;
@@ -186,19 +186,18 @@ input[type="text"] {
     padding-top: 20px;
 }
 
-@media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-
+@media (max-width: 900px) {
     .sidebar {
-        width: 350px;
+        width: 100%;
+        max-width: 100%;
     }
-}
 
-@media (max-width: 600px) {
     .btn-link-small {
         width: 100%;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
     }
 }
