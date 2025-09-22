@@ -10,6 +10,7 @@
     --color-sidebar: #1a1a1a;
     --footer-radius: 0.625rem;
     --base-padding: 1.25rem;
+    --color-footer-title: #e7e7e7;
 }
 
 /* ============================= */
@@ -217,6 +218,18 @@ input[type="text"] {
     justify-content: space-around;
     /* or space-evenly */
     align-items: center;
+}
+
+.footer-title {
+    color: var(--color-footer-title);
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.625rem;
+}
+
+.footer-text{
+    margin: 0.3125rem 0;
+    font-size: 0.875rem;
 }
 
 /* ============================= */
