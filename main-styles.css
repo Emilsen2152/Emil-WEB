@@ -23,13 +23,15 @@ body {
     font-size: 1rem;
 }
 
-h1, h2 {
+h1,
+h2 {
     color: var(--color-text);
     margin: 0 0 0.625rem 0;
     text-align: center;
 }
 
-p, figcaption {
+p,
+figcaption {
     text-align: center;
     color: var(--color-text);
 }
@@ -205,8 +207,16 @@ input[type="text"] {
     background-color: var(--color-sidebar);
     color: var(--color-text);
     margin-top: var(--base-padding);
-    border-radius: var(--footer-radius) var(--footer-radius) 0 0; /* avrunda opp, skarpe ned */
+    border-radius: var(--footer-radius) var(--footer-radius) 0 0;
+    /* avrunda opp, skarpe ned */
     box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-around;
+    /* or space-evenly */
+    align-items: center;
 }
 
 /* ============================= */
@@ -223,6 +233,11 @@ input[type="text"] {
     }
 
     .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-row {
         flex-direction: column;
         align-items: center;
     }
