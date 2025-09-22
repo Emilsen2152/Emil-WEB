@@ -232,6 +232,10 @@ input[type="text"] {
     font-size: 0.875rem;
 }
 
+.footer-space {
+    height: 1.25rem;
+}
+
 /* ============================= */
 /*           MEDIA QUERIES        */
 /* ============================= */
