@@ -37,6 +37,11 @@ figcaption {
     color: var(--color-text);
 }
 
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
 /* ============================= */
 /*           FIGURES              */
 /* ============================= */
