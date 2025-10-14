@@ -37,3 +37,15 @@
     color: #ccc;
     margin-top: 5px;
 }
+
+.movie-input {
+    width: 90%;
+    max-width: 500px;
+    padding: 0.625rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+    margin: var(--base-padding) auto;
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+}

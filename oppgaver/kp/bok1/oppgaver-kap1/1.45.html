@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.45 - EmilWEB</title>
+</head>
+<body>
+    <h1>Bordreservasjon</h1>
+    <form>
+        <label for="antall"><b>Antall gjester:</b></label>
+        <input type="range" id="antall" name="antall" min="1" max="20" value="2" oninput="this.nextElementSibling.value = this.value"> <output>2</output>
+        <br>
+        <label for="retter"><b>Kva retter ønsker du?</b></label>
+        <br>
+        <input type="checkbox" id="forrett" name="forrett" value="forrett">
+        <label for="forrett" class="form-label">Forrett</label>
+        <br>
+        <input type="checkbox" id="hovedrett" name="hovedrett" value="hovedrett">
+        <label for="hovedrett" class="form-label">Hovedrett</label>
+        <br>
+        <input type="checkbox" id="dessert" name="dessert" value="dessert">
+        <label for="dessert" class="form-label">Dessert</label>
+        <br>
+        <label for="dato"><b>Dato:</b></label>
+        <input type="date" id="dato" name="dato">
+        <label for="tid"><b></b>Klokkeslett:</b></label>
+        <input type="time" id="tid" name="tid">
+        <br><br>
+        <input type="submit" value="RESERVER">
+        <br><br>
+        <a href="./">Tilbake til oppgåver for kapittel 1</a>
+    </form>
+</body>
+</html>

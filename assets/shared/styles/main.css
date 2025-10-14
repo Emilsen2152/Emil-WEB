@@ -65,9 +65,25 @@ figure {
 }
 
 /* ============================= */
-/*          INPUT                 */
+/*           FORMS               */
 /* ============================= */
-input[type="text"] {
+
+.main-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--base-padding);
+    background-color: var(--color-sidebar);
+    border-radius: var(--footer-radius);
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.3125rem;
+    font-weight: bold;
+}
+
+.form-input {
     width: 90%;
     max-width: 500px;
     padding: 0.625rem;
@@ -79,6 +95,53 @@ input[type="text"] {
     color: var(--color-text);
 }
 
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-primary-hover);
+    box-shadow: 0 0 5px var(--color-primary-hover);
+}
+
+.form-button {
+    width: 100%;
+    padding: 0.625rem;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.form-button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.form-button--reset:hover {
+    background-color: #b71c1c;
+}
+
+.form-dropdown-option {
+    width: 100%;
+    padding: 0.625rem;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.form-checkbox {
+    margin-right: 0.3125rem;
+}
+
+.form-radio {
+    margin-right: 0.3125rem;
+}
 /* ============================= */
 /*          CONTAINER             */
 /* ============================= */
@@ -244,6 +307,14 @@ input[type="text"] {
 
 .mobile-seperator {
     height: 0rem;
+}
+
+/* ============================= */
+/*            Formating          */
+/* ============================= */
+
+.spacer {
+    height: var(--base-padding);
 }
 
 /* ============================= */

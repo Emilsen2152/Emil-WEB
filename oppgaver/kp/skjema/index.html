@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skjema - EmilWEB</title>
+    <link rel="stylesheet" type="text/css" href="../../..//assets/shared/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <noscript>
+                <p>JavaScript er påkrevd for å se sidebaren.</p>
+            </noscript>
+        </aside>
+        <script src="../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
+
+        <main class="content">
+            <h1>Bruk av skjema</h1>
+
+            <form class="main-form" action="./" method="get">
+                <label for="navn" class="form-label">Navn:</label>
+                <input type="text" id="navn" name="navn" class="form-input" required value="" maxlength="20">
+                <br>
+                <label for="password" class="form-label">Passord:</label>
+                <input type="password" id="password" name="pass" class="form-input" required value="" maxlength="30">
+                <br>
+                <input type="submit" value="Send data til meg" class="form-button">
+            </form>
+
+            <div class="spacer"></div>
+
+            <h2>Ulike input-felter</h2>
+
+            <!-- - Eksempel på skjema med ulike input-felter -->
+
+            <form class="main-form" action="./" method="get">
+                <label class="form-label" for="felt1">Tekstboks:</label>
+                <input class="form-input" type="text" name="felt1" required value="">
+                <br>
+                <label class="form-label" for="felt2">Passordboks:</label>
+                <input class="form-input" type="password" name="felt2" required value="">
+                <br>
+                <label class="form-label" for="felt3">Dropdown meny:</label>
+                <select class="form-input" name="felt3" required>
+                    <option class="form-dropdown-option" value="">Velg en verdi</option>
+                    <option class="form-dropdown-option" value="verdi1">Verdi 1</option>
+                    <option class="form-dropdown-option" value="verdi2">Verdi 2</option>
+                    <option class="form-dropdown-option" value="verdi3">Verdi 3</option>
+                </select>
+                <br>
+                <label class="form-label" for="felt4">Sjekkboksar:</label>
+                <input class="form-checkbox" type="checkbox" name="felt4" value="true"> Donald Duck
+                <br>
+                <input class="form-checkbox" type="checkbox" name="felt5" value="true"> Anton Duck
+                <br>
+                <input class="form-checkbox" type="checkbox" name="felt6" value="true"> Onkel Skrue
+                <br>
+                <label class="form-label" for="felt7">Radioknapper:</label>
+                <input class="form-checkbox" type="radio" name="felt7" value="1"> Blå
+                <br>
+                <input class="form-checkbox" type="radio" name="felt7" value="2"> Rød
+                <br>
+                <input class="form-checkbox" type="radio" name="felt7" value="3"> Grønn
+                <br>
+                <label class="form-label" for="felt8">Dato:</label>
+                <input class="form-input" type="date" name="felt8" required>
+                <br>
+                <input class="form-button" type="submit" value="Send data til meg">
+                <br>
+                <div class="spacer"></div>
+                <input class="form-button form-button--reset" type="reset" value="Nullstill skjema">
+            </form>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <noscript>
+            <p>JavaScript er påkrevd for å se footeren.</p>
+        </noscript>
+    </footer>
+    <script src="../../../assets/shared/code/footer/footer.js" type="module"></script>
+</body>
+
+</html>
