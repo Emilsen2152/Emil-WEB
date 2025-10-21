@@ -16,12 +16,20 @@
 /* ============================= */
 /*          GLOBALT               */
 /* ============================= */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--color-bg);
-    margin: 0;
     color: var(--color-text);
     font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1,
@@ -151,6 +159,7 @@ figure {
     align-items: flex-start;
     gap: var(--base-padding);
     padding: var(--base-padding);
+    flex: 1;
 }
 
 /* ============================= */
