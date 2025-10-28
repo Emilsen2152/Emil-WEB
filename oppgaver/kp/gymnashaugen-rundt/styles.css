@@ -1,7 +1,6 @@
-/*:root {
-    --bs-primary: #0070a0;
-    --bs-primary-rgb: 0, 112, 160;
-}*/
+:root {
+  --nav-height: 80px; /* fallback, blir oppdatert av JS */
+}
 
 body {
     position: relative;
@@ -16,17 +15,37 @@ header {
 }
 
 .navbar .nav-link {
-    color: white !important;
+    /*color: #007bff !important; /* Bootstrap-blå */
     font-weight: 500;
     transition: 0.2s;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
+    color: #0056b3 !important; /* mørkare blå på hover */
     text-decoration: underline;
 }
+
 
 .w-70 {
     width: 70%;
     height: auto;
 }
+
+#nedtelling-head {
+    line-height: 1;            /* Hindrar at teksten flyt for høgt */
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    min-height: 60px;          /* Gir betre vertikal balanse */
+}
+
+@media (max-width: 992px) {
+    /* Sentrer nedtellinga på små skjermar */
+    #nedtelling-head {
+        font-size: 1.1rem;
+    }
+}
+

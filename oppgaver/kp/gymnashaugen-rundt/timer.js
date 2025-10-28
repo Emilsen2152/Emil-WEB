@@ -1,6 +1,7 @@
 // Mål-dato: 8. april 2026 kl. 14:00 CET
 const targetDate = new Date("2026-04-08T14:00:00+01:00").getTime();
 const countdownElement = document.getElementById("nedtelling");
+const countdownHeadElement = document.getElementById("nedtelling-head");
 
 function oppdaterNedtelling() {
     const now = new Date().getTime();
@@ -8,6 +9,7 @@ function oppdaterNedtelling() {
 
     if (diff <= 0) {
         countdownElement.textContent = "Startar no!";
+        countdownHeadElement.textContent = "Nedtellinga er over!";
         clearInterval(interval);
         return;
     }
@@ -18,6 +20,11 @@ function oppdaterNedtelling() {
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
     countdownElement.textContent = `${days} dagar, ${hours} timar, ${minutes} minutt og ${seconds} sekund`;
+    if (days > 0) {
+        countdownHeadElement.textContent = `Startar om ${days} dagar`;
+    } else if (seconds > 0) {
+        countdownHeadElement.textContent = `${hours}:${minutes}:${seconds} til start`;
+    }
 }
 
 const interval = setInterval(oppdaterNedtelling, 1000);
