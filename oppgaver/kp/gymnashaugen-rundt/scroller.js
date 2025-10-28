@@ -47,7 +47,7 @@ function smoothScrollToElement(el) {
 navLinks.forEach(link => {
     link.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
-        if (!targetId || !targetId.startsWith('#')) return; // ikkje anna link
+        if (!targetId || !targetId.startsWith('#')) return;
         const targetEl = document.querySelector(targetId);
         if (!targetEl) return;
 
