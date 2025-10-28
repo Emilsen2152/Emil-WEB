@@ -1,5 +1,38 @@
 :root {
-  --nav-height: 80px; /* fallback, blir oppdatert av JS */
+    --nav-height: 80px;
+    /* fallback, blir oppdatert av JS */
+    --bs-primary: #00C7B1;
+    --bs-primary-rgb: 0, 199, 177;
+    --bs-secondary: #055160;
+    --bs-secondary-rgb: 5, 81, 96;
+    
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: #000;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #04414A !important;
+    border-color: #04414A !important;
+    color: #ffffff !important;
+    
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #9ADBE8;
+    border-color: #9ADBE8;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: #ffffff;
 }
 
 body {
@@ -7,7 +40,8 @@ body {
 }
 
 section {
-    scroll-margin-top: 80px; /* juster etter høgda på navbaren */
+    scroll-margin-top: 80px;
+    /* juster etter høgda på navbaren */
 }
 
 header {
@@ -22,8 +56,9 @@ header {
 
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
-    color: #0056b3 !important; /* mørkare blå på hover */
-    text-decoration: underline;
+    color: #055160 !important;
+    /* mørkare blå på hover */
+    border-bottom: 2px solid #055160;
 }
 
 
@@ -33,19 +68,21 @@ header {
 }
 
 #nedtelling-head {
-    line-height: 1;            /* Hindrar at teksten flyt for høgt */
+    line-height: 1;
+    /* Hindrar at teksten flyt for høgt */
     display: flex;
     align-items: center;
 }
 
 .navbar {
-    min-height: 60px;          /* Gir betre vertikal balanse */
+    min-height: 60px;
+    /* Gir betre vertikal balanse */
 }
 
 @media (max-width: 992px) {
+
     /* Sentrer nedtellinga på små skjermar */
     #nedtelling-head {
         font-size: 1.1rem;
     }
 }
-

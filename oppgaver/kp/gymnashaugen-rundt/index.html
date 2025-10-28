@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    <header class="bg-light sticky-top shadow-sm">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light py-2">
+    <header class="bg-primary sticky-top shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary py-2">
             <div class="container d-flex align-items-center justify-content-between">
 
                 <!-- Nedtelling til venstre -->
                 <div class="d-flex align-items-center me-auto">
-                    <span id="nedtelling-head" class="fw-bold text-primary fs-5 mb-0"></span>
+                    <span id="nedtelling-head" class="fw-bold fs-5 mb-0 text-dark"></span>
                 </div>
 
                 <!-- Toggler for mobil -->
@@ -32,16 +32,16 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-primary" href="#gymnashaugen-rundt">Gymnashaugen Rundt</a>
+                            <a class="nav-link text-dark" href="#gymnashaugen-rundt">Gymnashaugen Rundt</a>
                         </li>
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-primary" href="#etappar">Etappar</a>
+                            <a class="nav-link text-dark" href="#etappar">Etappar</a>
                         </li>
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-primary" href="#premiar">Premiar</a>
+                            <a class="nav-link text-dark" href="#premiar">Premiar</a>
                         </li>
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-primary" href="#påmelding">Påmelding</a>
+                            <a class="nav-link text-dark" href="#påmelding">Påmelding</a>
                         </li>
                     </ul>
                 </div>
@@ -55,7 +55,7 @@
         <section id="gymnashaugen-rundt" class="container my-5 text-center">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
-                    <img src="https://placehold.co/600x400" class="img-fluid w-100" alt="Gymnashaugen Rundt">
+                    <img src="https://placehold.co/600x400?text=LOGO" class="img-fluid w-100" alt="Gymnashaugen Rundt">
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                     <p class="lead mb-3 fs-5 fs-md-5">Eit stafettløp til inntekt for kreftsaka</p>
 
                     <h2 class="mb-1 fw-semibold fs-4 fs-md-3">Me køyrer i gang om</h2>
-                    <p id="nedtelling" class="fs-4 fs-md-2 fw-bold text-primary mb-1"></p>
+                    <p id="nedtelling" class="fs-4 fs-md-2 fw-bold text-secondary mb-1"></p>
                     <p class="fw-semibold fs-6 fs-md-5 text-muted" id="dato">8. april 2026 kl. 14:00</p>
                 </div>
             </div>
@@ -75,21 +75,27 @@
         <section id="etappar" class="container my-5 text-center">
             <h2 class="mb-4 fs-3">Etappar</h2>
 
-            <div class="row justify-content-center gx-0">
-                <div class="col-12 col-md-6">
-                    <div class="p-1">
-                        <h3>Her skal det komma tekst</h3>
-                    </div>
+            <div class="row align-items-center g-0 justify-content-center">
+
+                <div class="col-md-5">
+                    <ol class="list-group list-group-flush text-start mb-0">
+                        <li class="list-group-item py-2">1. Frå start til porten ved idrettsbanen</li>
+                        <li class="list-group-item py-2">2. Ein runde rundt idrettsbanen</li>
+                        <li class="list-group-item py-2">3. Frå porten ved idrettsbanen til Lekvemoen</li>
+                        <li class="list-group-item py-2">4. Frå Lekvemoen til parkeringsplassen ved Voss Gymnas</li>
+                        <li class="list-group-item py-2">5. Frå parkeringsplassen ved Voss Gymnas til inngangsdøra Voss
+                            Gymnas</li>
+                        <li class="list-group-item py-2">6. Innomhus-etappe (sjå eige kart)</li>
+                        <li class="list-group-item py-2">7. Frå utgangsdøra til Jugendbygget til mål</li>
+                    </ol>
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="p-1">
-                        <h3>Her skal det komma eit kart</h3>
-                    </div>
+
+                <div class="col-md-4">
+                    <img src="assets/kart-gymnashaugen.png" alt="Kart over etappar" class="img-fluid rounded shadow-sm"
+                        style="max-height: 350px; object-fit: contain; width: auto; border: 1px solid #ddd;">
                 </div>
             </div>
         </section>
-
-
 
         <!-- Premiar -->
         <section id="premiar" class="container my-5 text-center">
@@ -117,7 +123,8 @@
                 <div class="col-12 col-md-8 col-lg-6">
                     <h2 class="mb-4 text-center fs-3">Meld på bedrifta di her</h2>
                     <p class="mb-4 text-center fs-6 fs-md-5">
-                        Fyll ut skjemaet under for å melde på bedrifta di. Påmeldingsavgifta er minimum 1000 kr, men det
+                        Fyll ut skjemaet under for å melde på bedrifta di. Påmeldingsavgifta er minimum 1000 kr, men
+                        det
                         er
                         ingen øvre grense. Alle bidrag går til kreftsaka. Betalingsinformasjon vil bli sendt til
                         e-postadressa du oppgir nokre dagar etter påmelding.
