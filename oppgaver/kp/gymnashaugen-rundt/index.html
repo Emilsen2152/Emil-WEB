@@ -12,42 +12,145 @@
 </head>
 
 <body>
-    <header class="bg-primary text-white">
-        <nav class="navbar navbar-expand-lg navbar-dark container sticky-top py-2">
-            <a class="navbar-brand fw-bold fs-3" href="#">Gymnashaugen Rundt</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header class="bg-light sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light py-2">
+            <div class="container"> <!-- container gir padding på mobil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#gymnashaugen-rundt">Gymnashaugen Rundt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link 3</a>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item px-2">
+                            <a class="nav-link text-center" href="#gymnashaugen-rundt">Gymnashaugen Rundt</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a class="nav-link text-center" href="#premiar">Premiar</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a class="nav-link text-center" href="#paamelding">Påmelding</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main class="">
+
+
+    <main>
+        <!-- Gymnashaugen Rundt -->
         <section id="gymnashaugen-rundt" class="container my-5 text-center">
-            <h1 class="mb-4">Få bedrifta di med på Gymnashaugen Rundt!</h1>
-            <p class="lead mb-4">Eit stafettløp til inntekt for kreftsaka</p>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <img src="https://placehold.co/600x400" class="img-fluid w-100" alt="Gymnashaugen Rundt">
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <h1 class="mb-3 fw-bold fs-2 fs-md-1">Få bedrifta di med på Gymnashaugen Rundt!</h1>
+                    <p class="lead mb-3 fs-5 fs-md-5">Eit stafettløp til inntekt for kreftsaka</p>
+
+                    <h2 class="mb-1 fw-semibold fs-4 fs-md-3">Me køyrer i gang om</h2>
+                    <p id="nedtelling" class="fs-4 fs-md-2 fw-bold text-primary mb-1"></p>
+                    <p class="fw-semibold fs-6 fs-md-5 text-muted" id="dato">8. april 2026 kl. 14:00</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premiar -->
+        <section id="premiar" class="container my-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <h2 class="mb-4 fs-3">Premiar</h2>
+                    <p class="mb-4 fs-6 fs-md-5 text-start">
+                        Det blir delt ut premiar etter løpet, alle som har meldt på bedrifta si er med i trekninga.
+                        Premiane blir laga av utdanningsprogramma på Skulen.
+                    </p>
+                    <ul class="list-group list-group-flush text-start">
+                        <li class="list-group-item">Premie frå Joledesignmarknaden - Kunst Design og Arkitektur</li>
+                        <li class="list-group-item">Lunsjkonsert - Musikk, Dans og Drama</li>
+                        <li class="list-group-item">Trening for arbeidsplassen + teambuildingpakke - Idrett</li>
+                        <li class="list-group-item">Fyrstehjelpskurs - Helse og Oppvekst</li>
+                        <li class="list-group-item">Spadag på frisørsalongen - Frisør</li>
+                        <li class="list-group-item">Personlig treningsøkt - Idrett</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Påmelding -->
+        <section id="paamelding" class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <h2 class="mb-4 text-center fs-3">Meld på bedrifta di her</h2>
+                    <p class="mb-4 text-center fs-6 fs-md-5">
+                        Fyll ut skjemaet under for å melde på bedrifta di. Påmeldingsavgifta er minimum 1000 kr, men det
+                        er
+                        ingen øvre grense. Alle bidrag går til kreftsaka. Betalingsinformasjon vil bli sendt til
+                        e-postadressa du oppgir nokre dagar etter påmelding.
+                    </p>
+
+                    <form id="påmeldingsskjema" class="mx-auto" style="max-width: 500px;">
+                        <div class="mb-3 text-start">
+                            <label for="navn" class="form-label">Fullt namn</label>
+                            <input type="text" class="form-control" id="navn" name="navn" placeholder="Ditt namn"
+                                required>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label for="bedrift" class="form-label">Bedriftsnamn</label>
+                            <input type="text" class="form-control" id="bedrift" name="bedrift"
+                                placeholder="Bedriftsnamn" required>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label for="email" class="form-label">E-postadresse</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="din@epost.no"
+                                required>
+                        </div>
+
+                        <div class="mb-3 text-start">
+                            <label for="melding" class="form-label">Melding</label>
+                            <textarea class="form-control" id="melding" name="melding" rows="5"
+                                placeholder="Skriv inn innholdet her..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Send påmelding</button>
+                    </form>
+
+                    <div id="feedback" class="d-none mt-4 mx-auto p-3 border rounded text-center"
+                        style="max-width: 400px;">
+                        <div class="mb-3">
+                            <img id="feedback-img" src="https://placehold.co/150x150" alt="Feedback" class="img-fluid">
+                        </div>
+                        <p id="feedback-text" class="mb-3"></p>
+                        <button id="feedback-close" class="btn btn-secondary btn-sm">Lukk</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="bg-light text-center pb-4 py-3 mt-5 border-top">
+        <div class="container">
+            <p class="mb-2 text-muted fs-6">Arrangert av</p>
+            <img src="assets/voss-gymnas.png" alt="Voss Gymnas Logo" class="img-fluid"
+                style="max-width: 150px; opacity: 0.8;">
+        </div>
+    </footer>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <script src="script.js"></script>
+    <script src="timer.js"></script>
+    <script src="scroller.js"></script>
+    <script src="form.js"></script>
 </body>
 
 </html>

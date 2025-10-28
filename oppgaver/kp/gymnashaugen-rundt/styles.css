@@ -3,6 +3,14 @@
     --bs-primary-rgb: 0, 112, 160;
 }*/
 
+body {
+    position: relative;
+}
+
+section {
+    scroll-margin-top: 80px; /* juster etter høgda på navbaren */
+}
+
 header {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
@@ -16,4 +24,9 @@ header {
 .navbar .nav-link:hover,
 .navbar .nav-link.active {
     text-decoration: underline;
+}
+
+.w-70 {
+    width: 70%;
+    height: auto;
 }
