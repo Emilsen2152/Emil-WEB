@@ -1,6 +1,6 @@
 <?php
 // Fange opp alle feil og warnings midlertidig for å ikkje bryte JSON
-set_error_handler(function($errno, $errstr, $errfile, $errline){
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
     header('Content-Type: application/json');
     echo json_encode([
         "success" => false,
@@ -8,7 +8,7 @@ set_error_handler(function($errno, $errstr, $errfile, $errline){
     ]);
     exit;
 });
-register_shutdown_function(function() {
+register_shutdown_function(function () {
     $error = error_get_last();
     if ($error !== NULL) {
         header('Content-Type: application/json');
@@ -25,7 +25,8 @@ header('Content-Type: application/json');
 $to = "emil.v.soldal@gmail.com";
 $subject = "Påmelding: Gymnashaugen Rundt";
 
-function sendResponse($success, $message) {
+function sendResponse($success, $message)
+{
     echo json_encode([
         "success" => $success,
         "message" => $message
@@ -52,22 +53,41 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     sendResponse(false, "Ugyldig e-postadresse.");
 }
 
-// Sett opp e-postinnhald
-$body = "Ny påmelding fra Gymnashaugen Rundt:\n\n";
-$body .= "Navn: $navn\n";
-$body .= "Bedrift: $bedrift\n";
-$body .= "E-post: $email\n\n";
-$body .= "Melding:\n$melding\n";
+// HTML-formatert e-post
+$body = '
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        h2 { color: #00529B; }
+        p { line-height: 1.5; }
+        .info { background-color: #f7f9fc; padding: 10px 15px; border-left: 3px solid #00529B; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Ny påmelding: Gymnashaugen Rundt</h2>
+    <div class="info">
+        <p><strong>Navn:</strong> ' . $navn . '</p>
+        <p><strong>Bedrift:</strong> ' . $bedrift . '</p>
+        <p><strong>E-post:</strong> ' . $email . '</p>
+    </div>
+    <p><strong>Melding:</strong></p>
+    <p>' . nl2br($melding) . '</p>
+</body>
+</html>
+';
 
-// $headers = "From: $email\r\n";
-$headers = "From: <no-reply@elevweb.no>\r\n";
+// Headers med HTML-støtte
+$headers = "From: Gymnashaugen Rundt <no-reply@elevweb.no>\r\n";
 $headers .= "Reply-To: $email\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
+// Send e-post
 if (!mail($to, $subject, $body, $headers)) {
     sendResponse(false, "Det oppstod ein intern feil. Vennligst prøv igjen seinare.");
 }
 
 // Suksess
 sendResponse(true, "Takk for påmeldinga, $navn! Me har motteke skjemaet ditt.");
-
-// NB: Ingen closing PHP tag
