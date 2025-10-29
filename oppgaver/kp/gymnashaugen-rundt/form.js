@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 // Skjul skjemaet
+                skjema.reset();
                 skjema.style.display = "none";
 
                 // Gjenopprett knappen til original tilstand (aktiv)
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedbackImg.src = "https://placehold.co/150x150/FF0000/FFFFFF?text=X"; // rød X
 
                 // Skjul skjemaet
+                skjema.reset();
                 skjema.style.display = "none";
 
                 // Gjenopprett knappen til original tilstand (aktiv)
