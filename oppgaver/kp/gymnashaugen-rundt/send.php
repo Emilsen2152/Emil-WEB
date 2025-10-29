@@ -59,7 +59,8 @@ $body .= "Bedrift: $bedrift\n";
 $body .= "E-post: $email\n\n";
 $body .= "Melding:\n$melding\n";
 
-$headers = "From: $email\r\n";
+// $headers = "From: $email\r\n";
+$headers = "From: <no-reply@elevweb.no>\r\n";
 $headers .= "Reply-To: $email\r\n";
 
 if (!mail($to, $subject, $body, $headers)) {
