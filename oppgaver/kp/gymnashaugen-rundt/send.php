@@ -22,9 +22,6 @@ register_shutdown_function(function () {
 
 header('Content-Type: application/json');
 
-$to = "emil.v.soldal@gmail.com";
-$subject = "Påmelding: Gymnashaugen Rundt - $bedrift ($navn)";
-
 function sendResponse($success, $message)
 {
     echo json_encode([
@@ -32,10 +29,6 @@ function sendResponse($success, $message)
         "message" => $message
     ]);
     exit;
-}
-
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    sendResponse(false, "Ugyldig forespørsel.");
 }
 
 // Hent og sanitér data
@@ -57,6 +50,13 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $domain = substr(strrchr($email, "@"), 1);
 if (!$domain || !checkdnsrr($domain, "MX")) {
     sendResponse(false, "E-postadressa ser ikkje ut til å eksistere. Kontroller at du har skrive den rett.");
+}
+
+$to = "emil.v.soldal@gmail.com";
+$subject = "Påmelding: Gymnashaugen Rundt - $bedrift ($navn)";
+
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    sendResponse(false, "Ugyldig forespørsel.");
 }
 
 // HTML-formatert e-post (til arrangør)
