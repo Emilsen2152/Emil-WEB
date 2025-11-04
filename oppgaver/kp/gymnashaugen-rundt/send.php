@@ -53,6 +53,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     sendResponse(false, "Ugyldig e-postadresse.");
 }
 
+// Sjekk om domenet til e-posten har MX-oppføring (kan ta imot e-post)
+$domain = substr(strrchr($email, "@"), 1);
+if (!$domain || !checkdnsrr($domain, "MX")) {
+    sendResponse(false, "E-postadressa ser ikkje ut til å eksistere. Kontroller at du har skrive den rett.");
+}
+
 // HTML-formatert e-post (til arrangør)
 $body = '
 <html>
