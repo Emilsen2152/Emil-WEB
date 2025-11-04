@@ -53,7 +53,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     sendResponse(false, "Ugyldig e-postadresse.");
 }
 
-// HTML-formatert e-post
+// HTML-formatert e-post (til arrangør)
 $body = '
 <html>
 <head>
@@ -78,16 +78,50 @@ $body = '
 </html>
 ';
 
-// Headers med HTML-støtte
+// Bekreftelsesepost til deltakaren
+$confirmSubject = "Bekreftelse på påmelding - Gymnashaugen Rundt";
+$confirmBody = '
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        h2 { color: #00529B; }
+        p { line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <h2>Takk for påmeldinga, ' . $navn . '!</h2>
+    <p>Me har motteke påmeldinga di til <strong>Gymnashaugen Rundt</strong>.</p>
+    <p><strong>Oppsummering av innsendinga:</strong></p>
+    <ul>
+        <li><strong>Navn:</strong> ' . $navn . '</li>
+        <li><strong>Bedrift:</strong> ' . $bedrift . '</li>
+        <li><strong>Melding:</strong> ' . nl2br($melding) . '</li>
+    </ul>
+    <p>Vennleg helsing,<br>
+    <strong>Voss Gymnas</strong></p>
+</body>
+</html>
+';
+
+// Felles headers
 $headers = "From: Gymnashaugen Rundt <no-reply@elevweb.no>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-// Send e-post
+// Send e-post til arrangør
 if (!mail($to, $subject, $body, $headers)) {
     sendResponse(false, "Det oppstod ein intern feil. Vennligst prøv igjen seinare.");
 }
+
+// Send bekreftelse til deltakaren
+$confirmHeaders = "From: Gymnashaugen Rundt <no-reply@elevweb.no>\r\n";
+$confirmHeaders .= "Reply-To: no-reply@elevweb.no\r\n";
+$confirmHeaders .= "MIME-Version: 1.0\r\n";
+$confirmHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
+@mail($email, $confirmSubject, $confirmBody, $confirmHeaders);
 
 // Suksess
 sendResponse(true, "Takk for påmeldinga, $navn! Me har motteke skjemaet ditt.");
