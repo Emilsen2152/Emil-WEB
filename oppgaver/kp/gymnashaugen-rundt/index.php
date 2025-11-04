@@ -13,12 +13,12 @@
 
 <body>
     <header class="bg-primary sticky-top shadow-sm">
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary py-2">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
             <div class="container d-flex align-items-center justify-content-between">
 
                 <!-- Nedtelling til venstre -->
                 <div class="d-flex align-items-center me-auto">
-                    <span id="nedtelling-head" class="fw-bold fs-5 mb-0 text-dark"></span>
+                    <span id="nedtelling-head" class="fw-bold fs-5 mb-0"></span>
                 </div>
 
                 <!-- Toggler for mobil -->
@@ -32,16 +32,16 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-dark" href="#gymnashaugen-rundt">Gymnashaugen rundt</a>
+                            <a class="nav-link" href="#gymnashaugen-rundt">Gymnashaugen rundt</a>
                         </li>
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-dark" href="#etappar">Etappar</a>
+                            <a class="nav-link" href="#etappar">Etappar</a>
                         </li>
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-dark" href="#premiar">Premiar</a>
+                            <a class="nav-link" href="#premiar">Premiar</a>
                         </li>
                         <li class="nav-item px-2 fs-5 fw-bold">
-                            <a class="nav-link text-dark" href="#påmelding">Påmelding</a>
+                            <a class="nav-link" href="#påmelding">Påmelding</a>
                         </li>
                     </ul>
                 </div>
@@ -67,7 +67,7 @@
                         Gymnashaugen rundt er eit stafettløp arrangert av Voss Gymnas for å samle inn pengar til
                         kreftsaka.
                         Løpet går rundt Gymnashaugen og innom Voss Gymnas sine lokaler, og kvar bedrift stiller med eitt
-                        lag på 7 personar. Det blir trekt premiar etter løpet. '
+                        lag på 7 personar. Det blir trekt premiar etter løpet.
                         Påmeldingsavgifta går uavkorta til Kreftforeningen og er minimum 1000 kroner per lag.
                     </p>
                     <h2 class="mb-1 fw-semibold fs-4 fs-md-3">Me køyrer i gang om</h2>
@@ -136,25 +136,25 @@
 
                     <form id="påmeldingsskjema" class="mx-auto" style="max-width: 500px;">
                         <div class="mb-3 text-start">
-                            <label for="navn" class="form-label">Fullt namn</label>
+                            <label for="navn" class="form-label fw-bold">Fullt namn</label>
                             <input type="text" class="form-control" id="navn" name="navn" placeholder="Ditt namn"
                                 required>
                         </div>
 
                         <div class="mb-3 text-start">
-                            <label for="bedrift" class="form-label">Bedriftsnamn</label>
+                            <label for="bedrift" class="form-label fw-bold">Bedriftsnamn</label>
                             <input type="text" class="form-control" id="bedrift" name="bedrift"
-                                placeholder="Bedriftsnamn" required>
+                                placeholder="Din bedrift" required>
                         </div>
 
                         <div class="mb-3 text-start">
-                            <label for="email" class="form-label">E-postadresse</label>
+                            <label for="email" class="form-label fw-bold">E-postadresse</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="din@epost.no"
                                 required>
                         </div>
 
                         <div class="mb-3 text-start">
-                            <label for="melding" class="form-label">Melding</label>
+                            <label for="melding" class="form-label fw-bold">Melding</label>
                             <textarea class="form-control" id="melding" name="melding" rows="5"
                                 placeholder="Skriv inn innholdet her..." required></textarea>
                         </div>

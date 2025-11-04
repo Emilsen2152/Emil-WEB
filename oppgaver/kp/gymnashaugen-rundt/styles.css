@@ -1,67 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
     --nav-height: 80px;
-    /* fallback, blir oppdatert av JS */
-    --bs-primary: #00C7B1;
-    --bs-primary-rgb: 0, 199, 177;
-    --bs-secondary: #055160;
-    --bs-secondary-rgb: 5, 81, 96;
-    
+
+    /* Gymnashaugen rundt – blå, frisk og tillitsvekkande profil */
+    --bs-primary: #0056b3;
+    /* djupblå (hovedfarge) */
+    --bs-primary-rgb: 0, 86, 179;
+    --bs-secondary: #007bff;
+    /* klar blå (kontrastfarge) */
+    --bs-secondary-rgb: 0, 123, 255;
+    --bs-accent: #66b3ff;
+    /* lys blå for detaljar */
+    --bs-bg-light: #f8fbff;
+    /* lys bakgrunnsfarge med hint av blått */
+    --bs-text: #212529;
 }
 
+/* Global font og base */
+body {
+    position: relative;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--bs-text);
+    background-color: var(--bs-bg-light);
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+/* Seksjonar */
+section {
+    scroll-margin-top: 80px;
+}
+
+/* Header og navigasjon */
+header {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(90deg, var(--bs-primary) 0%, var(--bs-secondary) 100%);
+}
+
+.navbar {
+    min-height: 60px;
+    background: transparent !important;
+    /* gradient kjem frå header */
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    position: relative;
+}
+
+.navbar .nav-link:hover::after {
+    width: 70%;
+}
+
+/* Knappestilar */
 .btn-primary {
     background-color: var(--bs-primary);
     border-color: var(--bs-primary);
-    color: #000;
-}
-
-.btn-primary:active,
-.btn-primary.active {
-    background-color: #04414A !important;
-    border-color: #04414A !important;
-    color: #ffffff !important;
-    
-}
-
-.btn-primary.disabled,
-.btn-primary:disabled {
-    background-color: #9ADBE8;
-    border-color: #9ADBE8;
-    color: #000;
+    color: #fff;
+    transition: 0.2s;
 }
 
 .btn-primary:hover {
     background-color: var(--bs-secondary);
     border-color: var(--bs-secondary);
-    color: #ffffff;
+    color: #fff;
 }
 
-body {
-    position: relative;
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #004080 !important;
+    border-color: #004080 !important;
+    color: #fff !important;
 }
 
-section {
-    scroll-margin-top: 80px;
-    /* juster etter høgda på navbaren */
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #a3c4f3;
+    border-color: #a3c4f3;
+    color: #fff;
 }
 
-header {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+/* Sekundær knapp */
+.btn-secondary {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: #fff;
 }
 
-.navbar .nav-link {
-    /*color: #007bff !important; /* Bootstrap-blå */
-    font-weight: 500;
-    transition: 0.2s;
+.btn-secondary:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: #fff;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: #055160 !important;
-    /* mørkare blå på hover */
-    border-bottom: 2px solid #055160;
-}
-
-
+/* Diverse */
 .w-70 {
     width: 70%;
     height: auto;
@@ -69,19 +112,37 @@ header {
 
 #nedtelling-head {
     line-height: 1;
-    /* Hindrar at teksten flyt for høgt */
     display: flex;
     align-items: center;
+    color: #fff;
+    /* ← denne linja fikser det */
 }
 
-.navbar {
-    min-height: 60px;
-    /* Gir betre vertikal balanse */
+/* Footer */
+footer {
+    background-color: #fff;
 }
 
+#påmeldingsskjema {
+    background-color: #ffffff; /* lys bakgrunn for kontrast mot siden */
+    padding: 2rem;            /* innvendig luft */
+    border-radius: 12px;      /* rundede hjørner */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* myk skygge */
+    border: 1px solid #d0d7e0; /* subtil kant */
+}
+
+#påmeldingsskjema .form-control {
+    border-radius: 6px;
+}
+
+#påmeldingsskjema .btn-primary {
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+}
+
+
+/* Responsivitet */
 @media (max-width: 992px) {
-
-    /* Sentrer nedtellinga på små skjermar */
     #nedtelling-head {
         font-size: 1.1rem;
     }
