@@ -23,7 +23,7 @@ register_shutdown_function(function () {
 header('Content-Type: application/json');
 
 $to = "emil.v.soldal@gmail.com";
-$subject = "Påmelding: Gymnashaugen Rundt";
+$subject = "Påmelding: Gymnashaugen Rundt - $bedrift ($navn)";
 
 function sendResponse($success, $message)
 {
