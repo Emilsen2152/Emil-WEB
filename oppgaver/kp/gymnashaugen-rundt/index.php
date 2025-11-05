@@ -5,10 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gymnashaugen rundt</title>
+    <meta name="description" content="Meld på bedrifta di på Gymnashaugen rundt!">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="styles.css">
+
+    <meta property="og:title" content="Gymnashaugen rundt - Stafettløp for Kreftsaka">
+    <meta property="og:description"
+        content="Meld på bedrifta di til Gymnashaugen rundt! Eit løp til inntekt for Kreftforeningen, arrangert av Voss Gymnas.">
+    <meta property="og:image" content="https://gymnashaugenrundt.no/assets/gymnashaugen-rundt-logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gymnashaugenrundt.no/">
+
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": "Gymnashaugen rundt",
+        "startDate": "2026-04-08T14:00:00+01:00",
+        "location": {
+            "@type": "Place",
+            "name": "Voss Gymnas",
+            "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Voss",
+            "addressCountry": "NO"
+            }
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "Voss Gymnas"
+        },
+        "description": "Stafettløp til inntekt for Kreftsaka arrangert av Voss Gymnas."
+        }
+</script>
+
+<link rel="canonical" href="https://dittdomene.no/">
+
 </head>
 
 <body>
@@ -55,7 +89,7 @@
         <section id="gymnashaugen-rundt" class="container my-5 text-center">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
-                    <img src="assets/logo.png" class="img-fluid w-100" alt="Gymnashaugen rundt sin logo">
+                    <img src="assets/gymnashaugen-rundt-logo.png" class="img-fluid w-100" alt="Gymnashaugen rundt sin logo">
                 </div>
             </div>
 
@@ -129,8 +163,10 @@
                 <div class="col-12 col-md-8 col-lg-6">
                     <h2 class="mb-4 text-center fs-3">Meld på bedrifta di her</h2>
                     <p class="mb-4 text-center fs-6 fs-md-5">
-                        Fyll ut skjemaet under for å melde på bedrifta di. Påmeldingsavgifta er minimum 1000 kr per lag, men
-                        det er ingen øvre grense. Alle bidrag går til kreftsaka. Laget må bestå av 7 personar. Betalingsinformasjon vil bli sendt til
+                        Fyll ut skjemaet under for å melde på bedrifta di. Påmeldingsavgifta er minimum 1000 kr per lag,
+                        men
+                        det er ingen øvre grense. Alle bidrag går til kreftsaka. Laget må bestå av 7 personar.
+                        Betalingsinformasjon vil bli sendt til
                         e-postadressa du oppgir nokre dagar etter påmelding.
                     </p>
 
