@@ -87,7 +87,7 @@ $body = '
 ';
 
 // Send e-post til arrangør
-if (!sendMail($email, $subject, $body)) {
+if (!sendMail($navn, $bedrift, $email, $subject, $melding)) {
     sendResponse(false, "Det oppstod ein intern feil. Vennligst prøv igjen seinare.");
 }
 
