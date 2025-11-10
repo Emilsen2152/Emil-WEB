@@ -1,4 +1,4 @@
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('emil-web-token');
 if (!token) {
     window.location.href = '../../konto/login?redirect=film-søk';
 }

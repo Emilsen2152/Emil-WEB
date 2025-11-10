@@ -3,7 +3,7 @@ const logoutBtn = document.getElementById('logoutBtn');
 const passwordChangeBtn = document.getElementById('passwordChangeBtn');
 const passwordChangeForm = document.getElementById('password-change');
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('emil-web-token');
 
 if (!token) {
     // No token, redirect to register/login page
@@ -27,14 +27,14 @@ if (!token) {
         .catch(err => {
             console.error(err);
             // Token invalid, clear localStorage and redirect
-            localStorage.removeItem('token');
+            localStorage.removeItem('emil-web-token');
             window.location.href = './login';
         });
 }
 
 // Logout button clears localStorage and redirects
 logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('emil-web-token');
     window.location.href = './login';
 });
 
@@ -65,7 +65,7 @@ passwordChangeForm.addEventListener('submit', async (e) => {
 
         alert('Passord oppdatert.');
 
-        localStorage.setItem('token', `Bearer ${data.user.token}`);
+        localStorage.setItem('emil-web-token', `Bearer ${data.user.token}`);
 
         // Reload
         window.location.reload();

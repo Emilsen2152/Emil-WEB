@@ -36,7 +36,7 @@ form.addEventListener('submit', async (e) => {
         }
 
         // Save token in Bearer format
-        localStorage.setItem('token', `Bearer ${data.user.token}`);
+        localStorage.setItem('emil-web-token', `Bearer ${data.user.token}`);
 
         // Redirect to main konto page
         if (redirect && redirects[redirect]) {
