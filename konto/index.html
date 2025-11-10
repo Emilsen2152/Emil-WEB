@@ -18,7 +18,12 @@
         <script src="../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
         <main class="content">
-            
+            <h1>Konto</h1>
+            <p>
+                Velkommen til kontosiden din. Det er foreløpig ingen informasjon tilgjengelig, men brukernavnet ditt er: 
+                <strong id="usernameDisplay">...</strong>
+            </p>
+            <button id="logoutBtn" class="form-button extra-padding-top">Logg ut</button>
         </main>
     </div>
 
@@ -28,6 +33,49 @@
         </noscript>
     </footer>
     <script src="../assets/shared/code/footer/footer.js" type="module"></script>
+
+    <!-- JS for fetching user and logout -->
+    <script type="module">
+        const usernameEl = document.getElementById('usernameDisplay');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            // No token, redirect to register/login page
+            window.location.href = './register.html';
+        } else {
+            // Fetch user from API
+            fetch('https://emil-web-api-production.up.railway.app/user', {
+                method: 'GET',
+                headers: {
+                    'Authorization': token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
+                return res.json();
+            })
+            .then(data => {
+                usernameEl.textContent = data.username;
+            })
+            .catch(err => {
+                console.error(err);
+                // Token invalid, clear localStorage and redirect
+                localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                window.location.href = './register.html';
+            });
+        }
+
+        // Logout button clears localStorage and redirects
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = './register.html';
+        });
+    </script>
 </body>
 
 </html>
