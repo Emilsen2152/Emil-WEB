@@ -30,7 +30,6 @@ form.addEventListener('submit', async (e) => {
 
         // Save token in localStorage
         localStorage.setItem('token', `Bearer ${data.user.token}`);
-        localStorage.setItem('username', data.user.username);
 
         // Redirect to main konto page
         window.location.href = '../';

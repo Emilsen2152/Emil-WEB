@@ -25,9 +25,6 @@ form.addEventListener('submit', async (e) => {
         // Save token in Bearer format
         localStorage.setItem('token', `Bearer ${data.token}`);
 
-        // Save username as well (optional)
-        localStorage.setItem('username', data.user?.username || username);
-
         // Redirect to main konto page
         window.location.href = '../';
     } catch (err) {

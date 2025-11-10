@@ -64,7 +64,6 @@
                 console.error(err);
                 // Token invalid, clear localStorage and redirect
                 localStorage.removeItem('token');
-                localStorage.removeItem('username');
                 window.location.href = './register/';
             });
         }
@@ -72,7 +71,6 @@
         // Logout button clears localStorage and redirects
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('token');
-            localStorage.removeItem('username');
             window.location.href = './register/';
         });
     </script>
