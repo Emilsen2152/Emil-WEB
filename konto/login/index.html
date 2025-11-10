@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logg inn - EmilWEB</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <noscript>
+                <p>JavaScript er påkrevd for å se sidebaren.</p>
+            </noscript>
+            <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>Logg inn</h1>
+            <p>Logg inn med brukernavn og passord.</p>
+
+            <form id="loginForm" class="main-form">
+                <label for="username" class="form-label">Brukernavn:</label>
+                <input type="text" id="username" name="username" class="form-input" required>
+
+                <label for="password" class="form-label">Passord:</label>
+                <input type="password" id="password" name="password" class="form-input" required>
+
+                <button type="submit" class="form-button">Logg inn</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 1rem;">
+                <a href="../registrer" class="btn-link btn-link--small">Opprett konto</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <noscript>
+            <p>JavaScript er påkrevd for å se footeren.</p>
+        </noscript>
+        <script src="../../assets/shared/code/footer/footer.js" type="module"></script>
+    </footer>
+
+    <!-- Login JS -->
+    <script src="../../assets/private/code/konto/login/login.js" type="module"></script>
+</body>
+
+</html>

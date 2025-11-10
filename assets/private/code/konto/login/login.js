@@ -1,4 +1,4 @@
-const form = document.getElementById('registerForm');
+const form = document.getElementById('loginForm');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -6,14 +6,8 @@ form.addEventListener('submit', async (e) => {
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
 
-    // Validate username is all lowercase
-    if (username !== username.toLowerCase()) {
-        alert('Brukernavn må kun være små bokstaver.');
-        return;
-    }
-
     try {
-        const response = await fetch('https://emil-web-api-production.up.railway.app/users', {
+        const response = await fetch('https://emil-web-api-production.up.railway.app/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,9 +22,11 @@ form.addEventListener('submit', async (e) => {
             return;
         }
 
-        // Save token in localStorage
-        localStorage.setItem('token', `Bearer ${data.user.token}`);
-        localStorage.setItem('username', data.user.username);
+        // Save token in Bearer format
+        localStorage.setItem('token', `Bearer ${data.token}`);
+
+        // Save username as well (optional)
+        localStorage.setItem('username', data.user?.username || username);
 
         // Redirect to main konto page
         window.location.href = '../';

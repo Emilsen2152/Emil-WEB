@@ -23,7 +23,7 @@
                 Velkommen til kontosiden din. Det er foreløpig ingen informasjon tilgjengelig, men brukernavnet ditt er: 
                 <strong id="usernameDisplay">...</strong>
             </p>
-            <button id="logoutBtn" class="form-button extra-padding-top">Logg ut</button>
+            <button id="logoutBtn" class="btn-link btn-link--small">Logg ut</button>
         </main>
     </div>
 
@@ -43,7 +43,7 @@
 
         if (!token) {
             // No token, redirect to register/login page
-            window.location.href = './register.html';
+            window.location.href = './login';
         } else {
             // Fetch user from API
             fetch('https://emil-web-api-production.up.railway.app/user', {
@@ -65,7 +65,7 @@
                 // Token invalid, clear localStorage and redirect
                 localStorage.removeItem('token');
                 localStorage.removeItem('username');
-                window.location.href = './register.html';
+                window.location.href = './register/';
             });
         }
 
@@ -73,7 +73,7 @@
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('token');
             localStorage.removeItem('username');
-            window.location.href = './register.html';
+            window.location.href = './register/';
         });
     </script>
 </body>
