@@ -1,5 +1,18 @@
 const form = document.getElementById('registerForm');
 
+const redirects = {
+    'film-søk': '../../eigenprosjekt/film-søk/',
+}
+
+const redirect = new URLSearchParams(window.location.search).get('redirect');
+
+if (redirect) {
+    const redirectLinks = document.querySelectorAll('.forward-redirect');
+    redirectLinks.forEach(link => {
+        link.href += `?redirect=${redirect}`;
+    });
+};
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -32,7 +45,11 @@ form.addEventListener('submit', async (e) => {
         localStorage.setItem('token', `Bearer ${data.user.token}`);
 
         // Redirect to main konto page
-        window.location.href = '../';
+        if (redirect && redirects[redirect]) {
+            window.location.href = redirects[redirect];
+        } else {
+            window.location.href = '../';
+        }
     } catch (err) {
         console.error(err);
         alert('En feil oppstod. Prøv igjen senere.');

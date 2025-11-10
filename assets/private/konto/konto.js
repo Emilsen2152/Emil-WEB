@@ -22,7 +22,7 @@ if (!token) {
             return res.json();
         })
         .then(data => {
-            usernameEl.textContent = data.username;
+            usernameEl.textContent = data.user.username;
         })
         .catch(err => {
             console.error(err);
@@ -40,4 +40,37 @@ logoutBtn.addEventListener('click', () => {
 
 passwordChangeBtn.addEventListener('click', () => {
     passwordChangeForm.style.display = passwordChangeForm.style.display === 'none' ? 'block' : 'none';
+});
+
+passwordChangeForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    try {
+        const response = await fetch('https://emil-web-api-production.up.railway.app/user/password', {
+            method: 'PUT',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentPassword, newPassword })
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+            alert(`Feil: ${data.error || 'Noe gikk galt ved oppdatering av passord.'}`);
+            return;
+        };
+
+        alert('Passord oppdatert.');
+
+        localStorage.setItem('token', `Bearer ${data.user.token}`);
+
+        // Reload
+        window.location.reload();
+    } catch (err) {
+        console.error(err);
+        alert('En feil oppstod. Prøv igjen senere.');
+    }
 });

@@ -1,6 +1,6 @@
 const token = localStorage.getItem('token');
 if (!token) {
-    window.location.href = '../../konto/login';
+    window.location.href = '../../konto/login?redirect=film-søk';
 }
 
 // Elements
@@ -40,7 +40,7 @@ async function searchMovies() {
         const data = await response.json();
         resultsContainer.innerHTML = "";
 
-        const movies = data.slice(0, 20);
+        const movies = data.movies.slice(0, 20);
 
         movies.forEach(movie => {
             const box = document.createElement("div");
