@@ -1,3 +1,8 @@
+const token = localStorage.getItem('token');
+if (!token) {
+    window.location.href = '../../konto/login';
+}
+
 // Elements
 const input = document.getElementById("searchInput");
 const resultsContainer = document.getElementById("results");
@@ -12,11 +17,6 @@ const genreMap = {
 
 // Main search function
 async function searchMovies() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        window.location.href = '../../konto/login';
-    }
-
     const query = input.value.trim();
     if (!query) {
         resultsContainer.innerHTML = "";
