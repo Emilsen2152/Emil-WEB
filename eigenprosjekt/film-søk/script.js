@@ -31,6 +31,8 @@ async function searchMovies() {
             headers: getHeader
         });
 
+        console.log("Fetch response:", response);
+
         if (!response.ok) {
             throw new Error(`Server returned ${response.status}`);
         }

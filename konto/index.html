@@ -20,11 +20,25 @@
         <main class="content">
             <h1>Konto</h1>
             <p>
-                Velkommen til kontosiden din. Det er foreløpig ingen informasjon tilgjengelig, men brukernavnet ditt er: 
+                Velkommen til kontosiden din. Det er foreløpig ingen informasjon tilgjengelig, men brukernavnet ditt er:
                 <strong id="usernameDisplay">...</strong>
             </p>
             <div class="button-grid">
                 <button id="logoutBtn" class="btn-link btn-link--small">Logg ut</button>
+                <button id="passwordChangeBtn" class="btn-link btn-link--small">Endre passord</button>
+            </div>
+
+            <div id="password-change" style="display:none; margin-top:20px;">
+                <h2>Endre passord</h2>
+                <form id="passwordChangeForm" class="main-form">
+                    <label for="currentPassword" class="form-label">Nåværende passord:</label>
+                    <input type="password" id="currentPassword" name="currentPassword" class="form-input" required>
+
+                    <label for="newPassword" class="form-label">Nytt passord:</label>
+                    <input type="password" id="newPassword" name="newPassword" class="form-input" required>
+
+                    <button type="submit" class="form-button">Oppdater passord</button>
+                </form>
             </div>
         </main>
     </div>
@@ -37,45 +51,7 @@
     <script src="../assets/shared/code/footer/footer.js" type="module"></script>
 
     <!-- JS for fetching user and logout -->
-    <script type="module">
-        const usernameEl = document.getElementById('usernameDisplay');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-            // No token, redirect to register/login page
-            window.location.href = './login';
-        } else {
-            // Fetch user from API
-            fetch('https://emil-web-api-production.up.railway.app/user', {
-                method: 'GET',
-                headers: {
-                    'Authorization': token,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => {
-                if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
-                return res.json();
-            })
-            .then(data => {
-                usernameEl.textContent = data.username;
-            })
-            .catch(err => {
-                console.error(err);
-                // Token invalid, clear localStorage and redirect
-                localStorage.removeItem('token');
-                window.location.href = './login';
-            });
-        }
-
-        // Logout button clears localStorage and redirects
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('token');
-            window.location.href = './login';
-        });
-    </script>
+    <script type="module" src="../assets/private/konto/konto.js"></script>
 </body>
 
 </html>
