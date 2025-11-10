@@ -23,7 +23,9 @@
                 Velkommen til kontosiden din. Det er foreløpig ingen informasjon tilgjengelig, men brukernavnet ditt er: 
                 <strong id="usernameDisplay">...</strong>
             </p>
-            <button id="logoutBtn" class="btn-link btn-link--small">Logg ut</button>
+            <div class="button-grid">
+                <button id="logoutBtn" class="btn-link btn-link--small">Logg ut</button>
+            </div>
         </main>
     </div>
 
@@ -64,14 +66,14 @@
                 console.error(err);
                 // Token invalid, clear localStorage and redirect
                 localStorage.removeItem('token');
-                window.location.href = './register/';
+                window.location.href = './login';
             });
         }
 
         // Logout button clears localStorage and redirects
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('token');
-            window.location.href = './register/';
+            window.location.href = './login';
         });
     </script>
 </body>
