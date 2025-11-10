@@ -31,7 +31,7 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (!response.ok) {
-            alert(`Feil: ${data.error || 'Noe gikk galt.'}`);
+            alert(`Feil: ${data.message || 'Noe gikk galt.'}`);
             return;
         }
 
