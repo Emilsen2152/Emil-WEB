@@ -12,6 +12,11 @@ const genreMap = {
 
 // Main search function
 async function searchMovies() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = '../../konto/login';
+    }
+
     const query = input.value.trim();
     if (!query) {
         resultsContainer.innerHTML = "";
@@ -19,7 +24,12 @@ async function searchMovies() {
     }
 
     try {
-        const response = await fetch(`https://emil-web-api-production.up.railway.app/movies?query=${encodeURIComponent(query)}`);
+        const getHeader = new Headers();
+        getHeader.append("Authorization", token);
+
+        const response = await fetch(`https://emil-web-api-production.up.railway.app/movies?query=${encodeURIComponent(query)}`, {
+            headers: getHeader
+        });
 
         if (!response.ok) {
             throw new Error(`Server returned ${response.status}`);
