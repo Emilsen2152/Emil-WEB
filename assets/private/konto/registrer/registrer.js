@@ -2,6 +2,7 @@ const form = document.getElementById('registerForm');
 
 const redirects = {
     'film-søk': '../../eigenprosjekt/film-søk/',
+    'vossamessa': '../../pingpanik/vossamessa/',
 }
 
 const redirect = new URLSearchParams(window.location.search).get('redirect');

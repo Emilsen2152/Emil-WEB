@@ -5,10 +5,31 @@ const resultsList = document.getElementById("results-list");
 const form = document.getElementById("timing-form");
 
 if (!token) {
-    alert("Du må vera logga inn for å bruke PingPanik-systemet.");
-    if (form) form.querySelector("button[type=submit]").disabled = true;
+    // Ingen token → send til login
+    window.location.href = '../../konto/login?redirect=vossamessa';
 } else {
-    loadEntries();
+    try {
+        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
+
+        const data = await res.json();
+
+        if (data.user.username !== 'admin' && !data.user.permissions.includes('pingpanik')) {
+            alert("Du har ikkje tilgang til PingPanik-systemet.");
+            window.location.href = '../../konto';
+        }
+    } catch (err) {
+        console.error(err);
+        localStorage.removeItem('emil-web-token');
+        window.location.href = '../../konto/login?redirect=vossamessa';
+    }
 }
 
 // ===========================
