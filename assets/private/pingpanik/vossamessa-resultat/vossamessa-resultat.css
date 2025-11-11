@@ -1,12 +1,12 @@
 /* ============================= */
-/*      RESULTATLISTE STYLING    */
+/* RESULTATLISTE STYLING   */
 /* ============================= */
 
 #results-list {
     margin: 2rem auto;
     padding: 1rem;
-    width: 90%; /* Bruk nesten heile breidda */
-    max-width: 1200px; /* Begrens maksbreidde */
+    width: 100%; /* tar heile bredda */
+    max-width: 1200px;
     background-color: var(--color-sidebar);
     border-radius: var(--footer-radius);
     box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
@@ -32,6 +32,20 @@
     font-size: 1.1rem;
 }
 
+/* --- ALIGNMENT FIXES START HERE --- */
+
+/* Fix 1: Align the 'Namn' header span to match the data's padding */
+.result-header span:nth-child(2) { 
+    padding-left: 0.5rem;
+}
+
+/* Fix 2: Right-align the 'Tid' header span to match the data */
+.result-header span:nth-child(3) { 
+    text-align: right;
+}
+
+/* --- ALIGNMENT FIXES END HERE --- */
+
 .result-entry:last-child {
     border-bottom: none;
 }
@@ -48,12 +62,6 @@
     text-align: right;
     font-weight: bold;
     font-size: 1rem;
-}
-
-/* Hover-effekt på rader */
-.result-entry:hover {
-    background-color: rgba(13, 71, 161, 0.2); /* var(--color-primary) med litt gjennomsiktighet */
-    border-radius: 0.3125rem;
 }
 
 /* For melding når lista er tom */
