@@ -1,6 +1,6 @@
 const token = localStorage.getItem('emil-web-token');
 if (!token) {
-    window.location.href = '../../konto/login?redirect=film-søk';
+    window.location.href = '../../konto/login?redirect=eigenprosjekt/film-søk';
 }
 
 // Elements

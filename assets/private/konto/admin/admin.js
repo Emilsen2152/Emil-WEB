@@ -25,7 +25,7 @@ if (!token) {
     } catch (err) {
         console.error(err);
         localStorage.removeItem('emil-web-token');
-        window.location.href = './login';
+        window.location.href = '../login';
     }
 }
 

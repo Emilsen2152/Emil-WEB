@@ -1,10 +1,5 @@
 const form = document.getElementById('loginForm');
 
-const redirects = {
-    'film-søk': '../../eigenprosjekt/film-søk/',
-    'vossamessa': '../../pingpanik/vossamessa/',
-}
-
 const redirect = new URLSearchParams(window.location.search).get('redirect');
 
 if (redirect) {
@@ -40,8 +35,8 @@ form.addEventListener('submit', async (e) => {
         localStorage.setItem('emil-web-token', `Bearer ${data.user.token}`);
 
         // Redirect to main konto page
-        if (redirect && redirects[redirect]) {
-            window.location.href = redirects[redirect];
+        if (redirect) {
+            window.location.href = `../../${redirect}`;
         } else {
             window.location.href = '../';
         }

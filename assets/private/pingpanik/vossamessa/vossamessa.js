@@ -6,7 +6,7 @@ const form = document.getElementById("timing-form");
 
 if (!token) {
     // Ingen token → send til login
-    window.location.href = '../../konto/login?redirect=vossamessa';
+    window.location.href = '../../konto/login?redirect=pingpanik/vossamessa';
 } else {
     try {
         const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
@@ -21,7 +21,7 @@ if (!token) {
 
         const data = await res.json();
 
-        if (data.user.username !== 'admin' && !data.user.permissions.includes('pingpanik')) {
+        if (data.user.username !== 'admin' && !data.user.permissions.includes('admin') && !data.user.permissions.includes('pingpanik')) {
             alert("Du har ikkje tilgang til PingPanik-systemet.");
             window.location.href = '../../konto';
         }
@@ -30,7 +30,7 @@ if (!token) {
     } catch (err) {
         console.error(err);
         localStorage.removeItem('emil-web-token');
-        window.location.href = '../../konto/login?redirect=vossamessa';
+        window.location.href = '../../konto/login?redirect=pingpanik/vossamessa';
     }
 }
 
