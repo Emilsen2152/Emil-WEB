@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vossamessa - PingPanik</title>
     <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/private/pingpanik/vossamessa/vossamessa.css">
 </head>
 
 <body>
@@ -25,22 +26,36 @@
                 <label for="name" class="form-label">Navn:</label>
                 <input type="text" id="name" name="name" class="form-input" required>
 
-                <label for="e-post" class="form-label">E-post:</label>
-                <input type="email" id="e-post" name="e-post" class="form-input" required>
+                <label for="email" class="form-label">E-post:</label>
+                <input type="email" id="email" name="email" class="form-input" required>
+
+                <label for="phone" class="form-label">Telefonnummer:</label>
+                <input type="tel" id="phone" name="phone" class="form-input" required>
 
                 <label for="age" class="form-label">Alder:</label>
                 <input type="number" id="age" name="age" class="form-input" required>
 
-                <label for="tid" class="form-label">Tid brukt:</label>
-                <input type="text" id="tid" name="tid" class="form-input" required>
+                <label for="time" class="form-label">Tid brukt:</label>
+                <input type="text" id="time" name="time" placeholder="MM:SS" class="form-input" required>
 
-                <button type="submit" class="form-button">Logg inn</button>
+                <button type="submit" class="form-button">Publiser</button>
             </form>
 
-            <h2>Resultatliste</h2>
-            <div id="results-list">
-                <!-- Resultater vil bli vist her -->
+            <h2 class="extra-padding-top">Resultatliste</h2>
+            <p><a href="../vossamessa-resultat/" class="link-button">Se åpen resultatliste.</a></p>
+            <div id="results-list" class="gray-background">
+                <div class="result-header">
+                    <span>#</span>
+                    <span>Namn</span>
+                    <span>E-post</span>
+                    <span>Telefon</span>
+                    <span>Alder</span>
+                    <span>Tid</span>
+                    <span>Handling</span>
+                </div>
             </div>
+
+            <script src="../../assets/private/pingpanik/vossamessa/vossamessa.js" type="module"></script>
         </main>
     </div>
 

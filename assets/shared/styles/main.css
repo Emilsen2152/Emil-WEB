@@ -281,10 +281,6 @@ figure {
     text-align: center;
 }
 
-.extra-padding-top {
-    padding-top: 20px;
-}
-
 /* ============================= */
 /*           FOOTER               */
 /* ============================= */
@@ -332,6 +328,19 @@ figure {
 
 .spacer {
     height: var(--base-padding);
+}
+
+.extra-padding-top {
+    padding-top: 20px;
+}
+
+.gray-background {
+    margin: 0 auto;
+    padding: var(--base-padding);
+    background-color: var(--color-sidebar);
+    border-radius: var(--footer-radius);
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+    max-width: 1000px;
 }
 
 /* ============================= */

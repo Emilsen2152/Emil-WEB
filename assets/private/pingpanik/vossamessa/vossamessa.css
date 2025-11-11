@@ -1,0 +1,109 @@
+/* ============================= */
+/*        RESULTATLISTE          */
+/* ============================= */
+
+#results-list {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: var(--footer-radius);
+    padding: 1rem;
+}
+
+/* ----------------------------- */
+/*          HEADER-RADEN         */
+/* ----------------------------- */
+
+.result-header {
+    display: grid;
+    grid-template-columns: 2rem 1.5fr 2fr 1.5fr 0.5fr 0.6fr auto;
+    gap: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 0.6rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+    color: var(--color-footer-title);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+/* ----------------------------- */
+/*          RESULTATRADAR        */
+/* ----------------------------- */
+
+.result-entry {
+    display: grid;
+    grid-template-columns: 2rem 1.5fr 2fr 1.5fr 0.5fr 0.6fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--footer-radius);
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.6rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.result-entry:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.result-rank {
+    text-align: right;
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+.result-name,
+.result-email,
+.result-phone,
+.result-age,
+.result-time {
+    color: var(--color-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.result-time {
+    font-family: monospace;
+    text-align: right;
+    font-weight: bold;
+    color: var(--color-footer-title);
+}
+
+/* “Fjern”-knappen */
+.result-entry .form-button--reset {
+    width: auto;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    background-color: #7f0000;
+    transition: background-color 0.3s;
+}
+
+.result-entry .form-button--reset:hover {
+    background-color: #b71c1c;
+}
+
+/* ----------------------------- */
+/*         RESPONSIVITET         */
+/* ----------------------------- */
+
+@media (max-width: 768px) {
+    .result-header {
+        grid-template-columns: 2rem 1.5fr 2fr 0.8fr auto;
+    }
+
+    .result-header span:nth-child(4),
+    .result-header span:nth-child(5) {
+        display: none; /* Skjul telefon og alder på mobil */
+    }
+
+    .result-entry {
+        grid-template-columns: 2rem 1.5fr 2fr 0.8fr auto;
+    }
+
+    .result-phone,
+    .result-age {
+        display: none;
+    }
+}

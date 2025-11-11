@@ -1,0 +1,81 @@
+/* ============================= */
+/*      RESULTATLISTE STYLING    */
+/* ============================= */
+
+#results-list {
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 90%; /* Bruk nesten heile breidda */
+    max-width: 1200px; /* Begrens maksbreidde */
+    background-color: var(--color-sidebar);
+    border-radius: var(--footer-radius);
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+    font-family: var(--font-family);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+}
+
+.result-header,
+.result-entry {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px; /* rank, name, time */
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-header {
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-primary);
+    font-size: 1.1rem;
+}
+
+.result-entry:last-child {
+    border-bottom: none;
+}
+
+.result-rank {
+    text-align: center;
+}
+
+.result-name {
+    padding-left: 0.5rem;
+}
+
+.result-time {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Hover-effekt på rader */
+.result-entry:hover {
+    background-color: rgba(13, 71, 161, 0.2); /* var(--color-primary) med litt gjennomsiktighet */
+    border-radius: 0.3125rem;
+}
+
+/* For melding når lista er tom */
+#results-list p {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--color-text);
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+/* Responsivt for små skjermar */
+@media (max-width: 900px) {
+    #results-list {
+        width: 95%;
+        padding: 0.5rem;
+    }
+
+    .result-header,
+    .result-entry {
+        grid-template-columns: 40px 1fr 80px;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+}
