@@ -1,15 +1,32 @@
 const API_BASE = 'https://emil-web-api-production.up.railway.app';
 const token = localStorage.getItem('emil-web-token');
 
-if (!token) window.location.href = '../login';
+if (!token) {
+    // Ingen token → send til login
+    window.location.href = './login';
+} else {
+    try {
+        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+            method: 'GET',
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
 
-const user = fetch(`${API_BASE}/user`, {
-    headers: { Authorization: token }
-}).then(res => res.json()).then(data => data.user);
+        if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
 
-if (!user.permissions.includes('admin') && user.username !== 'admin') {
-    alert('Du har ikkje tilgang til denne sida.');
-    window.location.href = '../';
+        const data = await res.json();
+
+        if (data.user.username !== 'admin' || !data.user.permissions.includes('admin')) {
+            alert('Du har ikkje tilgang til denne sida.');
+            window.location.href = '../';
+        }
+    } catch (err) {
+        console.error(err);
+        localStorage.removeItem('emil-web-token');
+        window.location.href = './login';
+    }
 }
 
 // Tilgjengelige permissions
