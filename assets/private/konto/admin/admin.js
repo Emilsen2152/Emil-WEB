@@ -3,6 +3,15 @@ const token = localStorage.getItem('emil-web-token');
 
 if (!token) window.location.href = '../login';
 
+const user = fetch(`${API_BASE}/user`, {
+    headers: { Authorization: token }
+}).then(res => res.json()).then(data => data.user);
+
+if (!user.permissions.includes('admin') && user.username !== 'admin') {
+    alert('Du har ikkje tilgang til denne sida.');
+    window.location.href = '../';
+}
+
 // Tilgjengelige permissions
 const availablePermissions = [
     'admin',
