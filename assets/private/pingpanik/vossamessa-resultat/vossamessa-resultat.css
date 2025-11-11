@@ -27,7 +27,7 @@ h1 {
 }
 
 .scroll-on {
-    max-height: calc(100vh - 200px); 
+    max-height: calc(100vh - 210px); 
     /* overflow is now handled by JS or native scroll inside this container if needed */
     position: relative;
 }
