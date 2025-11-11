@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vossamessa - PingPanik</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <noscript>
+                <p>JavaScript er påkrevd for å se sidebaren.</p>
+            </noscript>
+        </aside>
+        <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
+
+        <main class="content">
+            <h1>Turneringssystem Vossamessa</h1>
+            <p>Dette er turneringssystemet for standen til PingPanik på Vossamessa 2025.</p>
+
+            <form id="timing-form" class="main-form">
+                <label for="name" class="form-label">Navn:</label>
+                <input type="text" id="name" name="name" class="form-input" required>
+
+                <label for="e-post" class="form-label">E-post:</label>
+                <input type="email" id="e-post" name="e-post" class="form-input" required>
+
+                <label for="age" class="form-label">Alder:</label>
+                <input type="number" id="age" name="age" class="form-input" required>
+
+                <label for="tid" class="form-label">Tid brukt:</label>
+                <input type="text" id="tid" name="tid" class="form-input" required>
+
+                <button type="submit" class="form-button">Logg inn</button>
+            </form>
+
+            <h2>Resultatliste</h2>
+            <div id="results-list">
+                <!-- Resultater vil bli vist her -->
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <noscript>
+            <p>JavaScript er påkrevd for å se footeren.</p>
+        </noscript>
+    </footer>
+    <script src="../../assets/shared/code/footer/footer.js" type="module"></script>
+</body>
+
+</html>

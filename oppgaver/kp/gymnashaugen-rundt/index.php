@@ -152,7 +152,7 @@
                 <!-- Boks 1 -->
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
-                        <div class="card-body text-start">
+                        <div class="card-body text-start p-4">
                             <h5 class="card-title">Premie frå Joledesignmarknaden</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
@@ -165,7 +165,7 @@
                 <!-- Boks 2 -->
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
-                        <div class="card-body text-start">
+                        <div class="card-body text-start p-4">
                             <h5 class="card-title">Lunsjkonsert</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
@@ -178,7 +178,7 @@
                 <!-- Boks 3 -->
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
-                        <div class="card-body text-start">
+                        <div class="card-body text-start p-4">
                             <h5 class="card-title">Trening for arbeidsplassen + teambuildingpakke</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
@@ -191,7 +191,7 @@
                 <!-- Boks 4 -->
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
-                        <div class="card-body text-start">
+                        <div class="card-body text-start p-4">
                             <h5 class="card-title">Fyrstehjelpskurs</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
@@ -204,7 +204,7 @@
                 <!-- Boks 5 -->
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
-                        <div class="card-body text-start">
+                        <div class="card-body text-start p-4">
                             <h5 class="card-title">Spadag på frisørsalongen</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
