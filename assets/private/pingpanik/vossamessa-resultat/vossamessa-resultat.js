@@ -8,6 +8,12 @@ let scrollPos = 0;
 let maxScroll = 0;
 let autoScrollRunning = false;
 
+const autoScroll = new URLSearchParams(window.location.search).get('scroll');
+
+if (autoScroll === 'true') {
+    resultsList.classList.add("scroll-on");
+}
+
 // Hjelpefunksjon: sjekk om scrollen er nær bunnen
 function isNearBottom(element, threshold = 50) {
     return element.scrollHeight - element.scrollTop - element.clientHeight < threshold;
@@ -27,7 +33,7 @@ async function loadEntries() {
         updateEntries(data.entries);
 
         // Start autoscroll etter første lasting av data
-        if (!autoScrollRunning) {
+        if (!autoScrollRunning && autoScroll === 'true') {
             autoScrollRunning = true;
             startAutoScroll();
         }

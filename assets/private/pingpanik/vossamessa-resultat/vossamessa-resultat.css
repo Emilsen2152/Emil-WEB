@@ -22,9 +22,13 @@ h1 {
     flex-direction: column;
     font-size: 1.2rem;
 
-    /* Scroll og høyde */
+    /* Clip children to maintain rounded corners */
+    overflow: hidden;
+}
+
+.scroll-on {
     max-height: calc(100vh - 200px); 
-    overflow: hidden; /* vi rullar med JS */
+    /* overflow is now handled by JS or native scroll inside this container if needed */
     position: relative;
 }
 
