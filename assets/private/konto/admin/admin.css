@@ -1,0 +1,196 @@
+/* ============================= */
+/*           ADMIN STYLING       */
+/* ============================= */
+
+/* Container for brukerlista */
+#userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--base-padding);
+    background-color: var(--color-sidebar);
+    border-radius: var(--footer-radius);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+#userTable thead {
+    background-color: var(--color-primary);
+}
+
+#userTable thead th {
+    color: var(--color-text);
+    padding: 0.75rem;
+    font-family: var(--font-family);
+    text-align: left;
+}
+
+#userTable tbody tr {
+    transition: background 0.3s;
+    cursor: default;
+}
+
+#userTable tbody tr:nth-child(even) {
+    background-color: #1b1b1b;
+}
+
+#userTable tbody tr:hover {
+    background-color: #0d47a1;
+}
+
+#userTable td {
+    padding: 0.625rem;
+    color: var(--color-text);
+    font-family: var(--font-family);
+}
+
+/* Buttons i tabellen */
+#userTable button {
+    padding: 0.4rem 0.8rem;
+    margin: 0.1rem 0;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    font-family: var(--font-family);
+    color: var(--color-text);
+    transition: background 0.3s, transform 0.1s;
+}
+
+#userTable button:hover {
+    transform: translateY(-1px);
+}
+
+#userTable button:first-child {
+    background-color: var(--color-primary);
+}
+
+#userTable button:first-child:hover {
+    background-color: var(--color-primary-hover);
+}
+
+#userTable button:last-child {
+    background-color: #b71c1c;
+}
+
+#userTable button:last-child:hover {
+    background-color: #d32f2f;
+}
+
+/* Tittel */
+h1 {
+    font-size: 2rem;
+    margin-bottom: var(--base-padding);
+    color: var(--color-primary);
+}
+
+/* Permissions badges */
+.permission-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin: 0.125rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    font-size: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s, transform 0.1s;
+}
+
+.permission-badge.checked {
+    background-color: var(--color-primary-hover);
+    font-weight: bold;
+}
+
+.permission-badge:hover {
+    transform: translateY(-1px);
+}
+
+/* Checkbox hidden (badges fungerer visuelt) */
+.permission-badge input[type="checkbox"] {
+    display: none;
+}
+
+/* Modal styling (valgfritt) */
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: var(--color-sidebar);
+    padding: var(--base-padding);
+    border-radius: var(--footer-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal h2 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.modal input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.modal button {
+    padding: 0.5rem 1rem;
+    border-radius: var(--footer-radius);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-family);
+}
+
+.modal #saveBtn {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.modal #saveBtn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.modal #cancelBtn {
+    background-color: #b71c1c;
+    color: var(--color-text);
+}
+
+.modal #cancelBtn:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    #userTable {
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #userTable button {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .permission-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+}

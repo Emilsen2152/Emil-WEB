@@ -162,6 +162,10 @@ figure {
     flex: 1;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* ============================= */
 /*           SIDEBAR              */
 /* ============================= */
@@ -226,8 +230,12 @@ figure {
     transition: background 0.3s;
 }
 
-.btn-link--small {
+.btn-link--15 {
     width: 15%;
+}
+
+.btn-link--25 {
+    width: 25%;
 }
 
 .btn-link:hover,
@@ -335,7 +343,11 @@ figure {
         max-width: 100%;
     }
 
-    .btn-link--small {
+    .btn-link--15 {
+        width: 100%;
+    }
+
+    .btn-link--25 {
         width: 100%;
     }
 
