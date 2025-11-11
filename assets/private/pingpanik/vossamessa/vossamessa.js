@@ -25,6 +25,8 @@ if (!token) {
             alert("Du har ikkje tilgang til PingPanik-systemet.");
             window.location.href = '../../konto';
         }
+
+        loadEntries();
     } catch (err) {
         console.error(err);
         localStorage.removeItem('emil-web-token');
