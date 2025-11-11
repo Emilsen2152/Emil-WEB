@@ -61,31 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     sendResponse(false, "Ugyldig forespørsel.");
 }
 
-// HTML-formatert e-post (til arrangør)
-$body = '
-<html>
-<head>
-    <meta charset="UTF-8">
-    <style>
-        body { font-family: Arial, sans-serif; color: #333; }
-        h2 { color: #00529B; }
-        p { line-height: 1.5; }
-        .info { background-color: #f7f9fc; padding: 10px 15px; border-left: 3px solid #00529B; margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-    <h2>Ny påmelding: Gymnashaugen Rundt</h2>
-    <div class="info">
-        <p><strong>Navn:</strong> ' . $navn . '</p>
-        <p><strong>Bedrift:</strong> ' . $bedrift . '</p>
-        <p><strong>E-post:</strong> ' . $email . '</p>
-    </div>
-    <p><strong>Melding:</strong></p>
-    <p>' . nl2br($melding) . '</p>
-</body>
-</html>
-';
-
 // Send e-post til arrangør
 if (!sendMail($navn, $bedrift, $email, $subject, $melding)) {
     sendResponse(false, "Det oppstod ein intern feil. Vennligst prøv igjen seinare.");
