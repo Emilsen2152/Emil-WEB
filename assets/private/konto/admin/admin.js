@@ -18,7 +18,7 @@ if (!token) {
 
         const data = await res.json();
 
-        if (data.user.username !== 'admin' || !data.user.permissions.includes('admin')) {
+        if (data.user.username !== 'admin' && !data.user.permissions.includes('admin')) {
             alert('Du har ikkje tilgang til denne sida.');
             window.location.href = '../';
         }
