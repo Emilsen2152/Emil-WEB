@@ -141,26 +141,12 @@ a {
     color: inherit;
 }
 
-#påmeldingsskjema {
-    background-color: #ffffff; /* lys bakgrunn for kontrast mot siden */
-    padding: 2rem;            /* innvendig luft */
-    border-radius: 12px;      /* rundede hjørner */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* myk skygge */
-    border: 1px solid #d0d7e0; /* subtil kant */
-}
+    .card
+    {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
 
-#påmeldingsskjema .form-control {
-    border-radius: 6px;
-}
 
-#påmeldingsskjema .btn-primary {
-    font-weight: 600;
-    padding: 0.6rem 1rem;
-}
-
-.premiar-width {
-    max-width: 50%;
-}
 
 /* Responsivitet */
 @media (max-width: 992px) {
