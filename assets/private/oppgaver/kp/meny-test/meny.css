@@ -1,0 +1,31 @@
+body {
+    background-color: linear-gradient(270deg, #ff0000, #8400ff, #6aff00);
+    background-size: 600% 600%;
+    animation: bgCycle 14s ease infinite;
+    color: aqua;
+    overflow-x: hidden;
+}
+
+@keyframes bgCycle {
+    0%  {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Hoved container til alle menyane, ein per meny */
+.meny-container {
+    background-color: black;
+    width: 100%;
+    height: auto;
+}
+
+#meny1 {
+    background-color: blueviolet;
+    width: 100%;
+}
