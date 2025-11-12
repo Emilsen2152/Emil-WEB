@@ -149,7 +149,7 @@
         </section>
 
         <!-- Premiar -->
-        <section id="premiar" class="container my-5 text-center" style="max-width: 50%;">
+        <section id="premiar" class="container my-5 text-center premiar-width">
             <h2 class="mb-4 fs-3">Premiar</h2>
             <p class="mb-5 fs-5 text-start">
                 Det blir delt ut premiar etter løpet, alle som har meldt på bedrifta si er med i trekninga.
