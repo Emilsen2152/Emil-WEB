@@ -43,6 +43,12 @@
 
     <link rel="canonical" href="https://gymnashaugenrundt.no/">
 
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-FUPz6F2Ov1tvY7NOsifur.js"></script>
+    <script>
+        window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+        plausible.init()
+    </script>
 </head>
 
 <body>
@@ -153,15 +159,16 @@
             <div class="row g-4 justify-content-center">
                 <!-- Boks 1 -->
                 <div class="col-12 col-md-6 hidden">
-
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Premie frå Joledesignmarknaden</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
-                                Premien er laga av elevar på <a target="_blank"
-                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/kunst-design-og-arkitektur/">Kunst
-                                    Design og Arkitektur ved Voss gymnas.</a>
+                                Premien er laga av elevar på
+                                <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/kunst-design-og-arkitektur/">
+                                    Kunst Design og Arkitektur ved Voss gymnas.
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -169,64 +176,65 @@
 
                 <!-- Boks 2 -->
                 <div class="col-12 col-md-6">
-
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Lunsjkonsert</h5>
                             <p class="card-text">
-                                Etter nærere avtale fyller <a target="_blank"
-                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/musikk-dans-og-drama/">musikklina</a>
+                                Etter nærere avtale fyller
+                                <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/musikk-dans-og-drama/">
+                                    musikklina
+                                </a>
                                 opp ein bandbil og kjem ut til arbeidsplassen
                                 og leverer lunsjkonsert for bedrifta sine tilsette!
                             </p>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Boks 3 -->
                 <div class="col-12 col-md-6">
-
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Trening for arbeidsplassen + teambuildingpakke</h5>
                             <p class="card-text">
                                 Bedrifta kan vinne treningstimar (styrke, koordinasjon og/eller uthald) skreddarsydd
-                                for arbeidsplassen, under kyndig rettleiing av <a target="_blank"
-                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/idrettsfag/">toppidrettselevar</a>.
-                                I tillegg kan bedrifta vinne teambuildingpakke, i regi av <a target="_blank"
-                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/idrettsfag/">toppidretsselevar</a>,
-                                som
-                                oppladning til sommarfesten!
+                                for arbeidsplassen, under kyndig rettleiing av
+                                <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/idrettsfag/">
+                                    toppidrettselevar
+                                </a>.
+                                I tillegg kan bedrifta vinne teambuildingpakke, i regi av
+                                <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/idrettsfag/">
+                                    toppidrettselevar
+                                </a>,
+                                som oppladning til sommarfesten!
                                 Tidspunkt etter nærare avtale.
                             </p>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- Boks 4 -->
                 <div class="col-12 col-md-6">
-
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Spadag på frisørsalongen</h5>
                             <p class="card-text">
-                                Spadag på frisøravdelingen for inntil 15
-                                personar, levert av <a
-                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/frisor-blomar-interior-og-eksponeringsdesign/"
-                                    target="_blank">frisørelevane på Voss gymnas</a>.
+                                Spadag på frisøravdelingen for inntil 15 personar, levert av
+                                <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/frisor-blomar-interior-og-eksponeringsdesign/">
+                                    frisørelevane på Voss gymnas
+                                </a>.
                                 Her blir det vask, klipp og frisyre som oppladning til bedrifta sin sommarfest!
                                 Tidspunkt etter nærare avtale.
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
-
-
 
         <!-- Påmelding -->
         <section id="påmelding" class="container my-5">
@@ -291,7 +299,7 @@
                     href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/informasjonsteknologi-og-medieproduksjon/"
                     target="_blank">Informasjonsteknologi og
                     medieproduksjon ved Voss gymnas.</a>
-        </div>p>
+            </p>
         </div>
     </footer>
 

@@ -55,7 +55,7 @@ if (!$domain || !checkdnsrr($domain, "MX")) {
 }
 
 $to = "emil.v.soldal@gmail.com";
-$subject = "Påmelding: Gymnashaugen Rundt - $bedrift ($navn)";
+$subject = "Påmelding: Gymnashaugen Rundt";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     sendResponse(false, "Ugyldig forespørsel.");
