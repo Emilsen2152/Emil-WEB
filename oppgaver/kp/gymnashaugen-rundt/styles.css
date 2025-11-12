@@ -110,6 +110,14 @@ header {
     height: auto;
 }
 
+.red-text {
+    color: #ff0000;
+}
+
+.hidden {
+    display: none !important;
+}
+
 #nedtelling-head {
     line-height: 1;
     display: flex;
@@ -121,6 +129,16 @@ header {
 /* Footer */
 footer {
     background-color: #fff;
+}
+
+footer .custom-small-text {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+a {
+    text-decoration: dotted underline;
+    color: inherit;
 }
 
 #påmeldingsskjema {

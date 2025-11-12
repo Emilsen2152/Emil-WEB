@@ -13,7 +13,7 @@
 
     <meta property="og:title" content="Gymnashaugen rundt - Stafettløp for Kreftsaka">
     <meta property="og:description"
-        content="Meld på bedrifta di til Gymnashaugen rundt! Eit løp til inntekt for Kreftforeningen, arrangert av Voss Gymnas.">
+        content="Meld på bedrifta di til Gymnashaugen rundt! Eit løp til inntekt for Kreftforeningen, arrangert av Voss gymnas.">
     <meta property="og:image" content="https://gymnashaugenrundt.no/assets/gymnashaugen-rundt-logo.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gymnashaugenrundt.no/">
@@ -23,10 +23,10 @@
         "@context": "https://schema.org",
         "@type": "SportsEvent",
         "name": "Gymnashaugen rundt",
-        "startDate": "2026-04-08T14:00:00+01:00",
+        "startDate": "2026-04-08T14:45:00+01:00",
         "location": {
             "@type": "Place",
-            "name": "Voss Gymnas",
+            "name": "Voss gymnas",
             "address": {
             "@type": "PostalAddress",
             "addressLocality": "Voss",
@@ -35,9 +35,9 @@
         },
         "organizer": {
             "@type": "Organization",
-            "name": "Voss Gymnas"
+            "name": "Voss gymnas"
         },
-        "description": "Stafettløp til inntekt for Kreftsaka arrangert av Voss Gymnas."
+        "description": "Stafettløp til inntekt for Kreftsaka arrangert av Voss gymnas."
         }
     </script>
 
@@ -99,15 +99,18 @@
                     <h1 class="mb-3 fw-bold fs-2 fs-md-1">Få bedrifta di med på Gymnashaugen rundt!</h1>
                     <p class="lead mb-3 fs-3 fs-md-5">Eit stafettløp til inntekt for kreftsaka</p>
                     <p class="mb-4 fs-5 fs-md-5 text-start">
-                        Gymnashaugen rundt er eit stafettløp arrangert av Voss Gymnas for å samle inn pengar til
+                        Gymnashaugen rundt er eit stafettløp arrangert av <a
+                            href="https://www.instagram.com/gymnasrussen2026/" target="_blank"><span
+                                class="red-text">gymnasrussen</span></a> for
+                        å samle inn pengar til
                         kreftsaka.
-                        Løpet går rundt Gymnashaugen og innom Voss Gymnas sine lokaler, og kvar bedrift stiller med eitt
-                        lag på 7 personar. Det blir trekt premiar etter løpet.
+                        Løpet går rundt Gymnashaugen og innom Voss gymnas sine lokaler, og kvar bedrift stiller med eit
+                        lag på minimum fire personar. Det blir trekt flotte premiar etter løpet.
                         Påmeldingsavgifta går uavkorta til Kreftforeningen og er minimum 1000 kroner per lag.
                     </p>
                     <h2 class="mb-1 fw-semibold fs-3 fs-md-3">Me køyrer i gang om</h2>
                     <p id="nedtelling" class="fs-2 fs-md-2 fw-bold text-secondary mb-1"></p>
-                    <p class="fw-semibold fs-3 fs-md-5 text-muted" id="dato">8. april 2026 kl. 14:00</p>
+                    <p class="fw-semibold fs-3 fs-md-5 text-muted" id="dato">8. april 2026 kl. 14:45</p>
                 </div>
             </div>
         </section>
@@ -123,11 +126,10 @@
                         <li class="list-group-item fs-5 py-2">1. Frå start til porten ved idrettsbanen</li>
                         <li class="list-group-item fs-5 py-2">2. Ein runde rundt idrettsbanen</li>
                         <li class="list-group-item fs-5 py-2">3. Frå porten ved idrettsbanen til Lekvemoen</li>
-                        <li class="list-group-item fs-5 py-2">4. Frå Lekvemoen til parkeringsplassen ved Voss Gymnas
+                        <li class="list-group-item fs-5 py-2">4. Frå Lekvemoen til parkeringsplassen ved Voss gymnas
                         </li>
-                        <li class="list-group-item fs-5 py-2">5. Frå parkeringsplassen ved Voss Gymnas til inngangsdøra
-                            Voss
-                            Gymnas</li>
+                        <li class="list-group-item fs-5 py-2">5. Frå parkeringsplassen ved Voss gymnas til inngangsdøra
+                            Voss gymnas</li>
                         <li class="list-group-item fs-5 py-2">6. Innomhus-etappe (ikkje på kartet)</li>
                         <li class="list-group-item fs-5 py-2">7. Frå utgangsdøra til Jugendbygget til mål</li>
                     </ol>
@@ -150,13 +152,16 @@
 
             <div class="row g-4 justify-content-center">
                 <!-- Boks 1 -->
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 hidden">
+
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Premie frå Joledesignmarknaden</h5>
                             <p class="card-text">
                                 Her må Arild komma med tekst.
-                                Premien er laga av elevar på Kunst Design og Arkitektur ved Voss Gymnas.
+                                Premien er laga av elevar på <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/kunst-design-og-arkitektur/">Kunst
+                                    Design og Arkitektur ved Voss gymnas.</a>
                             </p>
                         </div>
                     </div>
@@ -164,55 +169,59 @@
 
                 <!-- Boks 2 -->
                 <div class="col-12 col-md-6">
+
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Lunsjkonsert</h5>
                             <p class="card-text">
-                                Her må Arild komma med tekst.
-                                Premien er laga av elevar på Musikk, Dans og Drama ved Voss Gymnas.
+                                Etter nærere avtale fyller <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/musikk-dans-og-drama/">musikklina</a>
+                                opp ein bandbil og kjem ut til arbeidsplassen
+                                og leverer lunsjkonsert for bedrifta sine tilsette!
                             </p>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Boks 3 -->
                 <div class="col-12 col-md-6">
+
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Trening for arbeidsplassen + teambuildingpakke</h5>
                             <p class="card-text">
-                                Her må Arild komma med tekst.
-                                Premien er laga av elevar på Idrettslinja ved Voss Gymnas.
+                                Bedrifta kan vinne treningstimar (styrke, koordinasjon og/eller uthald) skreddarsydd
+                                for arbeidsplassen, under kyndig rettleiing av <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/idrettsfag/">toppidrettselevar</a>.
+                                I tillegg kan bedrifta vinne teambuildingpakke, i regi av <a target="_blank"
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/idrettsfag/">toppidretsselevar</a>,
+                                som
+                                oppladning til sommarfesten!
+                                Tidspunkt etter nærare avtale.
                             </p>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Boks 4 -->
                 <div class="col-12 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body text-start p-4">
-                            <h5 class="card-title">Fyrstehjelpskurs</h5>
-                            <p class="card-text">
-                                Her må Arild komma med tekst.
-                                Premien er laga av elevar på Helse og Oppvekst ved Voss Gymnas.
-                            </p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Boks 5 -->
-                <div class="col-12 col-md-6">
                     <div class="card h-100">
                         <div class="card-body text-start p-4">
                             <h5 class="card-title">Spadag på frisørsalongen</h5>
                             <p class="card-text">
-                                Her må Arild komma med tekst.
-                                Premien er laga av elevar på Frisør, blomar, interiør og eksponeringsdesign ved Voss
-                                Gymnas.
+                                Spadag på frisøravdelingen for inntil 15
+                                personar, levert av <a
+                                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/frisor-blomar-interior-og-eksponeringsdesign/"
+                                    target="_blank">frisørelevane på Voss gymnas</a>.
+                                Her blir det vask, klipp og frisyre som oppladning til bedrifta sin sommarfest!
+                                Tidspunkt etter nærare avtale.
                             </p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -227,7 +236,8 @@
                     <p class="mb-4 text-center fs-5 fs-md-5">
                         Fyll ut skjemaet under for å melde på bedrifta di. Påmeldingsavgifta er minimum 1000 kr per lag,
                         men
-                        det er ingen øvre grense. Alle bidrag går til kreftsaka. Laget må bestå av 7 personar.
+                        det er ingen øvre grense. Alle bidrag går til kreftsaka. Laget må bestå av minimum fire
+                        personar.
                         Betalingsinformasjon vil bli sendt til
                         e-postadressa du oppgir nokre dagar etter påmelding.
                     </p>
@@ -275,8 +285,13 @@
     <footer class="bg-light border-top">
         <div class="container text-center py-4">
             <p class="mb-2 text-muted fs-6">Arrangert av</p>
-            <img src="assets/voss-gymnas.png" alt="Voss Gymnas Logo" class="img-fluid"
+            <img src="assets/voss-gymnas.png" alt="Voss gymnas Logo" class="img-fluid"
                 style="max-width: 150px; opacity: 0.85;">
+            <p class="text-muted custom-small-text">Heimesida er laga av Emil Velken Soldal på <a
+                    href="https://www.vossgymnas.vgs.no/utdanningsprogram/vare-utdanningsprogram/informasjonsteknologi-og-medieproduksjon/"
+                    target="_blank">Informasjonsteknologi og
+                    medieproduksjon ved Voss gymnas.</a>
+        </div>p>
         </div>
     </footer>
 
