@@ -53,6 +53,8 @@ function showMessage(container, message, success = true) {
             <p>${message}</p>
         </div>
     `;
+
+    container.classList.remove("hidden");
 }
 
 function showCard(container, card) {
@@ -65,6 +67,8 @@ function showCard(container, card) {
             <div class="info-row"><strong>Strekkode:</strong> ${card.barcode}</div>
         </div>
     `;
+
+    container.classList.remove("hidden");
 }
 
 
