@@ -37,17 +37,21 @@
             <form id="fetch-giftcard-form" class="main-form">
                 <label for="fetch-barcode" class="form-label">Strekkode:</label>
                 <input type="text" id="fetch-barcode" name="fetch-barcode" class="form-input" required>
-                <button type="submit" class="form-button">Hent informasjon</button  >
+                <button type="submit" class="form-button">Hent informasjon</button>
             </form>
 
             <div id="giftcard-info" class="gray-background hidden"></div>
 
             <h2 class="extra-padding-top">Bruk gavekort</h2>
+            <h2 class="extra-padding-top">Bruk gavekort</h2>
             <form id="redeem-giftcard-form" class="main-form">
                 <label for="redeem-barcode" class="form-label">Strekkode:</label>
                 <input type="text" id="redeem-barcode" name="redeem-barcode" class="form-input" required>
-                <label for="redeem-amount" class="form-label">Beløp å bruke (NOK):</label>
-                <input type="number" id="redeem-amount" name="redeem-amount" class="form-input" required>
+
+                <div id="product-list">
+                    <!-- Produktfelt blir generert her -->
+                </div>
+
                 <button type="submit" class="form-button">Bruk gavekort</button>
             </form>
 
