@@ -187,24 +187,24 @@ document.getElementById("topup-giftcard-form").addEventListener("submit", async 
 //          PRODUKT LISTE
 // =======================================
 const products = [
-    { name: "Vepsebol Jordbær", price: 11 },
-    { name: "Kvikk Lunsj 47G Freia", price: 22 },
-    { name: "Sunniva Iste Fersken 1/2L", price: 28 },
-    { name: "Julebrus 50CL", price: 26 },
-    { name: "Mr.Lee Nudler Kopp Kyllingsmak 65G", price: 22 },
-    { name: "Mr.Lee Nudler Kopp Kjøttsmak 65G", price: 22 },
-    { name: "Billys Pan Pizza Original 170G", price: 26 },
-    { name: "Fanta Orange 500ML Flaske", price: 22 },
-    { name: "Sprite Regular 500ML Flaske", price: 22 },
-    { name: "Coca-Cola Zero Sugar 500ML Flaske", price: 22 },
-    { name: "Coca-Cola 500ML Flaske", price: 22 },
-    { name: "Ahlgrens Biler Original 160G", price: 34 },
-    { name: "Snickers 2PK 75G", price: 24 },
-    { name: "Stratos Mellomplate 65G", price: 24 },
-    { name: "Twix Xtra 75G", price: 29 },
-    { name: "Kims Salt Crunch 200G", price: 29 },
-    { name: "Kims Paprika Kick 200G", price: 29 },
-    { name: "Laban Original 260G", price: 35 }
+    { name: "VEPSEBOL JORDBÆR", price: 11 },
+    { name: "KVIKK LUNSJ 47G FREIA", price: 22 },
+    { name: "SUNNIVA ISTE FERSKEN 1/2L", price: 28 },
+    { name: "JULEBRUS 50CL", price: 26 },
+    { name: "MR.LEE NUDLER KOPP KYLLINGSMAK 65G", price: 22 },
+    { name: "MR.LEE NUDLER KOPP KJØTTSMAK 65G", price: 22 },
+    { name: "BILLYS PAN PIZZA ORIGINAL 170G", price: 26 },
+    { name: "FANTA ORANGE 500ML FLASKE", price: 22 },
+    { name: "SPRITE REGULAR 500ML FLASKE", price: 22 },
+    { name: "COCA-COLA ZERO SUGAR 500ML FLASKE", price: 22 },
+    { name: "COCA-COLA 500ML FLASKE", price: 22 },
+    { name: "AHLGRENS BILER ORIGINAL 160G", price: 34 },
+    { name: "SNICKERS 2PK 75G", price: 24 },
+    { name: "STRATOS MELLOMPLATE 65G", price: 24 },
+    { name: "TWIX XTRA 75G", price: 29 },
+    { name: "KIMS SALT CRUNCH 200G", price: 29 },
+    { name: "KIMS PAPRIKA KICK 200G", price: 29 },
+    { name: "LABAN ORIGINAL 260G", price: 35 }
 ];
 
 const productContainer = document.getElementById("product-container");
