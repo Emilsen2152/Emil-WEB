@@ -1,0 +1,33 @@
+/* ======================================= */
+/*       SPESIFIKK STYLING FOR GAVEKORT    */
+/* ======================================= */
+
+#giftcard-info,
+#redeem-info {
+    margin-top: 1rem;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.success-box {
+    border-left: 4px solid #1b5e20;
+}
+
+.error-box {
+    border-left: 4px solid #b71c1c;
+}
+
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.info-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.info-row {
+    margin: 0.2rem 0;
+}

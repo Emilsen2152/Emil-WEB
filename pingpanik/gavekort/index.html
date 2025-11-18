@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gavekort - PingPanik</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/private/pingpanik/gavekort/gavekort.css">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <noscript>
+                <p>JavaScript er påkrevd for å se sidebaren.</p>
+            </noscript>
+        </aside>
+        <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
+
+        <main class="content">
+            <h1>Gavekortsystem PingPanik Kiosk</h1>
+            <p>Dette er gavekortsystemet for PingPanik Kiosk.</p>
+
+            <h2>Registrer nytt gavekortsalg</h2>
+            <form id="new-giftcard-form" class="main-form">
+                <label for="recipient-name" class="form-label">Eigar sitt navn:</label>
+                <input type="text" id="recipient-name" name="recipient-name" class="form-input" required>
+                <label for="amount" class="form-label">Beløp (NOK):</label>
+                <input type="number" id="amount" name="amount" class="form-input" required>
+                <label for="barcode" class="form-label">Strekkode:</label>
+                <input type="text" id="barcode" name="barcode" class="form-input" required>
+                <button type="submit" class="form-button">Registrer gavekort</button>
+            </form>
+
+            <h2 class="extra-padding-top">Hent gavekort</h2>
+            <form id="fetch-giftcard-form" class="main-form">
+                <label for="fetch-barcode" class="form-label">Strekkode:</label>
+                <input type="text" id="fetch-barcode" name="fetch-barcode" class="form-input" required>
+                <button type="submit" class="form-button">Hent informasjon</button  >
+            </form>
+
+            <div id="giftcard-info" class="gray-background"></div>
+
+            <h2 class="extra-padding-top">Bruk gavekort</h2>
+            <form id="redeem-giftcard-form" class="main-form">
+                <label for="redeem-barcode" class="form-label">Strekkode:</label>
+                <input type="text" id="redeem-barcode" name="redeem-barcode" class="form-input" required>
+                <label for="redeem-amount" class="form-label">Beløp å bruke (NOK):</label>
+                <input type="number" id="redeem-amount" name="redeem-amount" class="form-input" required>
+                <button type="submit" class="form-button">Bruk gavekort</button>
+            </form>
+
+            <div id="redeem-info" class="gray-background"></div>
+
+            <script src="../../assets/private/pingpanik/gavekort/gavekort.js" type="module"></script>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <noscript>
+            <p>JavaScript er påkrevd for å se footeren.</p>
+        </noscript>
+    </footer>
+    <script src="../../assets/shared/code/footer/footer.js" type="module"></script>
+</body>
+
+</html>
