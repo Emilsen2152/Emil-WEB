@@ -149,39 +149,71 @@ document.getElementById("fetch-giftcard-form").addEventListener("submit", async 
 //          PRODUKT LISTE
 // =======================================
 const products = [
-    { name: "Søtsaker", price: 10 },
-    { name: "Drikke", price: 15 },
-    { name: "Smørbrød", price: 25 }
+    { name: "Vepsebol Jordbær", price: 11 },
+    { name: "Kvikk Lunsj 47G Freia", price: 22 },
+    { name: "Sunniva Iste Fersken 1/2L", price: 28 },
+    { name: "Julebrus 50CL", price: 26 },
+    { name: "Mr.Lee Nudler Kopp Kyllingsmak 65G", price: 22 },
+    { name: "Mr.Lee Nudler Kopp Kjøttsmak 65G", price: 22 },
+    { name: "Billys Pan Pizza Original 170G", price: 26 },
+    { name: "Fanta Orange 500ML Flaske", price: 22 },
+    { name: "Sprite Regular 500ML Flaske", price: 22 },
+    { name: "Coca-Cola Zero Sugar 500ML Flaske", price: 22 },
+    { name: "Coca-Cola 500ML Flaske", price: 22 },
+    { name: "Ahlgrens Biler Original 160G", price: 34 },
+    { name: "Snickers 2PK 75G", price: 24 },
+    { name: "Stratos Mellomplate 65G", price: 24 },
+    { name: "Twix Xtra 75G", price: 29 },
+    { name: "Kims Salt Crunch 200G", price: 29 },
+    { name: "Kims Paprika Kick 200G", price: 29 },
+    { name: "Laban Original 260G", price: 35 }
 ];
 
-const productListContainer = document.getElementById("product-list");
-products.forEach((prod, index) => {
+const productContainer = document.getElementById("product-container");
+const addProductBtn = document.getElementById("add-product-btn");
+
+// Funksjon for å legge til en ny produktlinje
+function addProductLine() {
     const div = document.createElement("div");
-    div.classList.add("product-row");
+    div.classList.add("product-line");
     div.innerHTML = `
-        <label class="form-label">${prod.name} (${prod.price} kr per stk):</label>
-        <input type="number" min="0" value="0" id="product-${index}" class="form-input">
+        <select class="form-input product-select">
+            <option value="">Velg produkt</option>
+            ${products.map((p, i) => `<option value="${i}">${p.name} (${p.price} kr)</option>`).join("")}
+        </select>
+        <input type="number" min="1" value="1" class="form-input product-qty">
+        <button type="button" class="remove-btn">✖</button>
     `;
-    productListContainer.appendChild(div);
-});
+    productContainer.appendChild(div);
+
+    div.querySelector(".remove-btn").addEventListener("click", () => {
+        div.remove();
+    });
+}
+
+// Legg til første linje automatisk
+addProductLine();
+
+addProductBtn.addEventListener("click", addProductLine);
 
 // =======================================
 //             BRUK GAVEKORT
 // =======================================
 document.getElementById("redeem-giftcard-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const barcode = document.getElementById("redeem-barcode").value.trim();
     const box = document.getElementById("redeem-info");
 
     let totalAmount = 0;
     const itemsBought = [];
 
-    products.forEach((prod, index) => {
-        const qty = Number(document.getElementById(`product-${index}`).value);
-        if (qty > 0) {
-            totalAmount += prod.price * qty;
-            itemsBought.push({ name: prod.name, quantity: qty, price: prod.price });
+    document.querySelectorAll(".product-line").forEach(line => {
+        const index = line.querySelector(".product-select").value;
+        const qty = Number(line.querySelector(".product-qty").value);
+        if (index !== "" && qty > 0) {
+            const product = products[index];
+            totalAmount += product.price * qty;
+            itemsBought.push({ name: product.name, quantity: qty, price: product.price });
         }
     });
 
@@ -203,8 +235,10 @@ document.getElementById("redeem-giftcard-form").addEventListener("submit", async
         showMessage(box, `Gavekort oppdatert! Totalt brukt: ${totalAmount} kr`);
         showCard(box, data.card);
 
+        // Reset skjema og legg til én linje igjen
         e.target.reset();
-
+        productContainer.innerHTML = "";
+        addProductLine();
     } catch (err) {
         console.error(err);
         showMessage(box, "Intern feil ved oppdatering.", false);

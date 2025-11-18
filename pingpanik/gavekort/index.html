@@ -43,17 +43,18 @@
             <div id="giftcard-info" class="gray-background hidden"></div>
 
             <h2 class="extra-padding-top">Bruk gavekort</h2>
-            <h2 class="extra-padding-top">Bruk gavekort</h2>
             <form id="redeem-giftcard-form" class="main-form">
                 <label for="redeem-barcode" class="form-label">Strekkode:</label>
                 <input type="text" id="redeem-barcode" name="redeem-barcode" class="form-input" required>
 
-                <div id="product-list">
-                    <!-- Produktfelt blir generert her -->
+                <div id="product-container">
+                    <!-- Her legges produktlinjer dynamisk -->
                 </div>
 
+                <button type="button" id="add-product-btn" class="form-button">Legg til produkt</button>
                 <button type="submit" class="form-button">Bruk gavekort</button>
             </form>
+
 
             <div id="redeem-info" class="gray-background hidden"></div>
 

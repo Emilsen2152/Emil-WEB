@@ -17,6 +17,7 @@
     border-left: 4px solid #b71c1c;
 }
 
+
 .loading {
     opacity: 0.5;
     pointer-events: none;
@@ -30,4 +31,43 @@
 
 .info-row {
     margin: 0.2rem 0;
+}
+
+/* Ny styling for produktlinjer */
+.product-line {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.6rem;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.product-line select {
+    flex: 3 1 200px; /* tar mest plass, min-width for mobil */
+}
+
+.product-line input {
+    flex: 1 1 60px; /* mindre plass, min-width for mobil */
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #b71c1c;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.remove-btn:hover {
+    color: #ff1744;
+}
+
+#add-product-btn {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
