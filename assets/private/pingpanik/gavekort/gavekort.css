@@ -3,7 +3,8 @@
 /* ======================================= */
 
 #giftcard-info,
-#redeem-info {
+#redeem-info,
+#topup-info {
     margin-top: 1rem;
     text-align: center;
     line-height: 1.5rem;

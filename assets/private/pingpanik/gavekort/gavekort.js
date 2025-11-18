@@ -66,6 +66,7 @@ function showCard(container, card) {
     container.innerHTML = `
         <div class="success-box">
             <div class="info-title">Gavekort</div>
+            ${card.localMessage ? `<div class="info-row"><em>${card.localMessage}</em></div>` : ""}
             <div class="info-row"><strong>Eigar:</strong> ${card.owner}</div>
             <div class="info-row"><strong>Saldo:</strong> ${card.balance} kr</div>
             <div class="info-row"><strong>Startverdi:</strong> ${card.originalValue} kr</div>
@@ -106,7 +107,8 @@ document.getElementById("new-giftcard-form").addEventListener("submit", async (e
         const data = await res.json();
         if (!res.ok) return showMessage(box, data.message, false);
 
-        showMessage(box, "Gavekort oppretta!");
+        data.card.localMessage = "Gavekort oppretta";
+       
         showCard(box, data.card);
 
         e.target.reset();
@@ -137,11 +139,47 @@ document.getElementById("fetch-giftcard-form").addEventListener("submit", async 
         const data = await res.json();
         if (!res.ok) return showMessage(box, data.message, false);
 
+        data.card.localMessage = "Gavekort hentet";
+
         showCard(box, data.card);
 
     } catch (err) {
         console.error(err);
         showMessage(box, "Intern feil ved henting.", false);
+    }
+});
+
+// =======================================
+//             Påfyll GAVEKORT
+// =======================================
+
+document.getElementById("topup-giftcard-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const barcode = document.getElementById("topup-barcode").value.trim();
+    const amount = Number(document.getElementById("topup-amount").value);
+    const box = document.getElementById("topup-info");
+    try {
+        const res = await fetch(`${API_BASE}/${barcode}/topup`, {
+            method: "PUT",
+            headers: {
+                "Authorization": token,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ amount })
+        });
+
+        const data = await res.json();
+        if (!res.ok) return showMessage(box, data.message, false);
+
+        data.card.localMessage = `Gavekort påfylt med ${amount} kr`;
+
+        showCard(box, data.card);
+
+        e.target.reset();
+
+    } catch (err) {
+        console.error(err);
+        showMessage(box, "Intern feil ved påfylling.", false);
     }
 });
 
@@ -220,19 +258,25 @@ document.getElementById("redeem-giftcard-form").addEventListener("submit", async
     if (totalAmount === 0) return showMessage(box, "Velg minst ett produkt.", false);
 
     try {
-        const res = await fetch(`${API_BASE}/${barcode}/salg`, {
+        const res = await fetch(`${API_BASE}/${barcode}/sale`, {
             method: "PUT",
             headers: {
                 "Authorization": token,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ amount: totalAmount, items: itemsBought })
+            body: JSON.stringify({ amount: totalAmount })
         });
 
         const data = await res.json();
         if (!res.ok) return showMessage(box, data.message, false);
 
-        showMessage(box, `Gavekort oppdatert! Totalt brukt: ${totalAmount} kr`);
+        data.card.localMessage = `Gavekort oppdatert! Totalt brukt: ${totalAmount} kr`
+
+        if (itemsBought.length > 0) {
+            data.card.items = data.card.items || [];
+            data.card.items.push(...itemsBought);
+        }
+
         showCard(box, data.card);
 
         // Reset skjema og legg til én linje igjen

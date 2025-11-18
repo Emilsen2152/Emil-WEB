@@ -42,6 +42,16 @@
 
             <div id="giftcard-info" class="gray-background hidden"></div>
 
+            <h2 class="extra-padding-top">Påfyll gavekort</h2>
+            <form id="topup-giftcard-form" class="main-form">
+                <label for="topup-barcode" class="form-label">Strekkode:</label>
+                <input type="text" id="topup-barcode" name="topup-barcode" class="form-input" required>
+                <label for="topup-amount" class="form-label">Beløp å påfylle (NOK):</label>
+                <input type="number" id="topup-amount" name="topup-amount" class="form-input" required>
+                <button type="submit" class="form-button">Påfyll gavekort</button>
+            </form>
+            <div id="topup-info" class="gray-background hidden"></div>
+
             <h2 class="extra-padding-top">Bruk gavekort</h2>
             <form id="redeem-giftcard-form" class="main-form">
                 <label for="redeem-barcode" class="form-label">Strekkode:</label>
