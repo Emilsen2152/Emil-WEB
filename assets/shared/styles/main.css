@@ -187,3 +187,17 @@ a:hover {
     margin: 0.3125rem 0;
     font-size: 0.875rem;
 }
+
+/* ============================= */
+/*    Legacy Utility Classes     */
+/* ============================= */
+.center-list-text {
+    padding-left: 0;
+    margin: 0 auto;
+    list-style-position: inside;
+    text-align: center;
+}
+
+.extra-padding-top {
+    padding-top: 20px;
+}
