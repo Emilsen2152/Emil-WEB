@@ -8,29 +8,35 @@
     <link rel="stylesheet" type="text/css" href="assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <noscript>
-                <p>JavaScript er påkrevd for å se sidebaren.</p>
-            </noscript>
-        </aside>
-        <script src="assets/shared/code/sidebar/sidebar.js" type="module"></script>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+            <aside class="col-lg-3 col-12">
+                <div class="sidebar">
+                    <noscript>
+                        <p>JavaScript er påkrevd for å se sidebaren.</p>
+                    </noscript>
+                </div>
+            </aside>
+            <script src="assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
-            <h1>Velkommen til Emil si proffe nettsida!</h1>
-            <h2>Her kan du se kor proff eg er</h2>
-            <figure>
-                <img class="size-image" src="./assets/private/index/tog.jpg" alt="Emil er proff"
-                    style="--max-width: 500px; --aspect-ratio: 4 / 3;">
-                <figcaption>Emil er veldig <strong><em>proff</em></strong></figcaption>
-            </figure>
-            <h2>Kven er Emil?</h2>
-            <p>Emil er ein ny og lovande utviklar med ein stor interesse for webteknologi.</p>
-        </main>
+            <main class="col-lg-9 col-12">
+                <div class="p-3">
+                    <h1>Velkommen til Emil si proffe nettsida!</h1>
+                    <h2>Her kan du se kor proff eg er</h2>
+                    <figure class="text-center my-4">
+                        <img class="size-image mx-auto d-block" src="./assets/private/index/tog.jpg" alt="Emil er proff"
+                            style="--max-width: 500px; --aspect-ratio: 4 / 3;">
+                        <figcaption>Emil er veldig <strong><em>proff</em></strong></figcaption>
+                    </figure>
+                    <h2>Kven er Emil?</h2>
+                    <p>Emil er ein ny og lovande utviklar med ein stor interesse for webteknologi.</p>
+                </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

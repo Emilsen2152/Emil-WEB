@@ -8,25 +8,31 @@
     <link rel="stylesheet" type="text/css" href="../../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>QR Kode Oppgåve</h1>
             <h2>Kontaktinformasjon</h2>
             <p>Navn: Emil Velken Soldal</p>
             <p>Epost: <a href="mailto:emil.v.soldal@gmail.com">emil.v.soldal@gmail.com</a></p>
             <p>Telefon: <a href="tel:+4791310825">+47 91 31 08 25</a></p>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

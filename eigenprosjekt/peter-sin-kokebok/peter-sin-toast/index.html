@@ -9,18 +9,22 @@
     <link rel="stylesheet" type="text/css" href="../cookbook-styles.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>Peter sin toast</h1>
-            <img class="size-image center-image"
+            <img class="size-image mx-auto d-block"
                 src="../../../assets/private/eigenprosjekt/peter-sin-kokebok/peter-sin-toast/toast.JPG" alt="Peter sin toast"
                 style="--max-width: 1000px; --aspect-ratio: 16 / 9;">
             <a class="btn-link" href="../">Tilbake til oppskrifter</a>
@@ -51,15 +55,17 @@
                     </ol>
                 </div>
                 <div class="recipe-image">
-                    <img class="size-image center-image"
+                    <img class="size-image mx-auto d-block"
                         src="../../../assets/private/eigenprosjekt/peter-sin-kokebok/peter-sin-toast/eating.JPG"
                         alt="Peter som et toasten sin" style="--max-width: 250px; --aspect-ratio: 0.56 / 1;">
                 </div>
             </div>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

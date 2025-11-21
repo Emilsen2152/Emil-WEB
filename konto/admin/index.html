@@ -9,18 +9,22 @@
     <link rel="stylesheet" href="../../assets/private/konto/admin/admin.css">
 </head>
 
-<body>
-    <div class="container">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
             <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
-        </aside>
+        </div>
+            </aside>
 
         <!-- Main Content -->
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>Brukeradministrasjon</h1>
             <p>Her kan du administrere brukere.</p>
 
@@ -34,11 +38,13 @@
                 </thead>
                 <tbody></tbody>
             </table>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>
