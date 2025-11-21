@@ -8,28 +8,34 @@
     <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>Peter sin kokebok</h1>
 
             <h2>Oppskrifter</h2>
-            <div class="button-grid">
-                <a class="btn-link btn-link--15" href="peter-sin-toast">Peter sin toast</a>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                <a class="btn btn-primary btn-link btn-link--15" href="peter-sin-toast">Peter sin toast</a>
             </div>
 
             <p>For fleire oppskrifter send e-post til <a href="mailto:peterbyrkje@gmail.com" target="_blank">peterbyrkje@gmail.com</a></p>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

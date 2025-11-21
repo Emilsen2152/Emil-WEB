@@ -8,40 +8,46 @@
     <link rel="stylesheet" type="text/css" href="../../../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>Oppgåver kapittel 1</h1>
             
-            <div class="button-grid">
-                <a class="btn-link btn-link--15" href="1.01.html">1.01</a>
-                <a class="btn-link btn-link--15" href="1.02.html">1.02</a>
-                <a class="btn-link btn-link--15" href="1.05.html">1.05</a>
-                <a class="btn-link btn-link--15" href="1.06.html">1.06</a>
-                <a class="btn-link btn-link--15" href="1.09.html">1.09</a>
-                <a class="btn-link btn-link--15" href="1.13.html">1.13</a>
-                <a class="btn-link btn-link--15" href="1.21.html">1.21</a>
-                <a class="btn-link btn-link--15" href="1.27.html">1.27</a>
-                <a class="btn-link btn-link--15" href="1.28.html">1.28</a>
-                <a class="btn-link btn-link--15" href="1.38.html">1.38</a>
-                <a class="btn-link btn-link--15" href="1.44.html">1.44</a>
-                <a class="btn-link btn-link--15" href="1.45.html">1.45</a>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+                <a class="btn btn-primary btn-link btn-link--15" href="1.01.html">1.01</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.02.html">1.02</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.05.html">1.05</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.06.html">1.06</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.09.html">1.09</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.13.html">1.13</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.21.html">1.21</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.27.html">1.27</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.28.html">1.28</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.38.html">1.38</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.44.html">1.44</a>
+                <a class="btn btn-primary btn-link btn-link--15" href="1.45.html">1.45</a>
             </div>
 
             <div class="spacer"></div>
 
             <a class="btn-link" href="../../">Tilbake til Konseptutvikling og programmering</a>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

@@ -8,20 +8,24 @@
     <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>Peter sine crusty føtter</h1>
-            <figure>
+            <figure class="text-center my-4">
                 <a href="https://elevweb.no/peter/" target="_blank">
-                    <img class="size-image"
+                    <img class="size-image mx-auto d-block"
                         src="../../assets/private/eigenprosjekt/peterSineFøtter/peter-sine-føtter.webp"
                         alt="Peter sine føtter er testikulerande" style="--max-width: 390px; --aspect-ratio: 1.39 / 1;">
                 </a>
@@ -29,10 +33,12 @@
                     Peter har veldig <strong><em>crusty</em></strong> føtter, klikk på bildet for meir feetpics
                 </figcaption>
             </figure>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

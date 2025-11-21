@@ -8,22 +8,26 @@
     <link rel="stylesheet" type="text/css" href="../../../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>Dramatisk Lyd</h1>
             <p>Detta er ein veldig dramatisk lyd.</p>
             <audio src="../../../../assets/private/oppgaver/kp/dome-16/dramatisk-lyd.mp3" controls></audio>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

@@ -8,16 +8,20 @@
     <link rel="stylesheet" type="text/css" href="../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>#Bading!</h1>
             <p>#Bading! Bading er kjempe bra for deg! Bad om sommaren, bad om vinteren, bad når som helst!</p>
             <h2>Average bading experience</h2>
@@ -26,18 +30,20 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-            <figure>
-                <img class="size-image" src="../../assets/private/eigenprosjekt/bading/waterFlow.JPG" alt="Straumen i Raundalselve er sterk og kald." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
+            <figure class="text-center my-4">
+                <img class="size-image mx-auto d-block" src="../../assets/private/eigenprosjekt/bading/waterFlow.JPG" alt="Straumen i Raundalselve er sterk og kald." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
                 <figcaption>Straumen i Raundalselve er sterk og kald.</figcaption> 
             </figure>
-            <figure>
-                <img class="size-image" src="../../assets/private/eigenprosjekt/bading/social.JPG" alt="Bading er sosialt." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
+            <figure class="text-center my-4">
+                <img class="size-image mx-auto d-block" src="../../assets/private/eigenprosjekt/bading/social.JPG" alt="Bading er sosialt." style="--max-width: 750px; --aspect-ratio: 16 / 9;">
                 <figcaption>Bading er sosialt.</figcaption>
             </figure>
-        </main>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>

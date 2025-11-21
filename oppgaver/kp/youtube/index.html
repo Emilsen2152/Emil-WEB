@@ -8,23 +8,29 @@
     <link rel="stylesheet" type="text/css" href="../../../assets/shared/styles/main.css">
 </head>
 
-<body>
-    <div class="container">
-        <aside class="sidebar">
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid flex-grow-1 p-3">
+        <div class="row g-3">
+        <aside class="col-lg-3 col-12">
+                <div class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </aside>
+        </div>
+            </aside>
         <script src="../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="content">
+        <main class="col-lg-9 col-12">
+                <div class="p-3">
             <h1>YouTube Film</h1>
 
-            <div class="aspect-ratio-container" style="--aspect-ratio: 16/9; --max-width: 853px"><iframe src="https://www.youtube.com/embed/prGgU_1xeMw" title="Voss gymnas - Informasjonsteknologi og medieproduksjon" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </main></div>
+            <div class="aspect-ratio-container" style="--aspect-ratio: 16/9; --max-width: 853px"><iframe src="https://www.youtube.com/embed/prGgU_1xeMw" title="Voss gymnas - Informasjonsteknologi og medieproduksjon" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        </div>
+            </main>
+        </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footer text-center">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>
