@@ -1,6 +1,12 @@
-/* Movie search results - using Bootstrap grid instead of custom CSS */
-/* Use: <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 mt-3"> */
+/* Results grid */
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
 
+/* Each result box */
 .result-box {
     background-color: #1a1a1a;
     border-radius: 10px;
@@ -30,4 +36,16 @@
     font-size: 0.9em;
     color: #ccc;
     margin-top: 5px;
+}
+
+.movie-input {
+    width: 90%;
+    max-width: 500px;
+    padding: 0.625rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+    margin: var(--base-padding) auto;
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-text);
 }

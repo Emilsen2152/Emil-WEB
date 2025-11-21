@@ -9,30 +9,26 @@
     <link rel="stylesheet" type="text/css" href="../cookbook-styles.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-    <div class="container-fluid flex-grow-1 p-3">
-        <div class="row g-3">
-        <aside class="col-lg-3 col-12">
-                <div class="sidebar">
+<body>
+    <div class="container">
+        <aside class="sidebar">
             <noscript>
                 <p>JavaScript er påkrevd for å se sidebaren.</p>
             </noscript>
-        </div>
-            </aside>
+        </aside>
         <script src="../../../assets/shared/code/sidebar/sidebar.js" type="module"></script>
 
-        <main class="col-lg-9 col-12">
-                <div class="p-3">
+        <main class="content">
             <h1>Peter sin toast</h1>
-            <img class="size-image mx-auto d-block"
+            <img class="size-image center-image"
                 src="../../../assets/private/eigenprosjekt/peter-sin-kokebok/peter-sin-toast/toast.JPG" alt="Peter sin toast"
                 style="--max-width: 1000px; --aspect-ratio: 16 / 9;">
-            <a class="btn btn-primary" href="../">Tilbake til oppskrifter</a>
-            <div class="row g-4 mt-4">
-                <div class="col-lg-8">
+            <a class="btn-link" href="../">Tilbake til oppskrifter</a>
+            <div class="recipe-layout">
+                <div class="recipe-text">
                     <h2>Ingredienser</h2>
 
-                    <ul class="text-center list-unstyled">
+                    <ul class="center-list-text">
                         <li>2 skiver brød</li>
                         <li>2 skiver ost</li>
                         <li>2 skiver skinke</li>
@@ -43,9 +39,9 @@
                         <li>Chillikrydder</li>
                     </ul>
 
-                    <h2 class="mt-4 pt-3">Fremgangsmåte</h2>
+                    <h2 class="extra-padding-top">Fremgangsmåte</h2>
 
-                    <ol class="text-center" style="list-style-position: inside;">
+                    <ol class="center-list-text">
                         <li>Steik egget i ei panna.</li>
                         <li>Steik skinka i ei panna.</li>
                         <li>Steik toastene i ei panna til den er god og brun.</li>
@@ -54,18 +50,16 @@
                         <li>Legg egg, ost og skinka til brød og mos det hardt for å sørge for at det sitter fast.</li>
                     </ol>
                 </div>
-                <div class="col-lg-4">
-                    <img class="size-image mx-auto d-block"
+                <div class="recipe-image">
+                    <img class="size-image center-image"
                         src="../../../assets/private/eigenprosjekt/peter-sin-kokebok/peter-sin-toast/eating.JPG"
                         alt="Peter som et toasten sin" style="--max-width: 250px; --aspect-ratio: 0.56 / 1;">
                 </div>
             </div>
-        </div>
-            </main>
-        </div>
+        </main>
     </div>
 
-    <footer class="footer text-center">
+    <footer class="footer">
         <noscript>
             <p>JavaScript er påkrevd for å se footeren.</p>
         </noscript>
