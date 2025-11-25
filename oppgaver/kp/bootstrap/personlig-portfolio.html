@@ -14,7 +14,7 @@
 
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="70">
+<body class="bg-light" data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="70">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
@@ -38,12 +38,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#kontakt">Kontakt</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./">Tilbake til Bootstrap oppgåver</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid bg-light">
+    <div class="container-fluid">
         <div class="container" id="hjem">
             <div class="mt-4 p-5 bg-primary text-white rounded row">
 
@@ -110,18 +113,43 @@
 
         <div class="container" id="om-meg">
             <h2 class="text-center mt-5 mb-4">Om meg</h2>
-            <div class="mt-4 p-5 bg-primary text-white rounded d-flex flex-row">
-                <div class="flex-shrink-0 me-5">
+            <div class="mt-4 p-5 bg-primary text-white rounded d-flex flex-column flex-md-row">
+                <div class="flex-shrink-0 me-md-5 mb-3 mb-md-0">
                     <img src="https://picsum.photos/200" class="rounded img-fluid" alt="Bilde av meg">
                 </div>
-                <div class="flex-grow-1 mt-2">
+                <div class="flex-grow-1 mt-md-2">
                     <h2>Emil Velken Soldal</h2>
                     <p>Eg er ein webutviklar med erfaring innan både frontend og backend utvikling. Eg likar å lage
                         brukervennlege og estetisk tiltalande nettsider og applikasjonar.</p>
                 </div>
             </div>
         </div>
+
+        <div class="container" id="kontakt">
+            <h2 class="text-center mt-5 mb-4">Kontaktskjema</h2>
+            <div class="mb-5">
+                <form>
+                    <div class="mb-3">
+                        <label for="navn" class="form-label">Navn</label>
+                        <input type="text" class="form-control" id="navn" placeholder="Ditt navn">
+                    </div>
+                    <div class="mb-3">
+                        <label for="epost" class="form-label">E-post</label>
+                        <input type="email" class="form-control" id="epost" placeholder="Din e-post">
+                    </div>
+                    <div class="mb-3">
+                        <label for="melding" class="form-label">Melding</label>
+                        <textarea class="form-control" id="melding" rows="4" placeholder="Skriv din melding her"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <footer class="bg-dark text-white text-center p-3">
+        <p class="mb-0">&copy; 2025 Emil Velken Soldal. Alle rettigheter reservert.</p>
+    </footer>
 </body>
 
 </html>
