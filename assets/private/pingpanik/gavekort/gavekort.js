@@ -2,22 +2,16 @@
 //          KONFIG
 // =======================================
 const API_BASE = "https://emil-web-api-production.up.railway.app/pingpanik/giftcards";
-const token = localStorage.getItem("emil-web-token");
-
 const userCheckUrl = "https://emil-web-api-production.up.railway.app/user";
 
 // =======================================
 //          TOKEN CHECK
 // =======================================
 (async () => {
-    if (!token) return (window.location.href = "../../konto/login?redirect=pingpanik/gavekort");
-
     try {
         const res = await fetch(userCheckUrl, {
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            }
+            credentials: 'include', // send cookie
+            headers: { 'Content-Type': 'application/json' }
         });
 
         if (!res.ok) throw new Error("Token validering feila.");
@@ -30,13 +24,12 @@ const userCheckUrl = "https://emil-web-api-production.up.railway.app/user";
             !user.permissions.includes("admin") &&
             !user.permissions.includes("pingpanik")
         ) {
-            window.location.href = "../../";
             alert('Du har ikkje tilgang til denne sida.');
+            window.location.href = "../../";
         }
 
     } catch (err) {
         console.error(err);
-        localStorage.removeItem("emil-web-token");
         window.location.href = "../../konto/login?redirect=pingpanik/gavekort";
     }
 })();
@@ -78,39 +71,35 @@ function showCard(container, card) {
 }
 
 // =======================================
+//          FETCH HELPERS
+// =======================================
+async function sendRequest(url, options = {}) {
+    options.credentials = 'include'; // send cookie
+    options.headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+    const res = await fetch(url, options);
+    const data = await res.json();
+    return { res, data };
+}
+
+// =======================================
 //          REGISTRER GAVEKORT
 // =======================================
 document.getElementById("new-giftcard-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const owner = document.getElementById("recipient-name").value.trim();
     const amount = Number(document.getElementById("amount").value);
     const barcode = document.getElementById("barcode").value.trim();
-
     const box = document.getElementById("giftcard-info");
 
     try {
-        const res = await fetch(API_BASE, {
+        const { res, data } = await sendRequest(API_BASE, {
             method: "POST",
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                owner,
-                balance: amount,
-                originalValue: amount,
-                barcode
-            })
+            body: JSON.stringify({ owner, balance: amount, originalValue: amount, barcode })
         });
 
-        const data = await res.json();
         if (!res.ok) return showMessage(box, data.message, false);
-
         data.card.localMessage = "Gavekort oppretta";
-       
         showCard(box, data.card);
-
         e.target.reset();
 
     } catch (err) {
@@ -120,27 +109,17 @@ document.getElementById("new-giftcard-form").addEventListener("submit", async (e
 });
 
 // =======================================
-//             HENT GAVEKORT
+//          HENT GAVEKORT
 // =======================================
 document.getElementById("fetch-giftcard-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-
     const barcode = document.getElementById("fetch-barcode").value.trim();
     const box = document.getElementById("giftcard-info");
 
     try {
-        const res = await fetch(`${API_BASE}/${barcode}`, {
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            }
-        });
-
-        const data = await res.json();
+        const { res, data } = await sendRequest(`${API_BASE}/${barcode}`);
         if (!res.ok) return showMessage(box, data.message, false);
-
         data.card.localMessage = "Gavekort hentet";
-
         showCard(box, data.card);
 
     } catch (err) {
@@ -150,31 +129,23 @@ document.getElementById("fetch-giftcard-form").addEventListener("submit", async 
 });
 
 // =======================================
-//             Påfyll GAVEKORT
+//          PÅFyll GAVEKORT
 // =======================================
-
 document.getElementById("topup-giftcard-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const barcode = document.getElementById("topup-barcode").value.trim();
     const amount = Number(document.getElementById("topup-amount").value);
     const box = document.getElementById("topup-info");
+
     try {
-        const res = await fetch(`${API_BASE}/${barcode}/topup`, {
+        const { res, data } = await sendRequest(`${API_BASE}/${barcode}/topup`, {
             method: "PUT",
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            },
             body: JSON.stringify({ amount })
         });
 
-        const data = await res.json();
         if (!res.ok) return showMessage(box, data.message, false);
-
         data.card.localMessage = `Gavekort påfylt med ${amount} kr`;
-
         showCard(box, data.card);
-
         e.target.reset();
 
     } catch (err) {
@@ -209,7 +180,6 @@ const products = [
 const productContainer = document.getElementById("product-container");
 const addProductBtn = document.getElementById("add-product-btn");
 
-// Funksjon for å legge til en ny produktlinje
 function addProductLine() {
     const div = document.createElement("div");
     div.classList.add("product-line");
@@ -223,18 +193,14 @@ function addProductLine() {
     `;
     productContainer.appendChild(div);
 
-    div.querySelector(".remove-btn").addEventListener("click", () => {
-        div.remove();
-    });
+    div.querySelector(".remove-btn").addEventListener("click", () => div.remove());
 }
 
-// Legg til første linje automatisk
 addProductLine();
-
 addProductBtn.addEventListener("click", addProductLine);
 
 // =======================================
-//             BRUK GAVEKORT
+//          BRUK GAVEKORT
 // =======================================
 document.getElementById("redeem-giftcard-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -257,20 +223,14 @@ document.getElementById("redeem-giftcard-form").addEventListener("submit", async
     if (totalAmount === 0) return showMessage(box, "Velg minst ett produkt.", false);
 
     try {
-        const res = await fetch(`${API_BASE}/${barcode}/sale`, {
+        const { res, data } = await sendRequest(`${API_BASE}/${barcode}/sale`, {
             method: "PUT",
-            headers: {
-                "Authorization": token,
-                "Content-Type": "application/json"
-            },
             body: JSON.stringify({ amount: totalAmount })
         });
 
-        const data = await res.json();
         if (!res.ok) return showMessage(box, data.message, false);
 
-        data.card.localMessage = `Gavekort oppdatert! Totalt brukt: ${totalAmount} kr`
-
+        data.card.localMessage = `Gavekort oppdatert! Totalt brukt: ${totalAmount} kr`;
         if (itemsBought.length > 0) {
             data.card.items = data.card.items || [];
             data.card.items.push(...itemsBought);
@@ -278,7 +238,6 @@ document.getElementById("redeem-giftcard-form").addEventListener("submit", async
 
         showCard(box, data.card);
 
-        // Reset skjema og legg til én linje igjen
         e.target.reset();
         productContainer.innerHTML = "";
         addProductLine();

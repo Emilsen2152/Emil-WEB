@@ -7,7 +7,7 @@ if (redirect) {
     redirectLinks.forEach(link => {
         link.href += `?redirect=${redirect}`;
     });
-};
+}
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -24,6 +24,7 @@ form.addEventListener('submit', async (e) => {
     try {
         const response = await fetch('https://emil-web-api-production.up.railway.app/users', {
             method: 'POST',
+            credentials: 'include', // Include cookies automatically
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -37,8 +38,7 @@ form.addEventListener('submit', async (e) => {
             return;
         }
 
-        // Save token in localStorage
-        localStorage.setItem('emil-web-token', `Bearer ${data.user.token}`);
+        // No need to save token manually — cookie is set by server
 
         // Redirect to main konto page
         if (redirect) {

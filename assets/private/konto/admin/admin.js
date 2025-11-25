@@ -1,45 +1,35 @@
 const API_BASE = 'https://emil-web-api-production.up.railway.app';
-const token = localStorage.getItem('emil-web-token');
 
-if (!token) {
-    // Ingen token → send til login
-    window.location.href = './login';
-} else {
-    try {
-        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
-            method: 'GET',
-            headers: {
-                'Authorization': token,
-                'Content-Type': 'application/json'
-            }
-        });
+// --- Fetch user info on page load ---
+try {
+    const res = await fetch(`${API_BASE}/user`, {
+        method: 'GET',
+        credentials: 'include', // Include HTTP-only cookie
+        headers: { 'Content-Type': 'application/json' }
+    });
 
-        if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
+    if (!res.ok) throw new Error('Feil ved henting av brukerinfo.');
 
-        const data = await res.json();
+    const data = await res.json();
 
-        if (data.user.username !== 'admin' && !data.user.permissions.includes('admin')) {
-            alert('Du har ikkje tilgang til denne sida.');
-            window.location.href = '../';
-        }
-    } catch (err) {
-        console.error(err);
-        localStorage.removeItem('emil-web-token');
-        window.location.href = '../login';
+    if (data.user.username !== 'admin' && !data.user.permissions.includes('admin')) {
+        alert('Du har ikkje tilgang til denne sida.');
+        window.location.href = '../';
     }
+} catch (err) {
+    console.error(err);
+    window.location.href = '../login';
 }
 
-// Tilgjengelige permissions
-const availablePermissions = [
-    'admin',
-    'pingpanik'
-];
+// --- Available permissions ---
+const availablePermissions = ['admin', 'pingpanik'];
 
-// --- Hent brukarar ---
+// --- Fetch users ---
 async function fetchUsers() {
     try {
         const res = await fetch(`${API_BASE}/users`, {
-            headers: { Authorization: token }
+            credentials: 'include', // Include cookie automatically
+            headers: { 'Content-Type': 'application/json' }
         });
         const data = await res.json();
 
@@ -51,7 +41,7 @@ async function fetchUsers() {
         data.users.forEach(user => {
             const row = document.createElement('tr');
 
-            // Lag badges for permissions
+            // Create badges for permissions
             const badges = availablePermissions.map(p => {
                 const checked = user.permissions.includes(p);
                 const span = document.createElement('span');
@@ -83,7 +73,7 @@ async function fetchUsers() {
             const permTd = document.createElement('td');
             badges.forEach(b => permTd.appendChild(b));
 
-            // Handling buttons
+            // Action buttons
             const actionTd = document.createElement('td');
 
             const updateBtn = document.createElement('button');
@@ -100,7 +90,6 @@ async function fetchUsers() {
             actionTd.appendChild(updateBtn);
             actionTd.appendChild(deleteBtn);
 
-            // Legg til rader i tabellen
             row.appendChild(userTd);
             row.appendChild(permTd);
             row.appendChild(actionTd);
@@ -114,7 +103,7 @@ async function fetchUsers() {
     }
 }
 
-// --- Oppdater permissions ---
+// --- Update permissions ---
 async function updatePermissions(username) {
     const badges = document.querySelectorAll(`.permission-badge[data-user="${username}"]`);
     const perms = [];
@@ -130,10 +119,8 @@ async function updatePermissions(username) {
     try {
         const res = await fetch(`${API_BASE}/users/permissions/${username}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token
-            },
+            credentials: 'include', // Include cookie automatically
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ permissions: perms })
         });
 
@@ -147,7 +134,7 @@ async function updatePermissions(username) {
     }
 }
 
-// --- Slett brukar ---
+// --- Delete user ---
 async function deleteUser(username) {
     if (!confirm(`Er du sikker på at du vil slette "${username}"?`)) return;
     if (username === 'admin') return alert('Admin-brukaren kan ikkje slettast.');
@@ -155,7 +142,8 @@ async function deleteUser(username) {
     try {
         const res = await fetch(`${API_BASE}/users/${username}`, {
             method: 'DELETE',
-            headers: { Authorization: token }
+            credentials: 'include', // Include cookie automatically
+            headers: { 'Content-Type': 'application/json' }
         });
 
         const data = await res.json();

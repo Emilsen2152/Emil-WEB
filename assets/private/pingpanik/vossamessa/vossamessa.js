@@ -1,50 +1,45 @@
 const API_BASE = "https://emil-web-api-production.up.railway.app/pingpanik/timerboard";
-const token = localStorage.getItem("emil-web-token");
 
 const resultsList = document.getElementById("results-list");
 const form = document.getElementById("timing-form");
 
-if (!token) {
-    window.location.href = 'resultat';
-} else {
+// ===========================
+//   TOKEN / PERMISSIONS CHECK
+// ===========================
+(async () => {
     try {
         const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
-            method: 'GET',
-            headers: {
-                'Authorization': token,
-                'Content-Type': 'application/json'
-            }
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" }
         });
 
-        if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
+        if (!res.ok) throw new Error('Token validering feila.');
 
         const data = await res.json();
+        const user = data.user;
 
-        if (data.user.username !== 'admin' && !data.user.permissions.includes('admin') && !data.user.permissions.includes('pingpanik')) {
+        if (user.username !== 'admin' &&
+            !user.permissions.includes('admin') &&
+            !user.permissions.includes('pingpanik')) {
             window.location.href = 'resultat';
         }
 
         loadEntries();
     } catch (err) {
         console.error(err);
-        localStorage.removeItem('emil-web-token');
         window.location.href = 'resultat';
     }
-}
+})();
 
 // ===========================
 //   HENT RESULTATLISTE
 // ===========================
 async function loadEntries() {
     try {
-        const res = await fetch(API_BASE, {
-            headers: { Authorization: token }
-        });
-
+        const res = await fetch(API_BASE, { credentials: 'include' });
         const data = await res.json();
-        if (!res.ok) {
-            return alert(data.message || "Feil ved henting av resultat.");
-        }
+
+        if (!res.ok) return alert(data.message || "Feil ved henting av resultat.");
 
         renderEntries(data.entries);
     } catch (err) {
@@ -57,14 +52,13 @@ async function loadEntries() {
 //   VIS RESULTATLISTE
 // ===========================
 function renderEntries(entries) {
-    resultsList.innerHTML = ""; // Tøm lista først
+    resultsList.innerHTML = "";
 
     if (!entries || entries.length === 0) {
         resultsList.innerHTML = `<p>Ingen resultat enno.</p>`;
         return;
     }
 
-    // header
     const header = document.createElement("div");
     header.classList.add("result-header");
     header.innerHTML = `
@@ -78,7 +72,6 @@ function renderEntries(entries) {
     `;
     resultsList.appendChild(header);
 
-    // rader
     entries.forEach((entry, index) => {
         const div = document.createElement("div");
         div.classList.add("result-entry");
@@ -94,10 +87,7 @@ function renderEntries(entries) {
             <button class="form-button form-button--reset">Fjern</button>
         `;
 
-        // Legg til event listener for sletting
-        const btn = div.querySelector("button");
-        btn.addEventListener("click", () => deleteEntry(entry._id));
-
+        div.querySelector("button").addEventListener("click", () => deleteEntry(entry._id));
         resultsList.appendChild(div);
     });
 }
@@ -111,7 +101,7 @@ async function deleteEntry(id) {
     try {
         const res = await fetch(`${API_BASE}/${id}`, {
             method: "DELETE",
-            headers: { Authorization: token }
+            credentials: 'include'
         });
 
         const data = await res.json();
@@ -142,23 +132,18 @@ if (form) {
             return alert("Alle felt er påkrevd.");
         }
 
-        // Valider tidformat MM:SS
         const timeParts = time.split(":");
         if (timeParts.length !== 2) return alert("Ugyldig tidformat. Bruk MM:SS.");
 
         const minutes = parseInt(timeParts[0], 10);
         const seconds = parseInt(timeParts[1], 10);
-        if (isNaN(minutes) || isNaN(seconds)) {
-            return alert("Ugyldig tidformat. Bruk MM:SS.");
-        }
+        if (isNaN(minutes) || isNaN(seconds)) return alert("Ugyldig tidformat. Bruk MM:SS.");
 
         try {
             const res = await fetch(API_BASE, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token
-                },
+                credentials: 'include',
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, phone, age, time })
             });
 

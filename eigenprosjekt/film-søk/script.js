@@ -1,13 +1,29 @@
-const token = localStorage.getItem('emil-web-token');
-if (!token) {
-    window.location.href = '../../konto/login?redirect=eigenprosjekt/film-søk';
-}
+// ===========================
+//  AUTH CHECK
+// ===========================
+(async () => {
+    try {
+        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+            credentials: 'include',
+            headers: { "Content-Type": "application/json" }
+        });
 
-// Elements
+        if (!res.ok) throw new Error('Ikke logget inn');
+
+        const data = await res.json();
+        // Optional: you could check permissions here if needed
+    } catch (err) {
+        console.error(err);
+        window.location.href = '../../konto/login?redirect=eigenprosjekt/film-søk';
+    }
+})();
+
+// ===========================
+//  ELEMENTS & GENRES
+// ===========================
 const input = document.getElementById("searchInput");
 const resultsContainer = document.getElementById("results");
 
-// TMDB genre mapping
 const genreMap = {
     28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime",
     99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History",
@@ -15,7 +31,9 @@ const genreMap = {
     10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"
 };
 
-// Main search function
+// ===========================
+//  MAIN SEARCH FUNCTION
+// ===========================
 async function searchMovies() {
     const query = input.value.trim();
     if (!query) {
@@ -24,11 +42,8 @@ async function searchMovies() {
     }
 
     try {
-        const getHeader = new Headers();
-        getHeader.append("Authorization", token);
-
         const response = await fetch(`https://emil-web-api-production.up.railway.app/movies?query=${encodeURIComponent(query)}`, {
-            headers: getHeader
+            credentials: 'include'
         });
 
         console.log("Fetch response:", response);
@@ -79,10 +94,9 @@ async function searchMovies() {
     }
 }
 
-// Event listener for Enter key
+// ===========================
+//  EVENT LISTENERS
+// ===========================
 input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") searchMovies();
 });
-
-// Later you can call:
-// button.addEventListener("click", searchMovies);
