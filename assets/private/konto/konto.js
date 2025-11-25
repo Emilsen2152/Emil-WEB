@@ -4,49 +4,49 @@ const passwordChangeBtn = document.getElementById('passwordChangeBtn');
 const passwordChangeForm = document.getElementById('password-change');
 const userAdminBtn = document.getElementById('userAdminBtn');
 
-const token = localStorage.getItem('emil-web-token');
+// --- Fetch user info on page load ---
+try {
+    const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+        method: 'GET',
+        credentials: 'include', // Include HTTP-only cookies
+        headers: { 'Content-Type': 'application/json' }
+    });
 
-if (!token) {
-    // Ingen token → send til login
-    window.location.href = './login';
-} else {
-    try {
-        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
-            method: 'GET',
-            headers: {
-                'Authorization': token,
-                'Content-Type': 'application/json'
-            }
-        });
+    if (!res.ok) throw new Error('Feil ved henting av brukerinfo.');
 
-        if (!res.ok) throw new Error('Ugyldig token eller feil ved henting av bruker.');
+    const data = await res.json();
 
-        const data = await res.json();
+    usernameEl.textContent = data.user.username;
 
-        usernameEl.textContent = data.user.username;
-
-        if (data.user.username === 'admin' || data.user.permissions.includes('admin')) {
-            userAdminBtn.classList.remove('hidden');
-        }
-    } catch (err) {
-        console.error(err);
-        localStorage.removeItem('emil-web-token');
-        window.location.href = './login';
+    if (data.user.username === 'admin' || data.user.permissions.includes('admin')) {
+        userAdminBtn.classList.remove('hidden');
     }
+} catch (err) {
+    console.error(err);
+    // Redirect to login if user not authenticated
+    window.location.href = './login';
 }
 
-// Logout
-logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('emil-web-token');
-    window.location.href = './login';
+// --- Logout ---
+logoutBtn.addEventListener('click', async () => {
+    try {
+        await fetch('https://emil-web-api-production.up.railway.app/logout', {
+            method: 'POST',
+            credentials: 'include', // Clear cookie on server
+        });
+    } catch (err) {
+        console.error('Feil ved utlogging:', err);
+    } finally {
+        window.location.href = './login';
+    }
 });
 
-// Vis / skjul passordskjema
+// --- Show / hide password change form ---
 passwordChangeBtn.addEventListener('click', () => {
     passwordChangeForm.classList.toggle('hidden');
 });
 
-// Endre passord
+// --- Change password ---
 passwordChangeForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -56,10 +56,8 @@ passwordChangeForm.addEventListener('submit', async (e) => {
     try {
         const response = await fetch('https://emil-web-api-production.up.railway.app/user/password', {
             method: 'PUT',
-            headers: {
-                'Authorization': token,
-                'Content-Type': 'application/json'
-            },
+            credentials: 'include', // Include cookie automatically
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ currentPassword, newPassword })
         });
 
@@ -71,9 +69,7 @@ passwordChangeForm.addEventListener('submit', async (e) => {
         }
 
         alert('Passord oppdatert.');
-
-        localStorage.setItem('emil-web-token', `Bearer ${data.user.token}`);
-        window.location.reload();
+        window.location.reload(); // No need to update token manually
     } catch (err) {
         console.error(err);
         alert('En feil oppstod. Prøv igjen senere.');
