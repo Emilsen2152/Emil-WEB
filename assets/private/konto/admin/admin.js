@@ -4,7 +4,7 @@ const API_BASE = 'https://emil-web-api-production.up.railway.app';
 try {
     const res = await fetch(`${API_BASE}/user`, {
         method: 'GET',
-        credentials: 'include', // Include HTTP-only cookie
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' }
     });
 
@@ -28,7 +28,7 @@ const availablePermissions = ['admin', 'pingpanik'];
 async function fetchUsers() {
     try {
         const res = await fetch(`${API_BASE}/users`, {
-            credentials: 'include', // Include cookie automatically
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' }
         });
         const data = await res.json();
@@ -119,7 +119,7 @@ async function updatePermissions(username) {
     try {
         const res = await fetch(`${API_BASE}/users/permissions/${username}`, {
             method: 'PUT',
-            credentials: 'include', // Include cookie automatically
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ permissions: perms })
         });
@@ -142,7 +142,7 @@ async function deleteUser(username) {
     try {
         const res = await fetch(`${API_BASE}/users/${username}`, {
             method: 'DELETE',
-            credentials: 'include', // Include cookie automatically
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' }
         });
 

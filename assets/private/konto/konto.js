@@ -8,7 +8,7 @@ const userAdminBtn = document.getElementById('userAdminBtn');
 try {
     const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
         method: 'GET',
-        credentials: 'include', // Include HTTP-only cookies
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' }
     });
 
@@ -32,7 +32,7 @@ logoutBtn.addEventListener('click', async () => {
     try {
         await fetch('https://emil-web-api-production.up.railway.app/logout', {
             method: 'POST',
-            credentials: 'include', // Clear cookie on server
+            credentials: 'include',
         });
     } catch (err) {
         console.error('Feil ved utlogging:', err);
@@ -56,7 +56,7 @@ passwordChangeForm.addEventListener('submit', async (e) => {
     try {
         const response = await fetch('https://emil-web-api-production.up.railway.app/user/password', {
             method: 'PUT',
-            credentials: 'include', // Include cookie automatically
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ currentPassword, newPassword })
         });

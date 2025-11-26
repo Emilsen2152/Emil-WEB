@@ -18,7 +18,7 @@ form.addEventListener('submit', async (e) => {
     try {
         const response = await fetch('https://emil-web-api-production.up.railway.app/login', {
             method: 'POST',
-            credentials: 'include', // Include cookies automatically
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -32,9 +32,7 @@ form.addEventListener('submit', async (e) => {
             return;
         }
 
-        // No need to save token manually — cookie is set by server
-
-        // Redirect to main konto page
+       
         if (redirect) {
             window.location.href = `../../${redirect}`;
         } else {

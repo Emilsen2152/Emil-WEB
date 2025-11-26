@@ -10,7 +10,7 @@ const userCheckUrl = "https://emil-web-api-production.up.railway.app/user";
 (async () => {
     try {
         const res = await fetch(userCheckUrl, {
-            credentials: 'include', // send cookie
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' }
         });
 
