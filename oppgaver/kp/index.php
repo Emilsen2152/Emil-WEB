@@ -14,9 +14,9 @@
     include '../../includes/navbar.php';
     ?>
 
-    <div class="container-fluid bg-light py-5">
+    <div class="container-fluid bg-light py-2">
         <div class="container">
-            <div class="mt-4 p-5 text-center">
+            <div class="mt-4 p-2 text-center">
                 <h1>Konseptutvikling og Programmering - Oppgåver</h1>
                 <p>
                     Her finn du oppgåver relatert til faget Konseptutvikling og Programmering.
@@ -36,7 +36,7 @@
             ?>
 
             <!-- Centered, slightly bigger buttons -->
-            <div class="d-flex flex-wrap justify-content-center gap-3 mt-3 mb-5">
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-1 mb-5">
                 <?php foreach ($tasks as $task): ?>
                     <a href="<?= htmlspecialchars($task['url']) ?>" class="btn btn-primary btn-md">
                         <?= htmlspecialchars($task['title']) ?>

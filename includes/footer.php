@@ -7,7 +7,7 @@ echo <<<HTML
             <!-- Column 1 -->
             <div class="col-12 col-md-4 mb-4">
                 <h5 class="fw-bold">Kontakt</h5>
-                <p><a class="text-white text-decoration-none" href="mailto:emil.v.soldal@gmail.com">emil.v.soldal@gmail.com</a></p>
+                <p><a class="text-white text-decoration-none" href="mailto:emil.v.soldal@gmail.com" target="_blank" rel="noopener noreferrer">emil.v.soldal@gmail.com</a></p>
 
                 <div class="my-3"></div>
 
