@@ -3,7 +3,7 @@
 // ===========================
 (async () => {
     try {
-        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+        const res = await fetch('https://emil.elevweb.no/user', {
             credentials: 'include',
             headers: { "Content-Type": "application/json" }
         });
@@ -42,7 +42,7 @@ async function searchMovies() {
     }
 
     try {
-        const response = await fetch(`https://emil-web-api-production.up.railway.app/movies?query=${encodeURIComponent(query)}`, {
+        const response = await fetch(`https://emil.elevweb.no/movies?query=${encodeURIComponent(query)}`, {
             credentials: 'include'
         });
 

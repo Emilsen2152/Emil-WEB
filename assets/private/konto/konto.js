@@ -6,7 +6,7 @@ const userAdminBtn = document.getElementById('userAdminBtn');
 
 // --- Fetch user info on page load ---
 try {
-    const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+    const res = await fetch('https://emil.elevweb.no/user', {
         method: 'GET',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' }
@@ -30,7 +30,7 @@ try {
 // --- Logout ---
 logoutBtn.addEventListener('click', async () => {
     try {
-        await fetch('https://emil-web-api-production.up.railway.app/logout', {
+        await fetch('https://emil.elevweb.no/logout', {
             method: 'POST',
             credentials: 'include',
         });
@@ -54,7 +54,7 @@ passwordChangeForm.addEventListener('submit', async (e) => {
     const newPassword = document.getElementById('newPassword').value;
 
     try {
-        const response = await fetch('https://emil-web-api-production.up.railway.app/user/password', {
+        const response = await fetch('https://emil.elevweb.no/user/password', {
             method: 'PUT',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },

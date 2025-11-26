@@ -1,4 +1,4 @@
-const API_BASE = 'https://emil-web-api-production.up.railway.app';
+const API_BASE = 'https://emil.elevweb.no';
 
 // --- Fetch user info on page load ---
 try {

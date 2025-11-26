@@ -1,4 +1,4 @@
-const API_BASE = "https://emil-web-api-production.up.railway.app/pingpanik/timerboard";
+const API_BASE = "https://emil.elevweb.no/pingpanik/timerboard";
 
 const resultsList = document.getElementById("results-list");
 const form = document.getElementById("timing-form");
@@ -8,7 +8,7 @@ const form = document.getElementById("timing-form");
 // ===========================
 (async () => {
     try {
-        const res = await fetch('https://emil-web-api-production.up.railway.app/user', {
+        const res = await fetch('https://emil.elevweb.no/user', {
             credentials: 'include',
             headers: { "Content-Type": "application/json" }
         });

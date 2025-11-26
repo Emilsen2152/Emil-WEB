@@ -1,8 +1,8 @@
 // =======================================
 //          KONFIG
 // =======================================
-const API_BASE = "https://emil-web-api-production.up.railway.app/pingpanik/giftcards";
-const userCheckUrl = "https://emil-web-api-production.up.railway.app/user";
+const API_BASE = "https://emil.elevweb.no/pingpanik/giftcards";
+const userCheckUrl = "https://emil.elevweb.no/user";
 
 // =======================================
 //          TOKEN CHECK

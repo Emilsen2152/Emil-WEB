@@ -16,7 +16,7 @@ form.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('https://emil-web-api-production.up.railway.app/login', {
+        const response = await fetch('https://emil.elevweb.no/login', {
             method: 'POST',
             credentials: 'include',
             headers: {

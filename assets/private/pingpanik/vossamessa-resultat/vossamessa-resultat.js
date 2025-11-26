@@ -1,4 +1,4 @@
-const API_BASE = "https://emil-web-api-production.up.railway.app/pingpanik/timerboard-open";
+const API_BASE = "https://emil.elevweb.no/pingpanik/timerboard-open";
 const resultsList = document.getElementById("results-list");
 
 const scrollSpeed = 1; // px per frame
