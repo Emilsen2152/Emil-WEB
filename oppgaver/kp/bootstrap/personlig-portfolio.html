@@ -8,6 +8,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link href="special-styles.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
@@ -127,7 +130,7 @@
 
         <div class="container" id="kontakt">
             <h2 class="text-center mt-5 mb-4">Kontaktskjema</h2>
-            <div class="mb-5">
+            <div class="mb-5 p-4 bg-white rounded shadow-sm">
                 <form>
                     <div class="mb-3">
                         <label for="navn" class="form-label">Navn</label>
@@ -139,9 +142,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="melding" class="form-label">Melding</label>
-                        <textarea class="form-control" id="melding" rows="4" placeholder="Skriv din melding her"></textarea>
+                        <textarea class="form-control" id="melding" rows="4"
+                            placeholder="Skriv din melding her"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button id="submit-btn-portfolio" type="submit" class="btn btn-primary">Send</button>
                 </form>
             </div>
         </div>
@@ -150,6 +154,41 @@
     <footer class="bg-dark text-white text-center p-3">
         <p class="mb-0">&copy; 2025 Emil Velken Soldal. Alle rettigheter reservert.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const navn = document.getElementById("navn").value.trim();
+            const epost = document.getElementById("epost").value.trim();
+            const melding = document.getElementById("melding").value.trim();
+
+            if (!navn || !epost || !melding) {
+                if (!navn) document.getElementById("navn").classList.add("is-invalid");
+                if (!epost) document.getElementById("epost").classList.add("is-invalid");
+                if (!melding) document.getElementById("melding").classList.add("is-invalid");
+                return; 
+            }
+
+            document.getElementById("navn").classList.remove("is-invalid");
+            document.getElementById("epost").classList.remove("is-invalid");
+            document.getElementById("melding").classList.remove("is-invalid");
+
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            document.getElementById("navn").value = "";
+            document.getElementById("epost").value = "";
+            document.getElementById("melding").value = "";
+        });
+    </script>
+
+
 </body>
 
 </html>

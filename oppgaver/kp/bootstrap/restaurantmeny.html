@@ -8,65 +8,356 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link href="special-styles.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
 </head>
 
-<body>
+<body class="bg-dark">
     <header class="bg-dark text-center p-5">
         <div class="container">
             <a href="#" class="text-decoration-none text-white fw-bold fs-1">
-            <span class="text-primary">Emil</span>WEB Restaurant
-        </a>
+                <span class="text-primary">Bir's</span> Pizza
+            </a>
 
-        <div id="myCarousel" class="carousel slide mt-4 mx-auto" style="max-width: 600px;" data-bs-ride="carousel">
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <div id="myCarousel" class="carousel slide mt-4 mx-auto" style="max-width: 600px;" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner rounded">
+                    <div class="carousel-item active">
+                        <img src="https://res.cloudinary.com/norgesgruppen/images/c_scale,dpr_auto,f_auto,q_auto:eco,w_1600/pyantah0plwumnlomvc4/pizza-finocchiona"
+                            class="d-block w-100" alt="Pizza Finocchiona">
+                        <div class="carousel-caption bg-dark bg-opacity-50 p-3 rounded">
+                            <h1 class="text-white">Pizza Finocchiona</h1>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="https://res.cloudinary.com/norgesgruppen/images/c_scale,dpr_auto,f_auto,q_auto:eco,w_1600/tbagzeanc4qhrnlanzgi/pizza-med-pepperoni"
+                            class="d-block w-100" alt="Peperoni Pizza">
+                        <div class="carousel-caption bg-dark bg-opacity-50 p-3 rounded">
+                            <h1 class="text-white">Pepperoni Pizza</h1>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="https://res.cloudinary.com/norgesgruppen/images/c_scale,dpr_auto,f_auto,q_auto:eco,w_1600/uqjquocfzs4r9c4niuzo/tyrkisk-pasta"
+                            class="d-block w-100" alt="Tyrkisk Pasta">
+                        <div class="carousel-caption bg-dark bg-opacity-50 p-3 rounded">
+                            <h1 class="text-white">Tyrkisk Pasta</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner rounded">
-                <div class="carousel-item active">
-                    <img src="https://res.cloudinary.com/norgesgruppen/images/c_scale,dpr_auto,f_auto,q_auto:eco,w_1600/pyantah0plwumnlomvc4/pizza-finocchiona" class="d-block w-100" alt="Pizza Finocchiona">
-                    <div class="carousel-caption">
-                        <h1 class="text-white">Pizza Finocchiona</h1>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/norgesgruppen/images/c_scale,dpr_auto,f_auto,q_auto:eco,w_1600/tbagzeanc4qhrnlanzgi/pizza-med-pepperoni" class="d-block w-100" alt="Peperoni Pizza">
-                    <div class="carousel-caption">
-                        <h1 class="text-white">Pepperoni Pizza</h1>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="https://res.cloudinary.com/norgesgruppen/images/c_scale,dpr_auto,f_auto,q_auto:eco,w_1600/mnnrfrpmfqbjtnxdycf2/klassisk-pizza-margherita" class="d-block w-100" alt="Klassisk Pizza Margherita">
-                    <div class="carousel-caption">
-                        <h1 class="text-white">Klassisk Pizza Margherita</h1>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Left and right controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
         </div>
     </header>
 
+    <div class="container-fluid py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Vår Meny</h2>
 
+            <ul class="nav nav-tabs justify-content-center" id="menuTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pizza-tab" data-bs-toggle="tab" data-bs-target="#pizza"
+                        type="button" role="tab">
+                        Pizza
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pasta-tab" data-bs-toggle="tab" data-bs-target="#pasta" type="button"
+                        role="tab">
+                        Pasta
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="drikke-tab" data-bs-toggle="tab" data-bs-target="#drikke" type="button"
+                        role="tab">
+                        Drikke
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content mt-4">
+
+                <div class="tab-pane fade show active" id="pizza" role="tabpanel">
+                    <h3>Pizza</h3>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=1" class="card-img-top " alt="Pizza 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pizza 1</h5>
+                                    <p class="card-text">Kort beskrivelse av pizza 1.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=2" class="card-img-top mx-auto"
+                                    alt="Pizza 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pizza 2</h5>
+                                    <p class="card-text">Kort beskrivelse av Pizza 2.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=3" class="card-img-top mx-auto"
+                                    alt="Pizza 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pizza 3</h5>
+                                    <p class="card-text">Kort beskrivelse av Pizza 3.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=4" class="card-img-top mx-auto"
+                                    alt="Pizza 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pizza 4</h5>
+                                    <p class="card-text">Kort beskrivelse av Pizza 4.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="pasta" role="tabpanel">
+                    <h3>Pasta</h3>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=1" class="card-img-top " alt="Pasta 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pasta 1</h5>
+                                    <p class="card-text">Kort beskrivelse av Pasta 1.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=2" class="card-img-top mx-auto"
+                                    alt="Pasta 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pasta 2</h5>
+                                    <p class="card-text">Kort beskrivelse av Pasta 2.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=3" class="card-img-top mx-auto"
+                                    alt="Pasta 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pasta 3</h5>
+                                    <p class="card-text">Kort beskrivelse av Pasta 3.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=4" class="card-img-top mx-auto"
+                                    alt="Pasta 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pasta 4</h5>
+                                    <p class="card-text">Kort beskrivelse av Pasta 4.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="drikke" role="tabpanel">
+                    <h3>Drikke</h3>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=1" class="card-img-top " alt="Drikke 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Drikke 1</h5>
+                                    <p class="card-text">Kort beskrivelse av Drikke 1.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=2" class="card-img-top mx-auto"
+                                    alt="Drikke 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Drikke 2</h5>
+                                    <p class="card-text">Kort beskrivelse av Drikke 2.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=3" class="card-img-top mx-auto"
+                                    alt="Drikke 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Drikke 3</h5>
+                                    <p class="card-text">Kort beskrivelse av Drikke 3.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="card shadow-sm">
+                                <img src="https://picsum.photos/300/200?random=4" class="card-img-top mx-auto"
+                                    alt="Drikke 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Drikke 4</h5>
+                                    <p class="card-text">Kort beskrivelse av Drikke 4.</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="card-text fw-bold">Pris: 100kr</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-primary w-100">Bestill No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-center text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-3">Åpningstider</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item bg-transparent text-white border-secondary">
+                            Mandag - Fredag: 11:00 - 22:00
+                        </li>
+                        <li class="list-group-item bg-transparent text-white border-secondary">
+                            Lørdag - Søndag: 12:00 - 23:00
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <h3 class="mb-3">Adresse</h3>
+                    <p>Bir's Pizza, Bjørkemoen 60, 5709 Voss</p>
+                </div>
+            </div>
+            <a href="./" class="btn btn-secondary mt-3">Tilbake til Bootstrap oppgåver</a>
+        </div>
+    </footer>
 </body>
 
 </html>
