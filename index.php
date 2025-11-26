@@ -16,7 +16,7 @@
 
     <div class="container-fluid bg-light py-5">
         <div class="container">
-            <div class="mt-4 p-5 bg-primary shadow-sm text-white rounded row">
+            <div class="mt-4 p-1 p-md-5 bg-primary shadow-sm text-white rounded row">
                 <div class="col-md-6">
                     <h1>Velkommen til nye EmilWEB!</h1>
                     <p>
