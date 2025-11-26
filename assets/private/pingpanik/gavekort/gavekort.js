@@ -129,7 +129,7 @@ document.getElementById("fetch-giftcard-form").addEventListener("submit", async 
 });
 
 // =======================================
-//          PÅFyll GAVEKORT
+//          PÅFYLL GAVEKORT
 // =======================================
 document.getElementById("topup-giftcard-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -151,6 +151,29 @@ document.getElementById("topup-giftcard-form").addEventListener("submit", async 
     } catch (err) {
         console.error(err);
         showMessage(box, "Intern feil ved påfylling.", false);
+    }
+});
+
+// =======================================
+//          SLETT GAVEKORT
+// =======================================
+
+document.getElementById("delete-giftcard-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const barcode = document.getElementById("delete-barcode").value.trim();
+    const box = document.getElementById("delete-info");
+    try {
+        const { res, data } = await sendRequest(`${API_BASE}/${barcode}`, {
+            method: "DELETE"
+        });
+
+        if (!res.ok) return showMessage(box, data.message, false);
+        showMessage(box, "Gavekort slettet", true);
+        e.target.reset();
+
+    } catch (err) {
+        console.error(err);
+        showMessage(box, "Intern feil ved sletting.", false);
     }
 });
 
