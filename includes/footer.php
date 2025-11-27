@@ -2,7 +2,7 @@
 echo <<<HTML
 <footer class="bg-dark text-white pt-5 pb-4 mt-5">
     <div class="container">
-        <div class="row text-center text-md-start">
+        <div class="row text-center">
 
             <!-- Column 1 -->
             <div class="col-12 col-md-4 mb-4">
@@ -19,7 +19,7 @@ echo <<<HTML
             <div class="w-100 d-md-none"><hr class="border-secondary"></div>
 
             <!-- Column 2 -->
-            <div class="col-12 col-md-4 mb-4 text-center">
+            <div class="col-12 col-md-4 mb-4">
                 <h5 class="fw-bold">&copy; 2025 Emil Velken Soldal</h5>
                 <p>Designa og utvikla av Emil Velken Soldal</p>
 
@@ -33,7 +33,7 @@ echo <<<HTML
             <div class="w-100 d-md-none"><hr class="border-secondary"></div>
 
             <!-- Column 3 -->
-            <div class="col-12 col-md-4 mb-4 text-center text-md-start">
+            <div class="col-12 col-md-4 mb-4">
                 <h5 class="fw-bold">Github</h5>
                 <p><a class="text-white text-decoration-none" href="https://github.com/Emilsen2152" target="_blank" rel="noopener noreferrer">Emilsen2152</a></p>
 
