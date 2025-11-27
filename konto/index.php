@@ -1,5 +1,5 @@
 <?php
-include 'system/authenticate.php';
+include 'account_sys.php';
 
 $user = getUser($API_BASE);
 
