@@ -2,7 +2,7 @@
 
 $API_BASE = 'https://emil.elevweb.no';
 
-function apiRequest(string $path, string $method = 'GET', ?array $body = null, ?string $token = null): ?array
+function apiRequest(string $path, string $method = 'GET', ?array $body = null, ?string &$responseHeaders = null): ?array
 {
     global $API_BASE;
 
@@ -12,61 +12,41 @@ function apiRequest(string $path, string $method = 'GET', ?array $body = null, ?
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_HEADER, true); // include headers in output
 
-    // prepare headers
     $headers = ['Accept: application/json'];
 
-    // include JSON body for POST/PATCH
     if ($body !== null) {
         $json = json_encode($body);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
         $headers[] = 'Content-Type: application/json';
     }
 
-    // Prefer token passed to function, otherwise use cookie from client
-    if ($token === null && isset($_COOKIE['emil_web_auth_token'])) {
-        $token = $_COOKIE['emil_web_auth_token'];
-    }
-
-    // If API expects the token as a cookie named emil_web_auth_token:
-    if ($token !== null) {
-        // Use CURLOPT_COOKIE — more reliable than manual header
-        curl_setopt($ch, CURLOPT_COOKIE, 'emil_web_auth_token=' . $token);
-    }
-
-    // If the API instead expects Authorization: Bearer <token>, uncomment:
-    /*
-    if ($token !== null) {
-        $headers[] = 'Authorization: Bearer ' . $token;
-        // optionally remove the cookie line above
-    }
-    */
-
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-    // SSL: do NOT disable in production. Left commented here in case you're debugging locally.
-    // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
     $response = curl_exec($ch);
     $error = curl_error($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
 
     if ($response === false) {
-        // cURL-level error
+        curl_close($ch);
         error_log('apiRequest cURL error: ' . $error);
         return null;
     }
 
-    // optional: try to decode even for non-2xx so you can see API error message
-    $decoded = json_decode($response, true);
+    // Separate headers and body
+    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+    $responseHeaders = substr($response, 0, $headerSize);
+    $bodyContent = substr($response, $headerSize);
+
+    curl_close($ch);
+
+    $decoded = json_decode($bodyContent, true);
 
     if ($status < 200 || $status >= 300) {
-        // helpful debug info
         error_log("apiRequest: {$method} {$url} returned status {$status}");
-        error_log("Response body: " . $response);
-        return null;
+        error_log("Response body: " . $bodyContent);
+        return $decoded; // still return decoded body for errors
     }
 
     return $decoded;
@@ -77,4 +57,61 @@ function getUser(): ?array
 {
     $result = apiRequest('/user');
     return is_array($result) && isset($result['user']) ? $result['user'] : null;
+}
+
+function login(string $username, string $password): ?array
+{
+    $body = [
+        'username' => $username,
+        'password' => $password
+    ];
+
+    $responseHeaders = '';
+    $result = apiRequest('/login', 'POST', $body, $responseHeaders);
+
+    if (!$result) return null;
+
+    // Parse Set-Cookie from response headers
+    if (preg_match('/Set-Cookie:\s*emil_web_auth_token=([^;]+)/i', $responseHeaders, $matches)) {
+        $token = $matches[1];
+
+        // Set cookie for user’s browser
+        setcookie(
+            'emil_web_auth_token',
+            $token,
+            [
+                'expires' => time() + 60*60*24*7, // 7 days
+                'path' => '/',
+                'domain' => '.elevweb.no',       // shared parent domain
+                'secure' => isset($_SERVER['HTTPS']), // only over HTTPS
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]
+        );
+    }
+
+    return $result;
+}
+
+function register(string $username, string $password): ?array
+{
+    $body = [
+        'username' => $username,
+        'password' => $password,
+    ];
+    $result = apiRequest('/users', 'POST', $body);
+    return is_array($result) ? $result : null;
+}
+
+function logout(): bool
+{
+    $result = apiRequest('/logout', 'POST');
+    return $result !== null;
+}
+
+function changePassword(string $currentPassword, string $newPassword): ?array
+{
+    $body = ['currentPassword' => $currentPassword, 'newPassword' => $newPassword];
+    $result = apiRequest('/user/password', 'PUT', $body);
+    return is_array($result) ? $result : null;
 }

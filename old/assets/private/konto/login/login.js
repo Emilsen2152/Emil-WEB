@@ -31,7 +31,6 @@ form.addEventListener('submit', async (e) => {
             alert(`Feil: ${data.message || 'Noe gikk galt.'}`);
             return;
         }
-
        
         if (redirect) {
             window.location.href = `../../${redirect}`;
