@@ -99,8 +99,32 @@ function register(string $username, string $password): ?array
         'username' => $username,
         'password' => $password,
     ];
-    $result = apiRequest('/users', 'POST', $body);
-    return is_array($result) ? $result : null;
+
+    $responseHeaders = '';
+    $result = apiRequest('/users', 'POST', $body, $responseHeaders);
+
+    if (!$result) return null;
+
+    // Parse Set-Cookie from response headers
+    if (preg_match('/Set-Cookie:\s*emil_web_auth_token=([^;]+)/i', $responseHeaders, $matches)) {
+        $token = $matches[1];
+
+        // Set cookie for user's browser
+        setcookie(
+            'emil_web_auth_token',
+            $token,
+            [
+                'expires' => time() + 60*60*24*7, // 7 days
+                'path' => '/',
+                'domain' => '.elevweb.no',        // shared parent domain
+                'secure' => isset($_SERVER['HTTPS']), // only over HTTPS
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]
+        );
+    }
+
+    return $result;
 }
 
 function logout(): bool
