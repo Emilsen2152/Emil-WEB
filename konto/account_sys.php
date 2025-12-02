@@ -129,9 +129,26 @@ function register(string $username, string $password): ?array
 
 function logout(): bool
 {
+    // Call the API to invalidate the token server-side
     $result = apiRequest('/logout', 'POST');
+
+    // Clear the token cookie in the browser
+    setcookie(
+        'emil_web_auth_token',
+        '',
+        [
+            'expires' => time() - 3600,  // set in the past to delete
+            'path' => '/',
+            'domain' => '.elevweb.no',   // match the domain used when setting it
+            'secure' => isset($_SERVER['HTTPS']),
+            'httponly' => true,
+            'samesite' => 'Strict'
+        ]
+    );
+
     return $result !== null;
 }
+
 
 function changePassword(string $currentPassword, string $newPassword): ?array
 {
