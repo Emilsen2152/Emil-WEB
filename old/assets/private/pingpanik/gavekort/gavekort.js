@@ -186,7 +186,7 @@ const products = [
     { name: "SUNNIVA ISTE FERSKEN 1/2L", price: 27 },
     { name: "MR.LEE NUDLER KOPP KYLLINGSMAK 65G", price: 25 },
     { name: "MR.LEE NUDLER KOPP KJØTTSMAK 65G", price: 25 },
-    { name: "BILLYS PAN PIZZA ORIGINAL 170G", price: 25 },
+    { name: "BILLYS PAN PIZZA ORIGINAL 170G", price: 20 },
     { name: "FANTA ORANGE 500ML FLASKE", price: 27 },
     { name: "SPRITE REGULAR 500ML FLASKE", price: 27 },
     { name: "COCA-COLA ZERO SUGAR 500ML FLASKE", price: 27 },
