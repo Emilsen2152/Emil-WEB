@@ -195,8 +195,8 @@ const products = [
     { name: "SNICKERS 2PK 75G", price: 25 },
     { name: "STRATOS MELLOMPLATE 65G", price: 25 },
     { name: "TWIX XTRA 75G", price: 30 },
-    { name: "KIMS SALT CRUNCH 200G", price: 25 },
-    { name: "KIMS PAPRIKA KICK 200G", price: 25 },
+    { name: "KIMS SALT CRUNCH 200G", price: 17 },
+    { name: "KIMS PAPRIKA KICK 200G", price: 17 },
     { name: "LABAN ORIGINAL 260G", price: 35 }
 ];
 
