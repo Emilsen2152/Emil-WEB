@@ -1,0 +1,152 @@
+:root {
+    --bs-primary: #6f00ff;
+    --bs-primary-rgb: 111, 0, 255;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body */
+body {
+    background-color: #0d0d0d;
+    color: white;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    transition: background-color 0.3s ease;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333 !important;
+    transition: 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #6f00ff !important;
+    text-shadow: 0 0 8px rgba(111, 0, 255, 0.7);
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px);
+}
+
+/* Hero */
+.hero-section {
+    background: linear-gradient(135deg, #4b00ca, #120031);
+    border-radius: 20px;
+}
+
+.hero-img {
+    max-width: 480px;
+    filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.6));
+}
+
+h1,
+p {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn-outline-light:hover {
+    background-color: #6f00ff;
+    border-color: #6f00ff;
+    color: #ffffff;
+    box-shadow: 0 0 10px #6f00ff;
+}
+
+/* Sections */
+section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* Footer */
+footer {
+    background: #090909;
+    color: #bbb;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+footer a {
+    color: #6f00ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-shadow: 0 0 6px rgba(111, 0, 255, 0.7);
+}
+
+/* Om oss & Medlemskap - kort styling */
+.custom-card-styling {
+    background: linear-gradient(135deg, #3a0072, #6a00ff);
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.custom-card-styling:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 25px rgba(106, 0, 255, 0.5);
+}
+
+/* Kortbilder */
+.custom-card-styling .card-img-top {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card-styling .card-img-top:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+/* Tekst i kort */
+.custom-card-styling h5 {
+    letter-spacing: 0.5px;
+    margin-top: 0.5rem;
+}
+
+.custom-card-styling p {
+    font-size: 1.05rem;
+}
+
+/* Tick-liste for medlemskap kort */
+#medlemskap-prisar .card-body ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 1rem;
+}
+
+#medlemskap-prisar .card-body ul li::before {
+    content: "✓";
+    color: #00ffff;
+    margin-right: 8px;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+/* Responsivt */
+@media (max-width: 768px) {
+    .hero-img {
+        max-width: 300px;
+    }
+}

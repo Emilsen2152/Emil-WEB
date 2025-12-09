@@ -31,6 +31,10 @@
                 [
                     "title" => "Gamle Oppgåver før og med 26.11.2025",
                     "url" => "../../old/oppgaver/kp/"
+                ],
+                [
+                    "title" => "CrazyGamer",
+                    "url" => "crazygamer/"
                 ]
             ];
             ?>
