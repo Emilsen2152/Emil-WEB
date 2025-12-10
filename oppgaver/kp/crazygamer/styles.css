@@ -46,6 +46,8 @@ body {
 
 .hero-img {
     max-width: 480px;
+    width: 100%; /* NYTT */
+    height: auto;
     filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.6));
 }
 
@@ -153,5 +155,6 @@ section {
 @media (max-width: 768px) {
     .hero-img {
         max-width: 300px;
+        width: 100%; /* behold 100% også her */
     }
 }

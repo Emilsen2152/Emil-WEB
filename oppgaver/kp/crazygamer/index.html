@@ -166,7 +166,7 @@
                         Klar til å bli ein del av <i>CRAZY</i>GAMER-familien? Fyll ut skjemaet under, so tar me kontakt
                         med deg.
                     </p>
-                    <form class="mt-4">
+                    <form class="mt-4" id="medlemskap-skjema">
                         <div class="mb-3 text-start">
                             <label for="navn" class="form-label text-white">Fullt navn</label>
                             <input type="text" class="form-control bg-dark text-white border-1 border-secondary"
@@ -182,14 +182,20 @@
                             <input type="tel" class="form-control bg-dark text-white border-1 border-secondary"
                                 id="telefon" placeholder="Ditt telefonnummer" required>
                         </div>
-                        <button type="submit" class="btn btn-outline-light btn-lg w-100">Ta kontakt</button>
+                        <button id="påmeldingsskjema" type="submit" class="btn btn-outline-light btn-lg w-100">Ta
+                            kontakt</button>
                     </form>
+                    <div id="påmeldingsresultat" class="alert d-none mt-4 alert-dismissible fade show" role="alert">
+                        <span id="påmeldingsresultat-tekst"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Lukk"></button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="form.js"></script>
 </body>
 
 </html>
