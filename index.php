@@ -46,12 +46,12 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Kvar er kontoen min?</h5>
                             <p class="card-text flex-grow-1">
-                                Kontosystemet for EmilWEB er ikkje implementert enno.
+                                Kontosystemet for EmilWEB vil mest sannsynlig ikkje bli implementert på denne sida.
                                 Dette betyr at du ikkje kan logge inn, eller opprette ein konto på den nye sida.
                                 Eg jobbar med å implementere dette, men det vil ta tid før det er klart.<br><br>
-                                Inntil vidare kan du bruke den gamle EmilWEB sida for å logge inn på kontoen din.
+                                Du kan bruke den gamle EmilWEB sida for å logge inn på kontoen din.
                                 Ingen av sidene på den nye EmilWEB sida krev innlogging, så du kan framleis bruke alle funksjonane utan ein konto.
-                                Som før krever nokre av ressursane på den gamle sida innlogging.
+                                Som før krever nokre av ressursane på den gamle sida innlogging. Om det blir eit nytt kontosystem vil dette skje på eit seinare tidspunkt langt fram i tid.
                             </p>
                         </div>
                     </div>
