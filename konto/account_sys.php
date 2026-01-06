@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Elevweb\Api;
@@ -13,23 +14,15 @@ namespace Elevweb\Api;
 const API_BASE = 'https://emil.elevweb.no';
 
 /**
- * Simple cookie jar:
- * [
- *   'cookie_name' => [
- *      'value' => string,
- *      'domain' => ?string,
- *      'path' => string,
- *      'secure' => bool
- *   ]
- * ]
+ * Simple cookie jar (in-memory)
  */
 $GLOBALS['COOKIE_JAR'] = [];
 
 /* ============================================================
- * Core HTTP helper
+ * Core HTTP
  * ============================================================ */
 
-function request_api(string $method, string $path, ?array $json = null): array
+function api_request(string $method, string $path, ?array $json = null): array
 {
     $url = API_BASE . $path;
 
@@ -41,9 +34,8 @@ function request_api(string $method, string $path, ?array $json = null): array
     $headers = ['Accept: application/json'];
 
     if ($json !== null) {
-        $payload = \json_encode($json, JSON_UNESCAPED_UNICODE);
         $headers[] = 'Content-Type: application/json';
-        \curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        \curl_setopt($ch, CURLOPT_POSTFIELDS, \json_encode($json, JSON_UNESCAPED_UNICODE));
     }
 
     \curl_setopt_array($ch, [
@@ -65,20 +57,16 @@ function request_api(string $method, string $path, ?array $json = null): array
 
     $status     = (int) \curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $headerSize = (int) \curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-    \curl_close($ch);
+    unset($ch);
 
     $headersRaw = \substr($raw, 0, $headerSize);
     $bodyRaw    = \substr($raw, $headerSize);
 
     parse_set_cookie($headersRaw);
 
-    $data = $bodyRaw !== ''
-        ? \json_decode($bodyRaw, true)
-        : null;
-
     return [
         'status' => $status,
-        'data'   => $data,
+        'data'   => $bodyRaw !== '' ? \json_decode($bodyRaw, true) : null,
     ];
 }
 
@@ -88,9 +76,7 @@ function request_api(string $method, string $path, ?array $json = null): array
 
 function build_cookie_header(string $url): array
 {
-    if (empty($GLOBALS['COOKIE_JAR'])) {
-        return [];
-    }
+    if (!$GLOBALS['COOKIE_JAR']) return [];
 
     $u     = \parse_url($url);
     $host  = \strtolower($u['host'] ?? '');
@@ -100,24 +86,16 @@ function build_cookie_header(string $url): array
     $pairs = [];
 
     foreach ($GLOBALS['COOKIE_JAR'] as $name => $c) {
-        if (($c['secure'] ?? false) && !$https) {
-            continue;
+        if (($c['secure'] ?? false) && !$https) continue;
+
+        if (!empty($c['domain'])) {
+            $d = \ltrim(\strtolower($c['domain']), '.');
+            if ($host !== $d && !\str_ends_with($host, '.' . $d)) continue;
         }
 
-        $cookieDomain = $c['domain'] ?? null;
-        if ($cookieDomain) {
-            $d = \ltrim(\strtolower((string) $cookieDomain), '.');
-            if ($host !== $d && !\str_ends_with($host, '.' . $d)) {
-                continue;
-            }
-        }
+        if (!\str_starts_with($path, $c['path'] ?? '/')) continue;
 
-        $cookiePath = $c['path'] ?? '/';
-        if (!\str_starts_with($path, (string) $cookiePath)) {
-            continue;
-        }
-
-        $pairs[] = $name . '=' . ($c['value'] ?? '');
+        $pairs[] = $name . '=' . $c['value'];
     }
 
     return $pairs ? ['Cookie: ' . \implode('; ', $pairs)] : [];
@@ -125,30 +103,11 @@ function build_cookie_header(string $url): array
 
 function parse_set_cookie(string $headers): void
 {
-    $lines = \preg_split("/\r\n|\n|\r/", $headers) ?: [];
-
-    foreach ($lines as $line) {
-        if (\stripos($line, 'Set-Cookie:') !== 0) {
-            continue;
-        }
+    foreach (\preg_split("/\r\n|\n|\r/", $headers) as $line) {
+        if (\stripos($line, 'Set-Cookie:') !== 0) continue;
 
         $parts = \array_map('trim', \explode(';', \substr($line, 11)));
-        if (count($parts) === 0) {
-            continue;
-        }
-
-        $nv = $parts[0];
-        $eqPos = \strpos($nv, '=');
-        if ($eqPos === false) {
-            continue;
-        }
-
-        $name  = \trim(\substr($nv, 0, $eqPos));
-        $value = \trim(\substr($nv, $eqPos + 1));
-
-        if ($name === '') {
-            continue;
-        }
+        [$name, $value] = \explode('=', $parts[0], 2);
 
         $cookie = [
             'value'  => $value,
@@ -158,27 +117,18 @@ function parse_set_cookie(string $headers): void
         ];
 
         foreach (\array_slice($parts, 1) as $attr) {
-            if (\strcasecmp($attr, 'Secure') === 0) {
-                $cookie['secure'] = true;
-                continue;
-            }
-            if (\stripos($attr, 'Domain=') === 0) {
-                $cookie['domain'] = \substr($attr, 7);
-                continue;
-            }
-            if (\stripos($attr, 'Path=') === 0) {
-                $cookie['path'] = \substr($attr, 5);
-                continue;
-            }
+            if (\strcasecmp($attr, 'Secure') === 0) $cookie['secure'] = true;
+            if (\stripos($attr, 'Domain=') === 0)   $cookie['domain'] = \substr($attr, 7);
+            if (\stripos($attr, 'Path=') === 0)     $cookie['path']   = \substr($attr, 5);
         }
 
-        // If cleared cookie, remove it
+        $GLOBALS['COOKIE_JAR'][$name] = $cookie['value'] === ''
+            ? null
+            : $cookie;
+
         if ($cookie['value'] === '') {
             unset($GLOBALS['COOKIE_JAR'][$name]);
-            continue;
         }
-
-        $GLOBALS['COOKIE_JAR'][$name] = $cookie;
     }
 }
 
@@ -188,27 +138,27 @@ function parse_set_cookie(string $headers): void
 
 function register_user(string $username, string $password): array
 {
-    return request_api('POST', '/users', compact('username', 'password'));
+    return api_request('POST', '/users', compact('username', 'password'));
 }
 
 function login_user(string $username, string $password): array
 {
-    return request_api('POST', '/login', compact('username', 'password'));
+    return api_request('POST', '/login', compact('username', 'password'));
 }
 
 function logout_user(): array
 {
-    return request_api('POST', '/logout');
+    return api_request('POST', '/logout');
 }
 
-function get_current_user(): array
+function get_authenticated_user(): array
 {
-    return request_api('GET', '/user');
+    return api_request('GET', '/user');
 }
 
 function change_password(string $currentPassword, string $newPassword): array
 {
-    return request_api('PUT', '/user/password', compact('currentPassword', 'newPassword'));
+    return api_request('PUT', '/user/password', compact('currentPassword', 'newPassword'));
 }
 
 /* ============================================================
@@ -217,17 +167,17 @@ function change_password(string $currentPassword, string $newPassword): array
 
 function admin_list_users(): array
 {
-    return request_api('GET', '/users');
+    return api_request('GET', '/users');
 }
 
 function admin_delete_user(string $username): array
 {
-    return request_api('DELETE', '/users/' . \rawurlencode($username));
+    return api_request('DELETE', '/users/' . \rawurlencode($username));
 }
 
 function admin_set_permissions_patch(string $username, array $permissions): array
 {
-    return request_api(
+    return api_request(
         'PATCH',
         '/users/' . \rawurlencode($username),
         ['permissions' => \array_values($permissions)]
@@ -236,7 +186,7 @@ function admin_set_permissions_patch(string $username, array $permissions): arra
 
 function admin_set_permissions_put(string $username, array $permissions): array
 {
-    return request_api(
+    return api_request(
         'PUT',
         '/users/permissions/' . \rawurlencode($username),
         ['permissions' => \array_values($permissions)]
