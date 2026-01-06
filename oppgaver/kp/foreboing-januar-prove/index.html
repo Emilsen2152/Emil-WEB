@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Førebuing til januar prøve - EmilWEB</title>
+    <style>
+        .intern {
+            text-align: center;
+        }
+    </style>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <h2>Oppgåve 1</h2>
+    <p>Dette har eg gjort.</p>
+    <ul>
+        <li>&lt;!DOCTYPE html&gt; forteller nettlesaren at du bruker HTML5.</li>
+        <li>&lt;html&gt; taggen definerer rota til dokumentet og alt utenom doctype må vera inni den.</li>
+        <li>
+            &lt;head&gt; taggen definerer den delen av nettsida som ikkje skal vera synlig. Her finner ein meta og
+            title.
+            Det er to meta tags. Den eine har UTF-8 og fortel at den skal bruka UTF-8 som bokstavenkoder.
+            viewport taggen fortel kva størrelse nettsida skal ha, her seier den at den skal ha samme størrelse som
+            skjermen.
+            title definerer det som skal vera tittelen til nettsida. Altså det som står på tab navnet.
+        </li>
+        <li>&lt;body&gt; taggen fortel kvar innholdet i nettsida er.</li>
+    </ul>
+
+    <h2>Oppgåve 2</h2>
+    <p>Kodeblokker er det som er mellom ein start tag og ein slutt tag, inklusiv taggane.</p>
+
+    <h2>Oppgåve 3</h2>
+    <p><a href="https://youtube.com">Gå til youtube.com</a></p>
+    <a href="https://pingpanik.no"><img src="../../../assets/private/index/PP_Logo.png" width="100" height="100"></a>
+
+    <h2>Oppgåve 4</h2>
+    <p><a href="../">Tilbake til oppgåver</a></p>
+
+    <h2>Oppgåve 5</h2>
+    <img src="../../../../assets/private/index/hero_image.JPG" width="400" alt="Bilde av Voss Stasjon.">
+
+    <h2>Oppgåve 6</h2>
+    <ul>
+        <li>JPEG/JPG: Blir ofte brukt til digitalfoto, mister kvalitet ved komprimering, veldig små filer.</li>
+        <li>PNG: Blir ofte brukt til grafikk og bilete som krever gjennomsiktigheit.</li>
+        <li>GIF: Enkle grafikkar og animasjonar på nettet. Støtter maks 256 fargar (8-bit).</li>
+    </ul>
+
+    <h2>Oppgåve 7</h2>
+    <table>
+        <tr>
+            <th>Navn</th>
+            <th>Fødselsdato</th>
+        </tr>
+        <tr>
+            <td>Emil</td>
+            <td>26.01.09</td>
+        </tr>
+        <tr>
+            <td>Ivar</td>
+            <td>27.01.12</td>
+        </tr>
+    </table>
+
+    <h2>Oppgåve 8</h2>
+    <form id="medlemskap-skjema">
+        <div>
+            <label for="navn">Fullt navn</label>
+            <br>
+            <input type="text" id="navn" placeholder="Ditt navn" required>
+        </div>
+        <div>
+            <label for="epost">E-postadresse</label>
+            <br>
+            <input type="email" id="epost" placeholder="Din e-post" required>
+        </div>
+        <div>
+            <label for="telefon">Telefonnummer</label>
+            <br>
+            <input type="tel" id="telefon" placeholder="Ditt telefonnummer" required>
+        </div>
+        <div>
+            <label for="dato">Dato</label>
+            <br>
+            <input type="date" id="dato">
+        </div>
+        <button id="påmeldingsskjema" type="submit">Ta
+            kontakt</button>
+    </form>
+
+    <h2>Oppgåve 9</h2>
+    <p><b>Bold</b> <i>Itallic</i></p>
+    <h1>Header 1</h1>
+    <h2>Header 2</h2>
+    <h1 style="font-size: 10px;">Liten header 1</h1>
+    <p style="color: blue;">Blå tekst</p>
+
+    <h2>Oppgåve 10</h2>
+    <ol>
+        <li>Taco</li>
+        <li>Pizza</li>
+        <li>Hamburger</li>
+    </ol>
+
+    <ul>
+        <li>Rød</li>
+        <li>Kvitt</li>
+        <li>Blått</li>
+    </ul>
+
+    <h1>Oppgåve 11</h1>
+    <p class="intern">Denne er styla internt</p>
+    <p class="ekstern">Denne er styla eksternt</p>
+
+    <h2>Oppgåve 12</h2>
+    <h3>Flexbox-eksempel</h3>
+    <div class="flex-container">
+        <div class="box">A</div>
+        <div class="box">B</div>
+        <div class="box">C</div>
+    </div>
+
+    <h3>Grid-eksempel</h3>
+    <div class="grid-container">
+        <div class="box">A</div>
+        <div class="box">B</div>
+        <div class="box">C</div>
+    </div>
+
+    <h2>Oppgåve 13</h2>
+    <p>Heile dokumentet er styla.</p>
+
+    <h2>Oppgåve 14</h2>
+    <p>For å gjere noko responsivt kan du bruke @media i CSS for å endre størrelse på ting basert på skjermstørrelse.
+        Du kan og bruke responsive størrelse format i stedet for px. Dette kan vera rem og %.</p>
+    
+    <h2>Oppgåve 15 og 16</h2>
+    <p>Selvfølgelig kan eg detta, du ser jo på nettsido.</p>
+</body>
+
+</html>

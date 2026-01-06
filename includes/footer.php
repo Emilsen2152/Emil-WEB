@@ -1,5 +1,7 @@
 <?php
-echo <<<HTML
+include_once 'config.php';
+?>
+
 <footer class="bg-dark text-white pt-5 pb-4 mt-5">
     <div class="container">
         <div class="row text-center">
@@ -16,7 +18,9 @@ echo <<<HTML
             </div>
 
             <!-- Mobile separator -->
-            <div class="w-100 d-md-none"><hr class="border-secondary"></div>
+            <div class="w-100 d-md-none">
+                <hr class="border-secondary">
+            </div>
 
             <!-- Column 2 -->
             <div class="col-12 col-md-4 mb-4">
@@ -30,7 +34,9 @@ echo <<<HTML
             </div>
 
             <!-- Mobile separator -->
-            <div class="w-100 d-md-none"><hr class="border-secondary"></div>
+            <div class="w-100 d-md-none">
+                <hr class="border-secondary">
+            </div>
 
             <!-- Column 3 -->
             <div class="col-12 col-md-4 mb-4">
@@ -43,8 +49,14 @@ echo <<<HTML
                 <p><a class="text-white text-decoration-none" href="https://www.instagram.com/Emilsen2152" target="_blank" rel="noopener noreferrer">Emilsen2152</a></p>
             </div>
 
+            <!-- Mobile separator -->
+            <div class="w-100 d-md-none">
+                <hr class="border-secondary">
+            </div>
+
+            <div class="col-12">
+                <p><a class="text-white text-decoration-none" href="<?php echo (url('sitemap.xml')) ?>">Sitemap</a></p>
+            </div>
         </div>
     </div>
 </footer>
-HTML;
-?>
