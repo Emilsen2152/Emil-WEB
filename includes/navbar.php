@@ -2,6 +2,7 @@
 include_once 'config.php';
 
 $navItems = [
+    //'Konto' => url('konto/'),
     'Eigenprosjekt' => [],
     'Oppgåver' => [
         'Konseptutvikling og Programmering' => url('oppgaver/kp/')
