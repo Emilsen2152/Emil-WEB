@@ -30,7 +30,35 @@
                 [
                     "title" => "JavaScript Øving",
                     "url" => "./js-oving/",
-                ]
+                ],
+                [
+                    "title" => "Side 52 - Prøv sjølv",
+                    "url" => "./side-52/",
+                ],
+                [
+                    "title" => "Side 60 - Prøv sjølv",
+                    "url" => "./side-60/",
+                ],
+                [
+                    "title" => "Side 64 - Prøv sjølv",
+                    "url" => "./side-64/",
+                ],
+                [
+                    "title" => "Side 69 - Prøv sjølv",
+                    "url" => "./side-69/",
+                ],
+                [
+                    "title" => "Klasselotteri",
+                    "url" => "./klasselotteri/",
+                ],
+                [
+                    "title" => "Utrekning Sirkel",
+                    "url" => "./utrekning-sirkel/",
+                ],
+                [
+                    "title" => "Eigen kalkulator",
+                    "url" => "./eigen-kalkulator/",
+                ],
             ];
             ?>
 
