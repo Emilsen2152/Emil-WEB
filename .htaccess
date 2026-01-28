@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# --------------------------------------------------
+# Do NOT rewrite real files or directories
+# --------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# --------------------------------------------------
+# Allow API to handle its own routing
+# --------------------------------------------------
+RewriteRule ^api(/.*)?$ - [L]
+
+# --------------------------------------------------
+# Rewrite clean URLs to .php
+# Example: /login  -> /login.php
+# --------------------------------------------------
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]

@@ -48,19 +48,22 @@ function method(): string {
  */
 function path(): string {
     $uriPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
-
-    // normalize multiple slashes
     $uriPath = preg_replace('#/+#', '/', $uriPath);
 
-    // Strip "/index.php" prefix if present
+    // API lives under /api -> strip that prefix
+    if ($uriPath === '/api') return '/';
+    if (str_starts_with($uriPath, '/api/')) {
+        $uriPath = substr($uriPath, 4); // remove "/api"
+        if ($uriPath === '') $uriPath = '/';
+    }
+
+    // Support "/index.php/..." style too
     if (str_starts_with($uriPath, '/index.php')) {
         $uriPath = substr($uriPath, strlen('/index.php'));
         if ($uriPath === '') $uriPath = '/';
     }
 
-    // Ensure leading slash
     if ($uriPath === '' || $uriPath[0] !== '/') $uriPath = '/' . $uriPath;
-
     return $uriPath;
 }
 
