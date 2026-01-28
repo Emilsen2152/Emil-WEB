@@ -1,0 +1,1 @@
+Visst du ser detta so virker htaccess-filen!
