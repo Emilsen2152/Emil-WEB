@@ -29,7 +29,7 @@
             $tasks = [
                 [
                     "title" => "JavaScript Øving",
-                    "url" => "./js-oving/",
+                    "url" => "./js-oving",
                 ],
                 [
                     "title" => "Side 52 - Prøv sjølv",
