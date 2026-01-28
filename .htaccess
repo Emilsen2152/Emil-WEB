@@ -1,38 +1,39 @@
+Options -MultiViews
 RewriteEngine On
 
 # --------------------------------------------------
-# 1 Canonical: remove trailing slash (except / and /api)
+# 1) Hide .php/.html ONLY for top-level website pages
+#    Do NOT touch /api or /old/assets (partials, scripts, css, etc.)
 # --------------------------------------------------
-RewriteCond %{REQUEST_URI} .+/$
-RewriteCond %{REQUEST_URI} !^/$
 RewriteCond %{REQUEST_URI} !^/api(/|$)
+RewriteCond %{REQUEST_URI} !^/old/assets/ [NC]
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.(php|html)\s [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# --------------------------------------------------
+# 2) Remove trailing slash ONLY if NOT a real directory
+#    Do NOT touch /api
+# --------------------------------------------------
+RewriteCond %{REQUEST_URI} !^/api(/|$)
+RewriteCond %{REQUEST_URI} .+/$
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
 # --------------------------------------------------
-# 2 Canonical: hide .php and .html in URLs (except /api)
-# /page.php  -> /page
-# /page.html -> /page
-# --------------------------------------------------
-RewriteCond %{REQUEST_URI} !^/api(/|$)
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.(php|html)\s [NC]
-RewriteRule ^ %1 [R=301,L]
-
-# --------------------------------------------------
-# 3 Do NOT rewrite real files or directories
+# 3) Do NOT rewrite real files or directories
 # --------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 # --------------------------------------------------
-# 4 Allow API to handle its own routing
+# 4) Allow API to handle its own routing
 # --------------------------------------------------
 RewriteRule ^api(/.*)?$ - [L]
 
 # --------------------------------------------------
-# 5 Clean URLs -> map to existing .php or .html
-# Prefer .php if both exist
-# /about -> about.php (if exists) else about.html (if exists)
+# 5) Clean URLs -> map to existing .php or .html
+#    Prefer .php over .html
 # --------------------------------------------------
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+)$ $1.php [L]
