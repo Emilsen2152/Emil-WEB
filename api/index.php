@@ -118,7 +118,7 @@ if ($m === 'POST' && $p === '/users') {
 
     // (Optional) Basic username constraints
     if (!preg_match('/^[a-z0-9._-]{3,32}$/', $username)) {
-        json_response(400, ['message' => 'Ugyldig brukarnamn. Bruk 3–32 teikn: a-z, 0-9, . _ -']);
+        json_response(400, ['message' => 'Ugyldig brukarnamn. Bruk 3-32 teikn: a-z, 0-9, . _ -']);
     }
 
     // Check existing
