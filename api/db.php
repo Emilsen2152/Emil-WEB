@@ -6,8 +6,9 @@ function db(array $config): PDO
 {
     $db = $config['db'];
     $dsn = sprintf(
-        'mysql:host=%s;dbname=%s;charset=%s',
+        'mysql:host=%s;port=%d;dbname=%s;charset=%s',
         $db['host'],
+        $db['port'],
         $db['name'],
         $db['charset']
     );
