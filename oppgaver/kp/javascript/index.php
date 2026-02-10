@@ -59,6 +59,26 @@
                     "title" => "Eigen kalkulator",
                     "url" => "./eigen-kalkulator/",
                 ],
+                [
+                    "title" => "Side 77",
+                    "url" => "./side-77/",
+                ],
+                [
+                    "title" => "Side 78",
+                    "url" => "./side-78/",
+                ],
+                [
+                    "title" => "Side 79",
+                    "url" => "./side-79/",
+                ],
+                [
+                    "title" => "Side 80",
+                    "url" => "./side-80/",
+                ],
+                [
+                    "title" => "Side 82",
+                    "url" => "./side-82/",
+                ],
             ];
             ?>
 
