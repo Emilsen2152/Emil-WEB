@@ -5,7 +5,7 @@ $navItems = [
     'Konto' => url('konto/'),
     'Eigenprosjekt' => [],
     'Oppgåver' => [
-        'Konseptutvikling og Programmering' => url('oppgaver/kp/')
+        'VG1' => url('oppgaver/vg1/')
     ],
     'Til gamle EmilWEB' => url('old/'),
     'Til elevweb.no' => 'https://elevweb.no'
