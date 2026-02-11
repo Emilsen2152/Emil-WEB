@@ -79,6 +79,10 @@
                     "title" => "Side 82",
                     "url" => "./side-82/",
                 ],
+                [
+                    "title" => "Kodesnutt 1",
+                    "url" => "./kodesnutt-1/",
+                ],
             ];
             ?>
 
