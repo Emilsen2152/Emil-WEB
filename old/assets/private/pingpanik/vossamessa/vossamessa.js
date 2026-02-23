@@ -96,7 +96,7 @@ function renderEntries(entries) {
 //   SLETT DELTAKAR
 // ===========================
 async function deleteEntry(id) {
-    if (!confirm("Er du sikker på at du vil fjerna denne deltakaren?")) return;
+    //if (!confirm("Er du sikker på at du vil fjerna denne deltakaren?")) return;
 
     try {
         const res = await fetch(`${API_BASE}/${id}`, {
@@ -107,7 +107,7 @@ async function deleteEntry(id) {
         const data = await res.json();
         if (!res.ok) return alert(data.message || "Klarte ikkje å sletta deltakar.");
 
-        alert("Deltakar sletta.");
+        //alert("Deltakar sletta.");
         loadEntries();
     } catch (err) {
         console.error("Feil ved sletting:", err);
