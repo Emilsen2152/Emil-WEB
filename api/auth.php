@@ -58,6 +58,7 @@ function format_user(array $row, bool $includeToken = false): array
     }
 
     $out = [
+        'id'         => $row['id'],
         'username'   => $row['username'],
         'permissions' => $permissions,
         'lastLogin'  => $row['last_login'] ?? null,

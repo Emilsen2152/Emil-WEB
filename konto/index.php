@@ -3,10 +3,20 @@ require_once __DIR__ . '/../api/bootstrap.php';
 
 $user = current_user($pdo, $config);
 
-
 if (!$user) {
     header('Location: ./login');
     exit;
+}
+
+$error_messages = [
+    'not_admin' => 'Sida du prøver å nå er bare tilgjengelig for administratorer.',
+];
+
+$error = $_GET['error'] ?? null;
+if ($error && isset($error_messages[$error])) {
+    $error_message = $error_messages[$error];
+} else {
+    $error_message = null;
 }
 
 ?>
@@ -34,6 +44,12 @@ if (!$user) {
                     <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
                         <h1 class="mb-4 text-center">Min konto</h1>
 
+                        <?php if ($error_message): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo htmlspecialchars($error_message); ?>
+                            </div>
+                        <?php endif; ?>
+
                         <p><strong>Brukarnamn:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
                         <p><strong>Brukar-ID:</strong> <?php echo htmlspecialchars($user['id']); ?></p>
                         <p><strong>Registrert:</strong> <?php echo htmlspecialchars($user['created_at']); ?></p>
@@ -59,3 +75,5 @@ if (!$user) {
 
     <script src="account_page.js" type="module"></script>
 </body>
+
+</html>

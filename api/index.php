@@ -55,8 +55,8 @@ function path(): string
 
     // API lives under /api -> strip that prefix
     //if ($uriPath === '/api') return '/';
-    $uriPath = str_replace('/emil', '', $uriPath);
-    $uriPath = str_replace('/api', '', $uriPath);
+    $uriPath = str_replace('/emil/', '/', $uriPath);
+    $uriPath = str_replace('/api/', '/', $uriPath);
 
     // Support "/index.php/..." style too
     if (str_starts_with($uriPath, '/index.php')) {
