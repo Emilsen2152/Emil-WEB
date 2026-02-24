@@ -37,10 +37,16 @@ if (!$user) {
                         <p><strong>Brukarnamn:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
                         <p><strong>Brukar-ID:</strong> <?php echo htmlspecialchars($user['id']); ?></p>
                         <p><strong>Registrert:</strong> <?php echo htmlspecialchars($user['created_at']); ?></p>
-
+                        <p><strong>Siste innlogging:</strong> <?php echo htmlspecialchars($user['last_login'] ?? 'Aldri'); ?></p>
                         <button id="logout-btn" class="btn btn-danger btn-lg w-100 mt-2">
                             Logg ut
                         </button>
+
+                        <?php
+                        if (check_admin($pdo, $config)) {
+                            echo '<a href="admin" class="btn btn-secondary btn-lg w-100 mt-3">Adminpanel</a>';
+                        }
+                        ?>
                     </div>
                 </div>
 

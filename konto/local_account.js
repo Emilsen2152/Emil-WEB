@@ -10,7 +10,7 @@ async function api_json(response) {
 }
 
 async function register_account(username, password) {
-    const response = await fetch('/api/users', {
+    const response = await fetch('../api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -31,7 +31,7 @@ async function register_account(username, password) {
 }
 
 async function login_account(username, password) {
-    const response = await fetch('/api/login', {
+    const response = await fetch('../api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -51,7 +51,7 @@ async function login_account(username, password) {
 }
 
 async function logout_account() {
-    const response = await fetch('/api/logout', {
+    const response = await fetch('../api/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     });

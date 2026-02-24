@@ -24,3 +24,14 @@ function current_user(PDO $pdo, array $config): ?array
 
     return $user ?: null;
 }
+
+function check_admin(PDO $pdo, array $config): bool
+{
+    $user = current_user($pdo, $config);
+    if (!$user) return false;
+
+    $perms = json_decode((string)$user['permissions'], true);
+    $perms = is_array($perms) ? $perms : [];
+
+    return ($user['username'] === $config['admin_username']) || in_array('admin', $perms, true);
+}

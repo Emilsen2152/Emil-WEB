@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -37,7 +38,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
    Utilities
    ============================================================ */
 
-function method(): string {
+function method(): string
+{
     return strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
 }
 
@@ -46,16 +48,15 @@ function method(): string {
  *  - /login (recommended with rewrite)
  *  - /index.php/login (no rewrite)
  */
-function path(): string {
+function path(): string
+{
     $uriPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
     $uriPath = preg_replace('#/+#', '/', $uriPath);
 
     // API lives under /api -> strip that prefix
-    if ($uriPath === '/api') return '/';
-    if (str_starts_with($uriPath, '/api/')) {
-        $uriPath = substr($uriPath, 4); // remove "/api"
-        if ($uriPath === '') $uriPath = '/';
-    }
+    //if ($uriPath === '/api') return '/';
+    $uriPath = str_replace('/emil', '', $uriPath);
+    $uriPath = str_replace('/api', '', $uriPath);
 
     // Support "/index.php/..." style too
     if (str_starts_with($uriPath, '/index.php')) {
@@ -71,7 +72,8 @@ function path(): string {
  * Match route patterns like "/users/{username}".
  * Fills $params with named groups.
  */
-function match_route(string $pattern, string $actualPath, array &$params): bool {
+function match_route(string $pattern, string $actualPath, array &$params): bool
+{
     $regex = '#^' . preg_replace('#\{([a-zA-Z_][a-zA-Z0-9_]*)\}#', '(?P<$1>[^/]+)', $pattern) . '$#';
     if (!preg_match($regex, $actualPath, $m)) return false;
 
@@ -84,7 +86,8 @@ function match_route(string $pattern, string $actualPath, array &$params): bool 
 /**
  * Convenience: ensure a value is a non-empty string.
  */
-function require_string(mixed $value): ?string {
+function require_string(mixed $value): ?string
+{
     if (!is_string($value)) return null;
     $value = trim($value);
     return $value === '' ? null : $value;
@@ -95,6 +98,9 @@ function require_string(mixed $value): ?string {
    ============================================================ */
 
 $m = method();
+
+// Remove /emil and /api prefixes if present, for cleaner route handling
+
 $p = path();
 
 /* -----------------------------
@@ -361,4 +367,4 @@ if ($m === 'PATCH' && match_route('/users/{username}', $p, $params)) {
    Fallback
    ============================================================ */
 
-json_response(404, ['message' => 'Not found.']);
+json_response(404, ['message' => 'Not found: ' . $m . ' ' . $p]);
