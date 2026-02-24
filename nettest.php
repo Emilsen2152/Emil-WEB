@@ -1,6 +1,6 @@
 <?php
-$host = 'caboose.proxy.rlwy.net';
-$port = 21399;
+$host = '46.101.240.37';
+$port = 3306;
 
 $start = microtime(true);
 $fp = @fsockopen($host, $port, $errno, $errstr, 5);
