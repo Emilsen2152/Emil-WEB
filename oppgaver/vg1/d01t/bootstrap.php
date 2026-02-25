@@ -23,7 +23,7 @@ function get_shared_to_do_lists(PDO $pdo, array $config): array
     $stmt = $pdo->prepare('
         SELECT l.*
         FROM to_do_lists l
-        INNER JOIN shared_to_do_lists s ON s.table_id = l.id
+        INNER JOIN shared_to_do_lists s ON s.to_do_list_id = l.id
         WHERE s.user_id = ?
     ');
     $stmt->execute([$user['id']]);
