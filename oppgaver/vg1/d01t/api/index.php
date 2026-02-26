@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '../../../../api/bootstrap.php';
+require_once __DIR__ . '../../../../../api/bootstrap.php';
 require_once __DIR__ . '/bootstrap.php';
 
 /* ============================================================
@@ -79,7 +79,19 @@ function match_route(string $pattern, string $actualPath, array &$params): bool
 
 $m = method();
 
-// Remove /emil and /api prefixes if present, for cleaner route handling
+// Remove prefixes if present, for cleaner route handling
 
 $p = path();
 
+// DO NOT ADD USER AUTHENTICATION RELATED ROUTES HERE, THEY ARE IN A SEPERATE API AREA
+
+if ($m === 'GET' && $p === '/to-do-lists') {
+    json_response(200, get_user_to_do_lists($pdo, $config));
+    exit;
+}
+
+/* ============================================================
+   Fallback
+   ============================================================ */
+
+json_response(404, ['message' => 'Not found: ' . $m . ' ' . $p]);
