@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="no">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oppgåve 3</title>
+</head>
+
+<body>
+    <h1>Oppgåve 3</h1>
+    <script>
+        // Hent fødselsdatoen frå brukaren
+        const fodselsdato = prompt("Skriv inn fødselsdatoen din (dd.mm.åååå)");
+        const fodselsdatoObjekt = new Date(fodselsdato.split(".").reverse().join("-"));
+        
+        // Hent dagens dato
+        const dagensDato = new Date();
+
+        const alder = dagensDato.getFullYear() - fodselsdatoObjekt.getFullYear();
+        
+        // Sjekk om brukaren har hatt bursdag i år
+        const harHattBursdag = (dagensDato.getMonth() > fodselsdatoObjekt.getMonth()) || 
+                              (dagensDato.getMonth() === fodselsdatoObjekt.getMonth() && dagensDato.getDate() >= fodselsdatoObjekt.getDate());
+
+        if (!harHattBursdag) {
+            alder -= 1;
+        }
+        document.write("Alder: " + alder + " år");
+
+        // Antall veker, dagar og timar gammal (seperat)
+        const antallDager = Math.floor((dagensDato - fodselsdatoObjekt) / (1000 * 60 * 60 * 24));
+        const antallUker = Math.floor(antallDager / 7);
+        const antallTimer = Math.floor((dagensDato - fodselsdatoObjekt) / (1000 * 60 * 60));
+        document.write("<br>Antall veker gammal: " + antallUker);
+        document.write("<br>Antall dagar gammal: " + antallDager);
+        document.write("<br>Antall timar gammal: " + antallTimer);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="no">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title id="klokkeslett-title">Oppgåve 5</title>
+</head>
+
+<body>
+    <h1>Oppgåve 5</h1>
+    <p id="klokkeslett"></p>
+
+    <button id="addAlarm">Legg til alarm</button>
+    <br>
+    <!-- Klokkeslett input, alarm når tida er nådd -->
+    <label for="alarmTid-0">Sett alarmtid (hh:mm:ss): </label>
+    <input type="time" id="alarmTid-0" name="alarmTid" step="1">
+    <br>
+    <script>
+        const alarmTider = [
+            'alarmTid-0',
+        ];
+        const audio = new Audio("alarm.mp3");
+
+        function oppdaterKlokkeslett() {
+            const now = new Date();
+            const klokkeslett = now.toLocaleTimeString('no-NO');
+            document.getElementById("klokkeslett").innerHTML = klokkeslett;
+
+            document.getElementById("klokkeslett-title").innerHTML = klokkeslett;
+
+            alarmTider.forEach(alarmId => {
+                const alarmTid = document.getElementById(alarmId);
+                if (alarmTid.value) {
+                    if (klokkeslett === alarmTid.value) {
+                        audio.play();
+                        alert("Alarm! Klokko er " + klokkeslett);
+                    }
+                }
+            });
+        }
+
+        // Oppdater klokkeslettet hvert sekund
+        setInterval(oppdaterKlokkeslett, 1000);
+
+        document.getElementById("addAlarm").addEventListener("click", function(){
+            const alarmTiderLength = alarmTider.length + 1
+            const label = document.createElement("label");
+            label.setAttribute("for", `alarmTid-${alarmTiderLength}`);
+            label.innerHTML = `Sett alarmtid (hh:mm:ss): `;
+            document.body.appendChild(label);
+
+            const input = document.createElement("input");
+            input.type = "time";
+            input.id = `alarmTid-${alarmTiderLength}`;
+            input.name = "alarmTid";
+            input.step = "1";
+            document.body.appendChild(input);
+            const br = document.createElement("br");
+            document.body.appendChild(br); 
+        })
+    </script>
+</body>
+
+</html>

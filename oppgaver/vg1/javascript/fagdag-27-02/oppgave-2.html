@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="no">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oppgåve 2</title>
+</head>
+
+<body>
+    <h1>Oppgåve 2</h1>
+    <script>
+        const maksTall = 1000
+        // Skriv ut alle tal frå 0 til 40, og skriv ut om dei er partal eller oddetal
+        for (let i = 0; i <= maksTall; i++) {
+            if (i % 2 == 0) {
+                document.write("a. " + i + " er eit partal <br>")
+            } else {
+                document.write("a. " + i + " er eit oddetal <br>")
+            }
+        }
+
+        // Tilfeldig tall
+        const tilfeldigTall = Math.floor(Math.random() * (maksTall + 1));
+
+        // Er det tilfeldige talet eit partal eller oddetal?
+        if (tilfeldigTall % 2 == 0) {
+            document.write("<br>b. " + tilfeldigTall + " er eit partal <br>")
+            document.body.style.backgroundColor = "lightblue";
+        }
+    </script>
+</body>
+
+</html>

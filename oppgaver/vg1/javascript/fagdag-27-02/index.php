@@ -31,6 +31,22 @@
                     "title" => "Løkke (Loop)",
                     "url" => "./loop",
                 ],
+                [
+                    "title" => "Oppgåve 1",
+                    "url" => "./oppgave-1",
+                ],
+                [
+                    "title" => "Oppgåve 2",
+                    "url" => "./oppgave-2",
+                ],
+                [
+                    "title" => "Oppgåve 3",
+                    "url" => "./oppgave-3",
+                ],
+                [
+                    "title" => "Oppgåve 4",
+                    "url" => "./oppgave-4",
+                ],
             ];
             ?>
 
