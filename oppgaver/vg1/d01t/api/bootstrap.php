@@ -2,14 +2,19 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../../../../api/bootstrap.php';
+require_once __DIR__ . '/../../../../api/bootstrap.php';
 
-function create_response(bool $success, ?array $data = null, ?string $error = null): array
-{
+function create_response(
+    bool $success,
+    ?array $data = null,
+    ?string $error = null,
+    int $status = 200
+): array {
     return [
         'success' => $success,
         'data'    => $data,
         'error'   => $error,
+        'status'  => $status,
     ];
 }
 
@@ -34,20 +39,19 @@ function check_access_and_return(PDO $pdo, array $config, mixed $identifier, str
     $item = null;
 
     if ($identifier_type === 'list object') {
-        // Validate required fields used later
         if (
             !is_array($identifier)
             || !isset($identifier['id'])
             || !array_key_exists('private', $identifier)
             || !array_key_exists('owner_id', $identifier)
         ) {
-            return create_response(false, null, 'Invalid list object');
+            return create_response(false, null, 'Invalid list object', 400);
         }
 
         $list = $identifier;
     } elseif ($identifier_type === 'item object') {
         if (!is_array($identifier) || !isset($identifier['id'], $identifier['to_do_list_id'])) {
-            return create_response(false, null, 'Invalid item object');
+            return create_response(false, null, 'Invalid item object', 400);
         }
 
         $item = $identifier;
@@ -61,7 +65,7 @@ function check_access_and_return(PDO $pdo, array $config, mixed $identifier, str
         $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$item) {
-            return create_response(false, null, 'Invalid item id');
+            return create_response(false, null, 'Item not found', 404);
         }
 
         $stmt = $pdo->prepare('SELECT * FROM to_do_lists WHERE id = ?');
@@ -72,11 +76,11 @@ function check_access_and_return(PDO $pdo, array $config, mixed $identifier, str
         $stmt->execute([$identifier]);
         $list = $stmt->fetch(PDO::FETCH_ASSOC);
     } else {
-        return create_response(false, null, 'Invalid identifier type');
+        return create_response(false, null, 'Invalid identifier type', 400);
     }
 
     if (!$list) {
-        return create_response(false, null, 'List not found');
+        return create_response(false, null, 'List not found', 404);
     }
 
     $payload = ['list' => $list];
@@ -84,18 +88,18 @@ function check_access_and_return(PDO $pdo, array $config, mixed $identifier, str
 
     // Public list => allowed
     if (empty($list['private'])) {
-        return create_response(true, $payload);
+        return create_response(true, $payload, null, 200);
     }
 
     // Private list => must be logged in
     $user = current_user($pdo, $config);
     if (!$user) {
-        return create_response(false, null, 'Unauthorized');
+        return create_response(false, null, 'Unauthorized', 401);
     }
 
     // Owner => allowed (owner_id might be null)
     if (!empty($list['owner_id']) && (int)$list['owner_id'] === (int)$user['id']) {
-        return create_response(true, $payload);
+        return create_response(true, $payload, null, 200);
     }
 
     // Shared => allowed
@@ -107,16 +111,16 @@ function check_access_and_return(PDO $pdo, array $config, mixed $identifier, str
     $stmt->execute([$list['id'], $user['id']]);
 
     if ($stmt->fetchColumn()) {
-        return create_response(true, $payload);
+        return create_response(true, $payload, null, 200);
     }
 
-    return create_response(false, null, 'Forbidden');
+    return create_response(false, null, 'Forbidden', 403);
 }
 
 function get_user_to_do_lists(PDO $pdo, array $config): array
 {
     $user = current_user($pdo, $config);
-    if (!$user) return [];
+    if (!$user) return create_response(true, ['lists' => []], null, 200);
 
     $stmt = $pdo->prepare(
         'SELECT DISTINCT l.*
@@ -126,74 +130,99 @@ function get_user_to_do_lists(PDO $pdo, array $config): array
          WHERE l.owner_id = ? OR s.user_id IS NOT NULL'
     );
     $stmt->execute([$user['id'], $user['id']]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return create_response(true, [
+        'lists' => $stmt->fetchAll(PDO::FETCH_ASSOC)
+    ], null, 200);
 }
 
-function get_to_do_list_items(PDO $pdo, array $config, int $listId): ?array
+function get_to_do_list_items(PDO $pdo, array $config, int $listId): array
 {
     $access = check_access_and_return($pdo, $config, $listId, 'list id');
-    if (!$access['success']) return null;
+    if (!$access['success']) return $access;
 
     $stmt = $pdo->prepare('SELECT * FROM to_do_items WHERE to_do_list_id = ?');
     $stmt->execute([$listId]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return create_response(true, [
+        'items' => $stmt->fetchAll(PDO::FETCH_ASSOC)
+    ], null, 200);
 }
 
-function get_to_do_list(PDO $pdo, array $config, int $listId): ?array
+function get_to_do_list(PDO $pdo, array $config, int $listId): array
 {
     $access = check_access_and_return($pdo, $config, $listId, 'list id');
-    if (!$access['success']) return null;
+    if (!$access['success']) return $access;
 
-    return $access['data']['list'];
+    return create_response(true, [
+        'list' => $access['data']['list']
+    ], null, 200);
 }
 
-function get_to_do_item(PDO $pdo, array $config, int $itemId): ?array
+function get_to_do_item(PDO $pdo, array $config, int $itemId): array
 {
     $access = check_access_and_return($pdo, $config, $itemId, 'item id');
-    if (!$access['success']) return null;
+    if (!$access['success']) return $access;
 
-    return $access['data']['item'];
+    return create_response(true, [
+        'item' => $access['data']['item']
+    ], null, 200);
 }
 
-function delete_to_do_item(PDO $pdo, array $config, int $itemId): bool
+function delete_to_do_item(PDO $pdo, array $config, int $itemId): array
 {
     $access = check_access_and_return($pdo, $config, $itemId, 'item id');
-    if (!$access['success']) return false;
+    if (!$access['success']) return $access;
 
     $list = $access['data']['list'];
 
-    // No-owner lists: allow everyone ONLY if public
     if (empty($list['owner_id'])) {
-        if (!empty($list['private'])) return false;
+        if (!empty($list['private']))
+            return create_response(false, [], 'Forbidden', 403);
+
         $stmt = $pdo->prepare('DELETE FROM to_do_items WHERE id = ?');
-        return (bool)$stmt->execute([$itemId]);
+
+        $ok = $stmt->execute([$itemId]);
+        if (!$ok) return create_response(false, [], 'Delete failed', 500);
+
+        return create_response(true, ['deleted' => true], null, 200);
     }
 
-    // Owner-only otherwise
     $user = current_user($pdo, $config);
-    if (!$user) return false;
-    if ((int)$list['owner_id'] !== (int)$user['id']) return false;
+    if (!$user)
+        return create_response(false, [], 'Unauthorized', 401);
+
+    if ((int)$list['owner_id'] !== (int)$user['id'])
+        return create_response(false, [], 'Forbidden', 403);
 
     $stmt = $pdo->prepare('DELETE FROM to_do_items WHERE id = ?');
-    return (bool)$stmt->execute([$itemId]);
+
+    $ok = $stmt->execute([$itemId]);
+    if (!$ok) return create_response(false, [], 'Delete failed', 500);
+
+    return create_response(true, ['deleted' => true], null, 200);
 }
 
-function delete_to_do_list(PDO $pdo, array $config, int $listId): bool
+function delete_to_do_list(PDO $pdo, array $config, int $listId): array
 {
     $access = check_access_and_return($pdo, $config, $listId, 'list id');
-    if (!$access['success']) return false;
+    if (!$access['success']) return $access;
 
     $list = $access['data']['list'];
 
-    // No-owner lists: allow everyone ONLY if public
     $noOwner = empty($list['owner_id']);
+
     if ($noOwner) {
-        if (!empty($list['private'])) return false;
+        if (!empty($list['private']))
+            return create_response(false, [], 'Forbidden', 403);
     } else {
-        // Owner-only otherwise
         $user = current_user($pdo, $config);
-        if (!$user) return false;
-        if ((int)$list['owner_id'] !== (int)$user['id']) return false;
+
+        if (!$user)
+            return create_response(false, [], 'Unauthorized', 401);
+
+        if ((int)$list['owner_id'] !== (int)$user['id'])
+            return create_response(false, [], 'Forbidden', 403);
     }
 
     try {
@@ -209,45 +238,67 @@ function delete_to_do_list(PDO $pdo, array $config, int $listId): bool
         $stmt->execute([$listId]);
 
         $pdo->commit();
-        return true;
+
+        return create_response(true, ['deleted' => true], null, 200);
     } catch (Throwable $e) {
-        if ($pdo->inTransaction()) $pdo->rollBack();
-        return false;
+        if ($pdo->inTransaction())
+            $pdo->rollBack();
+
+        return create_response(false, [], 'Delete failed', 500);
     }
 }
 
-function create_to_do_list(PDO $pdo, array $config, string $name, bool $private): ?array
+function create_to_do_list(PDO $pdo, array $config, string $name, bool $private): array
 {
     $user = current_user($pdo, $config);
 
-    // Guests cannot create private lists
-    if ($private && !$user) {
-        return null;
-    }
+    if ($private && !$user)
+        return create_response(false, [], 'Guests cannot create private lists', 403);
 
-    $stmt = $pdo->prepare('INSERT INTO to_do_lists (name, owner_id, `private`) VALUES (?, ?, ?)');
-    $stmt->execute([$name, $user ? $user['id'] : null, $private ? 1 : 0]);
+    $stmt = $pdo->prepare(
+        'INSERT INTO to_do_lists (name, owner_id, `private`) VALUES (?, ?, ?)'
+    );
+
+    if (!$stmt->execute([$name, $user ? $user['id'] : null, $private ? 1 : 0]))
+        return create_response(false, [], 'Insert failed', 500);
 
     $listId = (int)$pdo->lastInsertId();
-    return get_to_do_list($pdo, $config, $listId);
+
+    // keep existing behavior, but mark as "created"
+    $res = get_to_do_list($pdo, $config, $listId);
+    $res['status'] = 201;
+    return $res;
 }
 
-function create_to_do_item(PDO $pdo, array $config, int $listId, string $description): ?array
+function create_to_do_item(PDO $pdo, array $config, int $listId, string $description): array
 {
     $access = check_access_and_return($pdo, $config, $listId, 'list id');
-    if (!$access['success']) return null;
+    if (!$access['success']) return $access;
 
-    $stmt = $pdo->prepare('INSERT INTO to_do_items (to_do_list_id, description, completed) VALUES (?, ?, ?)');
-    $stmt->execute([$listId, $description, 0]);
+    $stmt = $pdo->prepare(
+        'INSERT INTO to_do_items (to_do_list_id, description, completed)
+         VALUES (?, ?, ?)'
+    );
+
+    if (!$stmt->execute([$listId, $description, 0]))
+        return create_response(false, [], 'Insert failed', 500);
 
     $itemId = (int)$pdo->lastInsertId();
-    return get_to_do_item($pdo, $config, $itemId);
+
+    $res = get_to_do_item($pdo, $config, $itemId);
+    $res['status'] = 201;
+    return $res;
 }
 
-function update_to_do_item(PDO $pdo, array $config, int $itemId, ?string $description, ?bool $completed): ?array
-{
+function update_to_do_item(
+    PDO $pdo,
+    array $config,
+    int $itemId,
+    ?string $description,
+    ?bool $completed
+): array {
     $access = check_access_and_return($pdo, $config, $itemId, 'item id');
-    if (!$access['success']) return null;
+    if (!$access['success']) return $access;
 
     $fields = [];
     $params = [];
@@ -262,41 +313,72 @@ function update_to_do_item(PDO $pdo, array $config, int $itemId, ?string $descri
         $params[] = $completed ? 1 : 0;
     }
 
-    if (empty($fields)) {
+    if (empty($fields))
         return get_to_do_item($pdo, $config, $itemId);
-    }
 
     $params[] = $itemId;
 
-    $stmt = $pdo->prepare('UPDATE to_do_items SET ' . implode(', ', $fields) . ' WHERE id = ?');
-    if (!$stmt->execute($params)) return null;
+    $stmt = $pdo->prepare(
+        'UPDATE to_do_items SET ' .
+            implode(', ', $fields) .
+            ' WHERE id = ?'
+    );
+
+    if (!$stmt->execute($params))
+        return create_response(false, [], 'Update failed', 500);
 
     return get_to_do_item($pdo, $config, $itemId);
 }
 
-function share_to_do_list(PDO $pdo, array $config, int $listId, string $username): bool
-{
+function share_to_do_list(
+    PDO $pdo,
+    array $config,
+    int $listId,
+    string $username
+): array {
     $access = check_access_and_return($pdo, $config, $listId, 'list id');
-    if (!$access['success']) return false;
+    if (!$access['success']) return $access;
 
     $list = $access['data']['list'];
 
-    // Only owner can share, and list must have an owner
-    if (empty($list['owner_id'])) return false;
+    if (empty($list['owner_id']))
+        return create_response(false, [], 'Guest list cannot be shared', 409);
 
     $user = current_user($pdo, $config);
-    if (!$user) return false;
-    if ((int)$list['owner_id'] !== (int)$user['id']) return false;
 
-    $stmt = $pdo->prepare('SELECT id FROM users WHERE username = ? LIMIT 1');
+    if (!$user)
+        return create_response(false, [], 'Unauthorized', 401);
+
+    if ((int)$list['owner_id'] !== (int)$user['id'])
+        return create_response(false, [], 'Forbidden', 403);
+
+    $stmt = $pdo->prepare(
+        'SELECT id FROM users WHERE username = ? LIMIT 1'
+    );
     $stmt->execute([$username]);
+
     $shareUserId = $stmt->fetchColumn();
-    if (!$shareUserId) return false;
 
-    $stmt = $pdo->prepare('SELECT 1 FROM shared_to_do_lists WHERE to_do_list_id = ? AND user_id = ? LIMIT 1');
+    if (!$shareUserId)
+        return create_response(false, [], 'User not found', 404);
+
+    $stmt = $pdo->prepare(
+        'SELECT 1 FROM shared_to_do_lists
+         WHERE to_do_list_id = ? AND user_id = ?
+         LIMIT 1'
+    );
     $stmt->execute([$listId, $shareUserId]);
-    if ($stmt->fetchColumn()) return true;
 
-    $stmt = $pdo->prepare('INSERT INTO shared_to_do_lists (to_do_list_id, user_id) VALUES (?, ?)');
-    return (bool)$stmt->execute([$listId, $shareUserId]);
+    if ($stmt->fetchColumn())
+        return create_response(true, ['already_shared' => true], null, 200);
+
+    $stmt = $pdo->prepare(
+        'INSERT INTO shared_to_do_lists (to_do_list_id, user_id)
+         VALUES (?, ?)'
+    );
+
+    $ok = $stmt->execute([$listId, $shareUserId]);
+    if (!$ok) return create_response(false, [], 'Insert failed', 500);
+
+    return create_response(true, ['shared' => true], null, 201);
 }

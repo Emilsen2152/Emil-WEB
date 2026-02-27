@@ -83,6 +83,10 @@
                     "title" => "Kodesnutt 1",
                     "url" => "./kodesnutt-1/",
                 ],
+                [
+                    "title" => "Løkke (Loop)",
+                    "url" => "./loop/",
+                ],
             ];
             ?>
 
