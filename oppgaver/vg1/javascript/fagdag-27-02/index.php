@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KP Oppgåver</title>
+    <title>Javascript</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body class="bg-dark">
     <?php
-    include '../../includes/navbar.php';
+    include '../../../../includes/navbar.php';
     ?>
 
     <div class="container-fluid bg-light py-2">
         <div class="container">
             <div class="mt-4 p-2 text-center">
-                <h1>Konseptutvikling og Programmering - Oppgåver</h1>
+                <h1>Fagdag - Oppgåver</h1>
                 <p>
-                    Her finn du oppgåver relatert til faget Konseptutvikling og Programmering.
+                    Her finn du oppgåver relatert til fagdagen 27.02.2026.
                 </p>
             </div>
         </div>
@@ -28,25 +28,9 @@
             // Array med oppgåver
             $tasks = [
                 [
-                    "title" => "Gamle Oppgåver før og med 26.11.2025",
-                    "url" => "../../old/oppgaver/kp/"
+                    "title" => "Løkke (Loop)",
+                    "url" => "./loop",
                 ],
-                [
-                    "title" => "CrazyGamer",
-                    "url" => "crazygamer/"
-                ],
-                [
-                    "title" => "Førebuing til januar prøve",
-                    "url" => "foreboing-januar-prove/"
-                ],
-                [
-                    "title" => "Javascript",
-                    "url" => "javascript/"
-                ],
-                [
-                    "title" => 'd01t',
-                    "url" => "d01t/"
-                ]
             ];
             ?>
 
@@ -63,10 +47,10 @@
     </div>
 
     <?php
-    include '../../includes/footer.php';
+    include '../../../../includes/footer.php';
     ?>
 
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>

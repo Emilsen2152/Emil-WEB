@@ -4,13 +4,16 @@ require_once __DIR__ . '/../../../../api/bootstrap.php';
 
 $uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-if (preg_match('#/to_do_list/(\d+)$#', $uriPath, $matches)) {
-    $to_do_listId = (int)$matches[1];
-} else {
+$segments = explode('/', trim($uriPath, '/'));
+
+$to_do_listId = end($segments);
+
+if (!ctype_digit($to_do_listId)) {
     http_response_code(400);
-    echo "Invalid to-do list URL";
-    exit;
+    exit('Invalid to-do list ID');
 }
+
+$to_do_listId = (int)$to_do_listId;
 
 $to_do_list_items_result = get_to_do_list_items($pdo, $config, $to_do_listId);
 
