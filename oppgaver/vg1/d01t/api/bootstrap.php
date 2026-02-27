@@ -176,32 +176,10 @@ function delete_to_do_item(PDO $pdo, array $config, int $itemId): array
     $access = check_access_and_return($pdo, $config, $itemId, 'item id');
     if (!$access['success']) return $access;
 
-    $list = $access['data']['list'];
-
-    if (empty($list['owner_id'])) {
-        if (!empty($list['private']))
-            return create_response(false, [], 'Forbidden', 403);
-
-        $stmt = $pdo->prepare('DELETE FROM to_do_items WHERE id = ?');
-
-        $ok = $stmt->execute([$itemId]);
-        if (!$ok) return create_response(false, [], 'Delete failed', 500);
-
-        return create_response(true, ['deleted' => true], null, 200);
-    }
-
-    $user = current_user($pdo, $config);
-    if (!$user)
-        return create_response(false, [], 'Unauthorized', 401);
-
-    if ((int)$list['owner_id'] !== (int)$user['id'])
-        return create_response(false, [], 'Forbidden', 403);
-
     $stmt = $pdo->prepare('DELETE FROM to_do_items WHERE id = ?');
-
     $ok = $stmt->execute([$itemId]);
-    if (!$ok) return create_response(false, [], 'Delete failed', 500);
 
+    if (!$ok) return create_response(false, [], 'Delete failed', 500);
     return create_response(true, ['deleted' => true], null, 200);
 }
 
@@ -277,12 +255,20 @@ function create_to_do_item(PDO $pdo, array $config, int $listId, string $descrip
     $access = check_access_and_return($pdo, $config, $listId, 'list id');
     if (!$access['success']) return $access;
 
+    $creator = current_user($pdo, $config);
+
+    if ($creator) {
+        $creator_id = $creator['id'];
+    } else {
+        $creator_id = null;
+    }
+
     $stmt = $pdo->prepare(
-        'INSERT INTO to_do_items (to_do_list_id, description, completed)
-         VALUES (?, ?, ?)'
+        'INSERT INTO to_do_items (to_do_list_id, creator, description, completed)
+         VALUES (?, ?, ?, ?)'
     );
 
-    if (!$stmt->execute([$listId, $description, 0]))
+    if (!$stmt->execute([$listId, $creator_id, $description, 0]))
         return create_response(false, [], 'Insert failed', 500);
 
     $itemId = (int)$pdo->lastInsertId();
@@ -384,3 +370,5 @@ function share_to_do_list(
 
     return create_response(true, ['shared' => true], null, 201);
 }
+
+// NEXT: se og fjern delingar

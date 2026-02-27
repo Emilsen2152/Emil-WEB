@@ -3,7 +3,7 @@
 // api/index.php
 declare(strict_types=1);
 
-require_once __DIR__ . '/../../../../../api/bootstrap.php';
+require_once __DIR__ . '/../../../../api/bootstrap.php';
 require_once __DIR__ . '/bootstrap.php';
 
 /* ============================================================
@@ -100,6 +100,7 @@ $p = path();
 
 if ($m === 'GET' && $p === '/to-do-lists') {
     respond(get_user_to_do_lists($pdo, $config));
+    exit;
 }
 
 $params = [];
@@ -109,6 +110,7 @@ if ($m === 'GET' && match_route('/to-do-lists/{listId}/items', $p, $params)) {
         respond(create_response(false, null, 'Invalid list id', 400));
     }
     respond(get_to_do_list_items($pdo, $config, $listId));
+    exit;
 }
 
 $params = [];
@@ -118,6 +120,7 @@ if ($m === 'GET' && match_route('/to-do-lists/{listId}', $p, $params)) {
         respond(create_response(false, null, 'Invalid list id', 400));
     }
     respond(get_to_do_list($pdo, $config, $listId));
+    exit;
 }
 
 $params = [];
@@ -127,6 +130,7 @@ if ($m === 'GET' && match_route('/to-do-items/{itemId}', $p, $params)) {
         respond(create_response(false, null, 'Invalid item id', 400));
     }
     respond(get_to_do_item($pdo, $config, $itemId));
+    exit;
 }
 
 $params = [];
@@ -136,6 +140,7 @@ if ($m === 'DELETE' && match_route('/to-do-items/{itemId}', $p, $params)) {
         respond(create_response(false, null, 'Invalid item id', 400));
     }
     respond(delete_to_do_item($pdo, $config, $itemId));
+    exit;
 }
 
 $params = [];
@@ -145,10 +150,11 @@ if ($m === 'DELETE' && match_route('/to-do-lists/{listId}', $p, $params)) {
         respond(create_response(false, null, 'Invalid list id', 400));
     }
     respond(delete_to_do_list($pdo, $config, $listId));
+    exit;
 }
 
 $params = [];
-if ($m === 'CREATE' && match_route('/to-do-lists', $p, $params)) {
+if ($m === 'POST' && match_route('/to-do-lists', $p, $params)) {
     $body = read_json_body();
 
     $name = trim((string)($body['name'] ?? ''));
@@ -158,10 +164,11 @@ if ($m === 'CREATE' && match_route('/to-do-lists', $p, $params)) {
 
     $private = (bool)($body['private'] ?? false);
     respond(create_to_do_list($pdo, $config, $name, $private));
+    exit;
 }
 
 $params = [];
-if ($m === 'CREATE' && match_route('/to-do-lists/{listId}/items', $p, $params)) {
+if ($m === 'POST' && match_route('/to-do-lists/{listId}/items', $p, $params)) {
     $listId = (int)($params['listId'] ?? 0);
     if ($listId <= 0) {
         respond(create_response(false, null, 'Invalid list id', 400));
@@ -175,8 +182,60 @@ if ($m === 'CREATE' && match_route('/to-do-lists/{listId}/items', $p, $params)) 
     }
 
     respond(create_to_do_item($pdo, $config, $listId, $description));
+    exit;
 }
 
+$params = [];
+if ($m === 'PATCH' && match_route('/to-do-items/{itemId}/description', $p, $params)) {
+    $itemId = (int)($params['itemId'] ?? 0);
+    if ($itemId <= 0) {
+        respond(create_response(false, null, 'Invalid item id', 400));
+    }
+
+    $body = read_json_body();
+
+    $description = trim((string)($body['description'] ?? ''));
+    if ($description === '') {
+        respond(create_response(false, null, 'Description is required', 400));
+    }
+
+    respond(update_to_do_item($pdo, $config, $itemId, $description, null));
+    exit;
+}
+
+if ($m === 'PATCH' && match_route('/to-do-items/{itemId}/completed', $p, $params)) {
+    $itemId = (int)($params['itemId'] ?? 0);
+    if ($itemId <= 0) {
+        respond(create_response(false, null, 'Invalid item id', 400));
+    }
+
+    $body = read_json_body();
+
+    if (!isset($body['completed']) || !is_bool($body['completed'])) {
+        respond(create_response(false, null, 'Completed must be a boolean', 400));
+    }
+    $completed = (bool)$body['completed'];
+
+    respond(update_to_do_item($pdo, $config, $itemId, null, $completed));
+    exit;
+}
+
+if ($m === 'POST' && match_route('/to-do-lists/{listId}/share', $p, $params)) {
+    $listId = (int)($params['listId'] ?? 0);
+    if ($listId <= 0) {
+        respond(create_response(false, null, 'Invalid list id', 400));
+    }
+
+    $body = read_json_body();
+
+    $username = trim((string)($body['username'] ?? ''));
+    if ($username === '') {
+        respond(create_response(false, null, 'Username is required', 400));
+    }
+
+    respond(share_to_do_list($pdo, $config, $listId, $username));
+    exit;
+}
 
 /* ============================================================
    Fallback

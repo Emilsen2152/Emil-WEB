@@ -263,6 +263,26 @@ if ($m === 'PUT' && $p === '/user/password') {
     ]);
 }
 
+/* -----------------------------
+   GET /users/{id} (gives username)
+   ----------------------------- */
+
+$params = [];
+if ($m === 'GET' && match_route('/users/{id}', $p, $params)) {
+    $stmt = $pdo->prepare('SELECT username FROM users WHERE id = ? LIMIT 1');
+    $stmt->execute([$params['id']]);
+    $user = $stmt->fetch();
+
+    if (!$user) {
+        json_response(404, ['message' => 'Bruker ikkje funnen.']);
+    }
+
+    json_response(200, [
+        'message' => 'Fant brukar.',
+        'username' => $user['username'],
+    ]);
+}
+
 /* ============================================================
    Admin endpoints
    ============================================================ */
