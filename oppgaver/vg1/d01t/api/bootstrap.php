@@ -145,6 +145,7 @@ function get_to_do_list_items(PDO $pdo, array $config, int $listId): array
     $stmt->execute([$listId]);
 
     return create_response(true, [
+        'list' => $access['data']['list'],
         'items' => $stmt->fetchAll(PDO::FETCH_ASSOC)
     ], null, 200);
 }
@@ -165,6 +166,7 @@ function get_to_do_item(PDO $pdo, array $config, int $itemId): array
     if (!$access['success']) return $access;
 
     return create_response(true, [
+        'list' => $access['data']['list'],
         'item' => $access['data']['item']
     ], null, 200);
 }

@@ -1,12 +1,5 @@
 Options -MultiViews
 RewriteEngine On
-# RewriteBase /emil/
-
-# Ignorer API (om nokon kjem inn via /emil/api/...)
-RewriteRule ^api(?:/.*)?$ - [L]
-
-# Ignorer d01t (desse har total custom routing og skal ikkje røreast)
-RewriteRule ^d01t(?:/.*)?$ - [L]
 
 # 1) Ikkje rør ekte filer eller mapper
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -19,3 +12,6 @@ RewriteRule ^(.+)$ $1.php [L]
 
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+)$ $1.html [L]
+
+# 3) Send alle andre til index.php (front controller)
+RewriteRule ^ index.php [L]

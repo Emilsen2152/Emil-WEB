@@ -1,12 +1,11 @@
 Options -MultiViews
 RewriteEngine On
-# RewriteBase /emil/
 
 # Ignorer API (om nokon kjem inn via /emil/api/...)
 RewriteRule ^api(?:/.*)?$ - [L]
 
-# Ignorer d01t (desse har total custom routing og skal ikkje røreast)
-RewriteRule ^d01t(?:/.*)?$ - [L]
+# Ignorer checklist (desse har total custom routing og skal ikkje røreast)
+RewriteRule ^to_do_list(?:/.*)?$ - [L]
 
 # 1) Ikkje rør ekte filer eller mapper
 RewriteCond %{REQUEST_FILENAME} -f [OR]

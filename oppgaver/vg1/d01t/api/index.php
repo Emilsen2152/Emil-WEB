@@ -98,8 +98,6 @@ function respond(array $res): void
 $m = method();
 $p = path();
 
-// DO NOT ADD USER AUTHENTICATION RELATED ROUTES HERE, THEY ARE IN A SEPERATE API AREA
-
 if ($m === 'GET' && $p === '/to-do-lists') {
     respond(get_user_to_do_lists($pdo, $config));
 }
