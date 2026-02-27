@@ -41,7 +41,7 @@
             });
         }
 
-        // Oppdater klokkeslettet hvert sekund
+        // Oppdater klokkeslettet kvart sekund
         setInterval(oppdaterKlokkeslett, 1000);
 
         document.getElementById("addAlarm").addEventListener("click", function(){
@@ -58,7 +58,9 @@
             input.step = "1";
             document.body.appendChild(input);
             const br = document.createElement("br");
-            document.body.appendChild(br); 
+            document.body.appendChild(br);
+
+            alarmTider.push(`alarmTid-${alarmTiderLength}`);
         })
     </script>
 </body>

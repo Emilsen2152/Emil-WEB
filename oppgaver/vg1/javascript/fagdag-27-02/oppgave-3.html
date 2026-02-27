@@ -17,7 +17,7 @@
         // Hent dagens dato
         const dagensDato = new Date();
 
-        const alder = dagensDato.getFullYear() - fodselsdatoObjekt.getFullYear();
+        let alder = dagensDato.getFullYear() - fodselsdatoObjekt.getFullYear();
         
         // Sjekk om brukaren har hatt bursdag i år
         const harHattBursdag = (dagensDato.getMonth() > fodselsdatoObjekt.getMonth()) || 

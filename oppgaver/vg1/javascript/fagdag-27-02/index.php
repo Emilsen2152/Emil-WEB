@@ -47,6 +47,10 @@
                     "title" => "Oppgåve 4",
                     "url" => "./oppgave-4",
                 ],
+                [
+                    "title" => "Oppgåve 5",
+                    "url" => "./oppgave-5",
+                ],
             ];
             ?>
 
