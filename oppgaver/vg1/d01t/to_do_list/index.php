@@ -143,7 +143,7 @@ $canLeave = !$isOwner && $hasDirectAccess;
             </div>
         <?php endif; ?>
 
-        <div class="row mt-2">
+        <div class="row my-2">
             <div class="col-md-6 offset-md-3">
                 <div id="items" class="list-group"></div>
                 <div id="items-empty" class="text-muted mt-2 d-none">Ingen oppgåver endå.</div>

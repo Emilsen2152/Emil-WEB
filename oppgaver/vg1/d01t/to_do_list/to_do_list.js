@@ -16,12 +16,13 @@
     const leaveBtn = document.getElementById('confirm-leave-list');
     const leaveAlert = document.getElementById('leave-list-alert');
 
-    // Debounce/lock flag
-    let working = false;
-
     const listId = addItemForm
         ? parseInt(addItemForm.querySelector('input[name="to_do_list_id"]').value, 10)
         : null;
+
+    /* ============================================================
+       UI helpers
+       ============================================================ */
 
     function showAlert(el, type, message) {
         if (!el) return;
@@ -46,25 +47,42 @@
             .replaceAll("'", '&#039;');
     }
 
-    // Lock wrapper using `working` (prevents double requests)
-    function withWorking(fn, { cooldownMs = 0 } = {}) {
-        return async (...args) => {
-            if (working) return;
-            working = true;
+    /* ============================================================
+       Anti double-input (single-flight + dedupe)
+       ============================================================ */
 
-            try {
-                return await fn(...args);
-            } finally {
-                if (cooldownMs > 0) {
-                    setTimeout(() => {
-                        working = false;
-                    }, cooldownMs);
-                } else {
-                    working = false;
-                }
-            }
+    function createSingleFlight() {
+        const inFlight = new Map(); // key -> Promise
+        return async function singleFlight(key, fn) {
+            if (inFlight.has(key)) return inFlight.get(key);
+            const p = (async () => fn())().finally(() => inFlight.delete(key));
+            inFlight.set(key, p);
+            return p;
         };
     }
+
+    function createDeduper(cooldownMs = 1500) {
+        const recent = new Map(); // key -> timestamp
+        return function isDuplicate(key) {
+            const now = Date.now();
+            const last = recent.get(key) || 0;
+            if (now - last < cooldownMs) return true;
+            recent.set(key, now);
+
+            // cleanup sometimes
+            for (const [k, t] of recent) {
+                if (now - t > cooldownMs * 3) recent.delete(k);
+            }
+            return false;
+        };
+    }
+
+    const singleFlight = createSingleFlight();
+    const isDuplicate = createDeduper(1500);
+
+    /* ============================================================
+       API helper
+       ============================================================ */
 
     async function apiFetch(url, options = {}) {
         const res = await fetch(url, {
@@ -91,6 +109,10 @@
         return data;
     }
 
+    /* ============================================================
+       Load items
+       ============================================================ */
+
     async function loadItems() {
         if (!listId || !itemsEl) return;
 
@@ -116,10 +138,9 @@
             row.innerHTML = `
                 <div class="d-flex align-items-center gap-2 flex-grow-1">
                     <input class="form-check-input m-0" type="checkbox"
-                           data-action="toggle" data-id="${id}" ${completed ? 'checked' : ''}>
+                        data-action="toggle" data-id="${id}" ${completed ? 'checked' : ''}>
                     <span class="flex-grow-1 ${completed ? 'text-decoration-line-through text-muted' : ''}"
-                          data-action="edit"
-                          data-id="${id}">
+                        data-action="edit" data-id="${id}">
                         ${escapeHtml(item.description)}
                     </span>
                 </div>
@@ -132,7 +153,10 @@
         }
     }
 
-    // GET /to-do-lists/{listId}/shares
+    /* ============================================================
+       Load shares
+       ============================================================ */
+
     async function loadShares() {
         if (!listId || !sharedUsersListEl) return;
 
@@ -169,19 +193,34 @@
         }
     }
 
-    // Add item
+    /* ============================================================
+       Add item — anti double-input
+       ============================================================ */
+
     if (addItemForm) {
-        addItemForm.addEventListener(
-            'submit',
-            withWorking(async (e) => {
-                e.preventDefault();
+        addItemForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-                const formData = new FormData(addItemForm);
-                const to_do_list_id = formData.get('to_do_list_id');
-                const description = String(formData.get('description') || '').trim();
-                if (!description) return;
+            const formData = new FormData(addItemForm);
+            const to_do_list_id = String(formData.get('to_do_list_id') || '').trim();
+            const description = String(formData.get('description') || '').trim();
+            if (!description) return;
 
+            // prevent rapid duplicate submits of same text
+            const dedupeKey = `add:${to_do_list_id}:${description.toLowerCase()}`;
+            if (isDuplicate(dedupeKey)) return;
+
+            const submitBtn = addItemForm.querySelector('button[type="submit"], input[type="submit"]');
+
+            // prevent re-entrant submits while request is in flight
+            await singleFlight(`addItem:${to_do_list_id}`, async () => {
                 try {
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.dataset._oldText = submitBtn.textContent || '';
+                        submitBtn.textContent = 'Lagrar...';
+                    }
+
                     await apiFetch(`../api/to-do-lists/${to_do_list_id}/items`, {
                         method: 'POST',
                         body: JSON.stringify({ description }),
@@ -189,202 +228,237 @@
 
                     addItemForm.reset();
 
-                    loadItems().catch((err) => {
+                    await loadItems().catch((err) => {
                         console.error('Feil ved oppretting av oppgåve:', err);
                         window.location.reload();
                     });
                 } catch (err) {
                     alert(err.message || 'Feil ved oppretting av oppgåve.');
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = submitBtn.dataset._oldText || 'Legg til';
+                        delete submitBtn.dataset._oldText;
+                    }
                 }
-            }, { cooldownMs: 250 })
-        );
+            });
+        });
     }
 
-    // Items: delete / toggle / edit (delegation)
+    /* ============================================================
+       Items: delete, toggle, edit (delegation + single-flight)
+       ============================================================ */
+
     if (itemsEl) {
         // Delete item
-        itemsEl.addEventListener(
-            'click',
-            withWorking(async (e) => {
-                const btn = e.target.closest('[data-action="delete-item"]');
-                if (!btn) return;
+        itemsEl.addEventListener('click', async (e) => {
+            const btn = e.target.closest('[data-action="delete-item"]');
+            if (!btn) return;
 
-                const itemId = parseInt(btn.dataset.id, 10);
-                if (!itemId) return;
+            const itemId = parseInt(btn.dataset.id, 10);
+            if (!itemId) return;
 
-                try {
+            try {
+                await singleFlight(`deleteItem:${itemId}`, async () => {
                     await apiFetch(`../api/to-do-items/${itemId}`, { method: 'DELETE' });
-                    loadItems().catch((err) => {
-                        console.error('Feil ved oppdatering av oppgåve:', err);
-                        window.location.reload();
-                    });
-                } catch (err) {
-                    alert(err.message || 'Feil ved sletting.');
-                }
-            }, { cooldownMs: 200 })
-        );
+                });
+
+                loadItems().catch((err) => {
+                    console.error('Feil ved oppdatering av oppgåve:', err);
+                    window.location.reload();
+                });
+            } catch (err) {
+                alert(err.message || 'Feil ved sletting.');
+            }
+        });
 
         // Toggle completed
-        itemsEl.addEventListener(
-            'change',
-            withWorking(async (e) => {
-                const input = e.target.closest('input[data-action="toggle"]');
-                if (!input) return;
+        itemsEl.addEventListener('change', async (e) => {
+            const input = e.target.closest('input[data-action="toggle"]');
+            if (!input) return;
 
-                const itemId = parseInt(input.dataset.id, 10);
-                if (!itemId) return;
+            const itemId = parseInt(input.dataset.id, 10);
+            if (!itemId) return;
 
-                try {
+            const completed = !!input.checked;
+
+            try {
+                await singleFlight(`toggle:${itemId}`, async () => {
                     await apiFetch(`../api/to-do-items/${itemId}/completed`, {
                         method: 'PATCH',
-                        body: JSON.stringify({ completed: !!input.checked }),
+                        body: JSON.stringify({ completed }),
                     });
+                });
 
-                    loadItems().catch((err) => {
-                        console.error('Feil ved oppdatering av oppgåve:', err);
-                        window.location.reload();
-                    });
-                } catch (err) {
-                    alert(err.message || 'Feil ved oppdatering.');
-                }
-            }, { cooldownMs: 150 })
-        );
+                loadItems().catch((err) => {
+                    console.error('Feil ved oppdatering av oppgåve:', err);
+                    window.location.reload();
+                });
+            } catch (err) {
+                alert(err.message || 'Feil ved oppdatering.');
+            }
+        });
 
         // Edit description (double click on text)
-        itemsEl.addEventListener(
-            'dblclick',
-            withWorking(async (e) => {
-                const el = e.target.closest('[data-action="edit"]');
-                if (!el) return;
+        itemsEl.addEventListener('dblclick', async (e) => {
+            const el = e.target.closest('[data-action="edit"]');
+            if (!el) return;
 
-                const itemId = parseInt(el.dataset.id, 10);
-                if (!itemId) return;
+            const itemId = parseInt(el.dataset.id, 10);
+            if (!itemId) return;
 
-                const current = el.textContent.trim();
-                const next = prompt('Rediger oppgåve:', current);
-                if (next === null) return;
+            const current = el.textContent.trim();
+            const next = prompt('Rediger oppgåve:', current);
+            if (next === null) return;
 
-                const description = String(next).trim();
-                if (!description || description === current) return;
+            const description = String(next).trim();
+            if (!description || description === current) return;
 
-                try {
+            // prevent rapid duplicate edits to same value
+            const dedupeKey = `edit:${itemId}:${description.toLowerCase()}`;
+            if (isDuplicate(dedupeKey)) return;
+
+            try {
+                await singleFlight(`edit:${itemId}`, async () => {
                     await apiFetch(`../api/to-do-items/${itemId}/description`, {
                         method: 'PATCH',
                         body: JSON.stringify({ description }),
                     });
+                });
 
-                    loadItems().catch((err) => {
-                        console.error('Feil ved oppdatering:', err);
-                        window.location.reload();
-                    });
-                } catch (err) {
-                    alert(err.message || 'Feil ved oppdatering.');
-                }
-            }, { cooldownMs: 200 })
-        );
+                loadItems().catch((err) => {
+                    console.error('Feil ved oppdatering:', err);
+                    window.location.reload();
+                });
+            } catch (err) {
+                alert(err.message || 'Feil ved oppdatering.');
+            }
+        });
     }
 
-    // Share list
+    /* ============================================================
+       Share list
+       ============================================================ */
+
     if (shareForm && listId) {
-        shareForm.addEventListener(
-            'submit',
-            withWorking(async (e) => {
-                e.preventDefault();
-                hideAlert(shareAlert);
+        shareForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert(shareAlert);
 
-                const username = String(new FormData(shareForm).get('username') || '').trim();
-                if (!username) return;
+            const username = String(new FormData(shareForm).get('username') || '').trim();
+            if (!username) return;
 
-                try {
-                    const res = await apiFetch(`../api/to-do-lists/${listId}/share`, {
+            const dedupeKey = `share:${listId}:${username.toLowerCase()}`;
+            if (isDuplicate(dedupeKey)) return;
+
+            const submitBtn = shareForm.querySelector('button[type="submit"], input[type="submit"]');
+
+            try {
+                if (submitBtn) submitBtn.disabled = true;
+
+                const res = await singleFlight(`share:${listId}`, async () => {
+                    return apiFetch(`../api/to-do-lists/${listId}/share`, {
                         method: 'POST',
                         body: JSON.stringify({ username }),
                     });
+                });
 
-                    const d = res?.data ?? {};
-                    if (d.already_shared) {
-                        showAlert(shareAlert, 'info', 'Lista er allereie delt med denne brukaren.');
-                    } else {
-                        showAlert(shareAlert, 'success', 'Lista vart delt!');
-                    }
+                const d = res?.data ?? {};
+                if (d.already_shared) showAlert(shareAlert, 'info', 'Lista er allereie delt med denne brukaren.');
+                else showAlert(shareAlert, 'success', 'Lista vart delt!');
 
-                    loadShares().catch((err) => {
-                        console.error('Feil ved oppdatering av delingar:', err);
-                        window.location.reload();
-                    });
-                } catch (err) {
-                    showAlert(shareAlert, 'danger', err.message || 'Feil ved deling.');
-                }
-            }, { cooldownMs: 250 })
-        );
+                loadShares().catch((err) => {
+                    console.error('Feil ved oppdatering av delingar:', err);
+                    window.location.reload();
+                });
+            } catch (err) {
+                showAlert(shareAlert, 'danger', err.message || 'Feil ved deling.');
+            } finally {
+                if (submitBtn) submitBtn.disabled = false;
+            }
+        });
     }
 
-    // Unshare (delegated on <ul>)
+    /* ============================================================
+       Unshare (delegated)
+       ============================================================ */
+
     if (sharedUsersListEl && listId) {
-        sharedUsersListEl.addEventListener(
-            'click',
-            withWorking(async (e) => {
-                const btn = e.target.closest('[data-action="unshare"]');
-                if (!btn) return;
+        sharedUsersListEl.addEventListener('click', async (e) => {
+            const btn = e.target.closest('[data-action="unshare"]');
+            if (!btn) return;
 
-                const username = String(btn.dataset.username || '').trim();
-                if (!username) return;
+            const username = String(btn.dataset.username || '').trim();
+            if (!username) return;
 
-                if (!confirm(`Fjerna deling med "${username}"?`)) return;
+            if (!confirm(`Fjerna deling med "${username}"?`)) return;
 
-                try {
+            const dedupeKey = `unshare:${listId}:${username.toLowerCase()}`;
+            if (isDuplicate(dedupeKey)) return;
+
+            try {
+                await singleFlight(`unshare:${listId}:${username.toLowerCase()}`, async () => {
                     await apiFetch(`../api/to-do-lists/${listId}/share`, {
                         method: 'DELETE',
                         body: JSON.stringify({ username }),
                     });
+                });
 
-                    loadShares().catch((err) => {
-                        console.error('Feil ved oppdatering av delingar:', err);
-                        window.location.reload();
-                    });
-                } catch (err) {
-                    if (shareAlert) showAlert(shareAlert, 'danger', err.message || 'Feil ved fjerning av deling.');
-                    else alert(err.message || 'Feil ved fjerning av deling.');
-                }
-            }, { cooldownMs: 250 })
-        );
+                loadShares().catch((err) => {
+                    console.error('Feil ved oppdatering av delingar:', err);
+                    window.location.reload();
+                });
+            } catch (err) {
+                if (shareAlert) showAlert(shareAlert, 'danger', err.message || 'Feil ved fjerning av deling.');
+                else alert(err.message || 'Feil ved fjerning av deling.');
+            }
+        });
     }
 
-    // Delete list
+    /* ============================================================
+       Delete list
+       ============================================================ */
+
     if (deleteBtn && listId) {
-        deleteBtn.addEventListener(
-            'click',
-            withWorking(async () => {
-                hideAlert(deleteListAlert);
+        deleteBtn.addEventListener('click', async () => {
+            hideAlert(deleteListAlert);
 
-                try {
+            try {
+                await singleFlight(`deleteList:${listId}`, async () => {
                     await apiFetch(`../api/to-do-lists/${listId}`, { method: 'DELETE' });
-                    window.location.href = '../';
-                } catch (err) {
-                    showAlert(deleteListAlert, 'danger', err.message || 'Feil ved sletting av lista.');
-                }
-            }, { cooldownMs: 400 })
-        );
+                });
+
+                window.location.href = '../';
+            } catch (err) {
+                showAlert(deleteListAlert, 'danger', err.message || 'Feil ved sletting av lista.');
+            }
+        });
     }
 
-    // Leave list
+    /* ============================================================
+       Leave list
+       ============================================================ */
+
     if (leaveBtn && listId) {
-        leaveBtn.addEventListener(
-            'click',
-            withWorking(async () => {
-                hideAlert(leaveAlert);
+        leaveBtn.addEventListener('click', async () => {
+            hideAlert(leaveAlert);
 
-                try {
+            try {
+                await singleFlight(`leave:${listId}`, async () => {
                     await apiFetch(`../api/to-do-lists/${listId}/leave`, { method: 'DELETE' });
-                    window.location.href = '../';
-                } catch (err) {
-                    showAlert(leaveAlert, 'danger', err.message || 'Feil ved forlat liste.');
-                }
-            }, { cooldownMs: 400 })
-        );
+                });
+
+                window.location.href = '../';
+            } catch (err) {
+                showAlert(leaveAlert, 'danger', err.message || 'Feil ved forlat liste.');
+            }
+        });
     }
 
-    // Initial load
+    /* ============================================================
+       Initial load
+       ============================================================ */
+
     loadItems().catch((err) => {
         console.error(err);
         alert(err.message || 'Feil ved lasting av oppgåver.');
