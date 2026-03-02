@@ -40,7 +40,6 @@ if ($error && isset($error_messages[$error])) {
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-6">
-
                     <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
                         <h1 class="mb-4 text-center">Min konto</h1>
 
@@ -65,7 +64,6 @@ if ($error && isset($error_messages[$error])) {
                         ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -74,6 +72,7 @@ if ($error && isset($error_messages[$error])) {
     ?>
 
     <script src="account_page.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>
