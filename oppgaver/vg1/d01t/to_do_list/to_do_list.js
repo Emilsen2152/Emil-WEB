@@ -71,6 +71,8 @@
         const data = await apiFetch(`../api/to-do-lists/${listId}/items`, { method: 'GET' });
         const items = data?.data?.items ?? [];
 
+        console.log('Lastar oppgåver:', items);
+
         itemsEl.innerHTML = '';
 
         if (!items.length) {
@@ -82,25 +84,25 @@
 
         for (const item of items) {
             const id = item.id;
-            const completed = !!item.completed;
+            const completed = Number(item.completed) === 1;
 
             const row = document.createElement('div');
             row.className = 'list-group-item d-flex align-items-center justify-content-between gap-2';
 
             row.innerHTML = `
-        <div class="d-flex align-items-center gap-2 flex-grow-1">
-          <input class="form-check-input m-0" type="checkbox"
-                 data-action="toggle" data-id="${id}" ${completed ? 'checked' : ''}>
-          <span class="flex-grow-1 ${completed ? 'text-decoration-line-through text-muted' : ''}"
+    <div class="d-flex align-items-center gap-2 flex-grow-1">
+      <input class="form-check-input m-0" type="checkbox"
+             data-action="toggle" data-id="${id}" ${completed ? 'checked' : ''}>
+      <span class="flex-grow-1 ${completed ? 'text-decoration-line-through text-muted' : ''}"
             data-action="edit"
             data-id="${id}">
         ${escapeHtml(item.description)}
-        </span>
-        </div>
-        <button class="btn btn-sm btn-outline-danger" data-action="delete-item" data-id="${id}">
-          Slett
-        </button>
-      `;
+      </span>
+    </div>
+    <button class="btn btn-sm btn-outline-danger" data-action="delete-item" data-id="${id}">
+      Slett
+    </button>
+  `;
 
             itemsEl.appendChild(row);
         }
