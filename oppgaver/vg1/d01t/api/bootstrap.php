@@ -350,6 +350,9 @@ function share_to_do_list(
     if (!$shareUserId)
         return create_response(false, [], 'User not found', 404);
 
+    if ((int)$shareUserId === (int)$user['id'])
+        return create_response(false, [], 'Cannot share with yourself', 400);
+
     $stmt = $pdo->prepare(
         'SELECT 1 FROM shared_to_do_lists
          WHERE to_do_list_id = ? AND user_id = ?
