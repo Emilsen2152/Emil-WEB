@@ -237,6 +237,32 @@ if ($m === 'POST' && match_route('/to-do-lists/{listId}/share', $p, $params)) {
     exit;
 }
 
+if ($m === 'GET' && match_route('/to-do-lists/{listId}/shares', $p, $params)) {
+    $listId = (int)($params['listId'] ?? 0);
+    if ($listId <= 0) {
+        respond(create_response(false, null, 'Invalid list id', 400));
+    }
+
+    respond(get_shared_users($pdo, $config, $listId));
+    exit;
+}
+
+if ($m === 'DELETE' && match_route('/to-do-lists/{listId}/share', $p, $params)) {
+    $listId = (int)($params['listId'] ?? 0);
+    if ($listId <= 0) {
+        respond(create_response(false, null, 'Invalid list id', 400));
+    }
+
+    $body = read_json_body();
+
+    $username = trim((string)($body['username'] ?? ''));
+    if ($username === '') {
+        respond(create_response(false, null, 'Username is required', 400));
+    }
+
+    respond(unshare_to_do_list($pdo, $config, $listId, $username));
+}
+
 /* ============================================================
    Fallback
    ============================================================ */

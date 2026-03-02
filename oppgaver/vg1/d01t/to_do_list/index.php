@@ -40,7 +40,6 @@ $canShare  = $isOwner;
 // - dersom lista ikkje har owner_id: alle kan slette (men berre om public)
 $canDelete = $hasOwner ? $isOwner : empty($to_do_list['private']);
 ?>
-?>
 
 <!DOCTYPE html>
 <html lang="no">
@@ -89,6 +88,27 @@ $canDelete = $hasOwner ? $isOwner : empty($to_do_list['private']);
                 </form>
             </div>
         </div>
+
+        <?php if ($canShare): ?>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div id="shared-users" class="mb-3">
+                        <h5>Delte med:</h5>
+                        <ul class="list-group" id="shared-users-list"></ul>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!$to_do_list['private']): ?>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="alert alert-info">
+                        Denne lista er <strong>offentlig</strong> og kan vises av alle. Du kan enkelt dele lenka til denne lista med andre, og dei vil kunna sjå innhaldet utan å logga inn.
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
 
         <div class="row mt-2">
             <div class="col-md-6 offset-md-3">

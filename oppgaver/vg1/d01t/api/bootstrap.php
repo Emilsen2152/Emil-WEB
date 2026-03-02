@@ -372,3 +372,72 @@ function share_to_do_list(
 }
 
 // NEXT: se og fjern delingar
+
+function get_shared_users(PDO $pdo, array $config, int $listId): array
+{
+    $access = check_access_and_return($pdo, $config, $listId, 'list id');
+    if (!$access['success']) return $access;
+
+    $user = current_user($pdo, $config);
+
+    if ($access['data']['list']['owner_id'] !== $user['id']) {
+        $user = current_user($pdo, $config);
+
+        if (!$user)
+            return create_response(false, [], 'Unauthorized', 401);
+
+        if ((int)$access['data']['list']['owner_id'] !== (int)$user['id'])
+            return create_response(false, [], 'Forbidden', 403);
+    }   
+
+    $stmt = $pdo->prepare(
+        'SELECT u.username
+         FROM shared_to_do_lists s
+         JOIN users u ON u.id = s.user_id
+         WHERE s.to_do_list_id = ?'
+    );
+    $stmt->execute([$listId]);
+
+    return create_response(true, [
+        'shared_with' => $stmt->fetchAll(PDO::FETCH_COLUMN)
+    ], null, 200);
+}
+
+function unshare_to_do_list(PDO $pdo, array $config, int $listId, string $username): array
+{
+    $access = check_access_and_return($pdo, $config, $listId, 'list id');
+    if (!$access['success']) return $access;
+
+    $list = $access['data']['list'];
+
+    if (empty($list['owner_id']))
+        return create_response(false, [], 'Guest list cannot be unshared', 409);
+
+    $user = current_user($pdo, $config);
+
+    if (!$user)
+        return create_response(false, [], 'Unauthorized', 401);
+
+    if ((int)$list['owner_id'] !== (int)$user['id'])
+        return create_response(false, [], 'Forbidden', 403);
+
+    $stmt = $pdo->prepare(
+        'SELECT id FROM users WHERE username = ? LIMIT 1'
+    );
+    $stmt->execute([$username]);
+
+    $shareUserId = $stmt->fetchColumn();
+
+    if (!$shareUserId)
+        return create_response(false, [], 'User not found', 404);
+
+    $stmt = $pdo->prepare(
+        'DELETE FROM shared_to_do_lists
+         WHERE to_do_list_id = ? AND user_id = ?'
+    );
+
+    $ok = $stmt->execute([$listId, $shareUserId]);
+    if (!$ok) return create_response(false, [], 'Delete failed', 500);
+
+    return create_response(true, ['unshared' => true], null, 200);
+}
