@@ -49,17 +49,14 @@ if ($user) {
             <div class="row g-3 justify-content-center">
                 <?php if ($user): ?>
                     <?php if (!empty($user_to_do_lists)): ?>
-                        <?php foreach ($user_to_do_lists as $list): ?>
+                        <?php foreach ($user_to_do_lists as $row): ?>
                             <div class="col-md-6 col-lg-5">
-                                <a href="to_do_list/<?= htmlspecialchars($list['id']) ?>"
-                                    class="text-decoration-none">
+                                <a href="to_do_list/<?= htmlspecialchars((string)$row['id']) ?>" class="text-decoration-none">
                                     <div class="card shadow-sm h-100 list-card">
                                         <div class="card-body">
-                                            <h5 class="text-primary mb-2">
-                                                <?= htmlspecialchars($list['name']) ?>
-                                            </h5>
+                                            <h5 class="text-primary mb-2"><?= htmlspecialchars((string)$row['name']) ?></h5>
                                             <div class="text-muted small">
-                                                Opprettet av <?= htmlspecialchars($list['creator_username']) ?>
+                                                Opprettet av <?= htmlspecialchars((string)$row['creator_username']) ?>
                                             </div>
                                         </div>
                                     </div>
