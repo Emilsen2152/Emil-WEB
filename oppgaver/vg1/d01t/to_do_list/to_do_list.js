@@ -91,9 +91,11 @@
         <div class="d-flex align-items-center gap-2 flex-grow-1">
           <input class="form-check-input m-0" type="checkbox"
                  data-action="toggle" data-id="${id}" ${completed ? 'checked' : ''}>
-          <span class="flex-grow-1 ${completed ? 'text-decoration-line-through text-muted' : ''}">
-            ${escapeHtml(item.description)}
-          </span>
+          <span class="flex-grow-1 ${completed ? 'text-decoration-line-through text-muted' : ''}"
+            data-action="edit"
+            data-id="${id}">
+        ${escapeHtml(item.description)}
+        </span>
         </div>
         <button class="btn btn-sm btn-outline-danger" data-action="delete-item" data-id="${id}">
           Slett
@@ -211,6 +213,36 @@
                 alert(err.message || 'Feil ved oppdatering.');
             }
         });
+
+        // Edit description (double click on text)
+        itemsEl.addEventListener('dblclick', async (e) => {
+            const el = e.target.closest('[data-action="edit"]');
+            if (!el) return;
+
+            const itemId = parseInt(el.dataset.id, 10);
+            if (!itemId) return;
+
+            const current = el.textContent.trim();
+            const next = prompt('Rediger oppgåve:', current);
+            if (next === null) return;
+
+            const description = String(next).trim();
+            if (!description || description === current) return;
+
+            try {
+                await apiFetch(`../api/to-do-items/${itemId}/description`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({ description }),
+                });
+
+                loadItems().catch((err) => {
+                    console.error('Feil ved oppdatering:', err);
+                    window.location.reload();
+                });
+            } catch (err) {
+                alert(err.message || 'Feil ved oppdatering.');
+            }
+        });
     }
 
     // Share list
@@ -235,8 +267,8 @@
                     showAlert(shareAlert, 'success', 'Lista vart delt!');
                 }
 
-                loadItems().catch((err) => {
-                    console.error('Feil ved oppdatering av oppgåve:', err);
+                loadShares().catch((err) => {
+                    console.error('Feil ved oppdatering av delingar:', err);
                     window.location.reload();
                 });
             } catch (err) {
@@ -263,8 +295,8 @@
                     body: JSON.stringify({ username }),
                 });
 
-                loadItems().catch((err) => {
-                    console.error('Feil ved oppdatering av oppgåve:', err);
+                loadShares().catch((err) => {
+                    console.error('Feil ved oppdatering av delingar:', err);
                     window.location.reload();
                 });
             } catch (err) {
@@ -285,6 +317,22 @@
                 window.location.href = '../'; // change if your overview route differs
             } catch (err) {
                 showAlert(deleteListAlert, 'danger', err.message || 'Feil ved sletting av lista.');
+            }
+        });
+    }
+
+    const leaveBtn = document.getElementById('confirm-leave-list');
+    const leaveAlert = document.getElementById('leave-list-alert');
+
+    if (leaveBtn && listId) {
+        leaveBtn.addEventListener('click', async () => {
+            hideAlert(leaveAlert);
+
+            try {
+                await apiFetch(`../api/to-do-lists/${listId}/leave`, { method: 'DELETE' });
+                window.location.href = '../';
+            } catch (err) {
+                showAlert(leaveAlert, 'danger', err.message || 'Feil ved forlat liste.');
             }
         });
     }

@@ -379,16 +379,11 @@ function get_shared_users(PDO $pdo, array $config, int $listId): array
     if (!$access['success']) return $access;
 
     $user = current_user($pdo, $config);
+    if (!$user) return create_response(false, [], 'Unauthorized', 401);
 
-    if ($access['data']['list']['owner_id'] !== $user['id']) {
-        $user = current_user($pdo, $config);
-
-        if (!$user)
-            return create_response(false, [], 'Unauthorized', 401);
-
-        if ((int)$access['data']['list']['owner_id'] !== (int)$user['id'])
-            return create_response(false, [], 'Forbidden', 403);
-    }   
+    if ((int)$access['data']['list']['owner_id'] !== (int)$user['id']) {
+        return create_response(false, [], 'Forbidden', 403);
+    }
 
     $stmt = $pdo->prepare(
         'SELECT u.username
@@ -440,4 +435,37 @@ function unshare_to_do_list(PDO $pdo, array $config, int $listId, string $userna
     if (!$ok) return create_response(false, [], 'Delete failed', 500);
 
     return create_response(true, ['unshared' => true], null, 200);
+}
+
+function get_creator_username(PDO $pdo, array $config, ?int $creatorId): ?string
+{
+    if ($creatorId === null) return null;
+
+    $stmt = $pdo->prepare('SELECT username FROM users WHERE id = ? LIMIT 1');
+    $stmt->execute([$creatorId]);
+
+    return $stmt->fetchColumn() ?: null;
+}
+
+function leave_shared_list(PDO $pdo, array $config, int $listId): array
+{
+    $access = check_access_and_return($pdo, $config, $listId, 'list id');
+    if (!$access['success']) return $access;
+
+    $list = $access['data']['list'];
+
+    $user = current_user($pdo, $config);
+    if (!$user) return create_response(false, [], 'Unauthorized', 401);
+
+    // Owner can't "leave" their own list (they can delete instead)
+    if (!empty($list['owner_id']) && (int)$list['owner_id'] === (int)$user['id']) {
+        return create_response(false, [], 'Owner cannot leave own list', 409);
+    }
+
+    $stmt = $pdo->prepare('DELETE FROM shared_to_do_lists WHERE to_do_list_id = ? AND user_id = ?');
+    if (!$stmt->execute([$listId, $user['id']])) {
+        return create_response(false, [], 'Delete failed', 500);
+    }
+
+    return create_response(true, ['left' => true], null, 200);
 }

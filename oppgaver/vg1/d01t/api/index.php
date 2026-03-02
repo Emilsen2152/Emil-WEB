@@ -263,6 +263,16 @@ if ($m === 'DELETE' && match_route('/to-do-lists/{listId}/share', $p, $params)) 
     respond(unshare_to_do_list($pdo, $config, $listId, $username));
 }
 
+if ($m === 'DELETE' && match_route('/to-do-lists/{listId}/leave', $p, $params)) {
+    $listId = (int)($params['listId'] ?? 0);
+    if ($listId <= 0) {
+        respond(create_response(false, null, 'Invalid list id', 400));
+    }
+
+    respond(leave_shared_list($pdo, $config, $listId));
+    exit;
+}
+
 /* ============================================================
    Fallback
    ============================================================ */
