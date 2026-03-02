@@ -72,9 +72,9 @@ if ($user) {
                     <?php endif; ?>
                 <?php else: ?>
                     <div class="col-12 text-center">
-                        <p class="text-muted">
+                        <a class="text-muted" href="../../../../konto/login">
                             Logg inn for å se dine lister.
-                        </p>
+                        </a>
                     </div>
                 <?php endif; ?>
             </div>
