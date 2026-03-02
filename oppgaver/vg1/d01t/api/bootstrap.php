@@ -469,3 +469,18 @@ function leave_shared_list(PDO $pdo, array $config, int $listId): array
 
     return create_response(true, ['left' => true], null, 200);
 }
+
+function check_if_shared(PDO $pdo, array $config, int $listId): bool
+{
+    $user = current_user($pdo, $config);
+    if (!$user) return false;
+
+    $stmt = $pdo->prepare(
+        'SELECT 1 FROM shared_to_do_lists
+         WHERE to_do_list_id = ? AND user_id = ?
+         LIMIT 1'
+    );
+    $stmt->execute([$listId, $user['id']]);
+
+    return (bool)$stmt->fetchColumn();
+};

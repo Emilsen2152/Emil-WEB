@@ -24,7 +24,7 @@ include_once 'config.php';
 
             <!-- Column 2 -->
             <div class="col-12 col-md-4 mb-4">
-                <h5 class="fw-bold">&copy; 2025 Emil Velken Soldal</h5>
+                <h5 class="fw-bold">&copy; 2026 Emil Velken Soldal</h5>
                 <p>Designa og utvikla av Emil Velken Soldal</p>
 
                 <div class="my-3"></div>
