@@ -24,7 +24,7 @@ if ($user) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>d01t - EmilWEB</title>
+    <title>D01T - EmilWEB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="d01t.css">
 </head>
@@ -36,8 +36,8 @@ if ($user) {
 
     <div class="container-fluid bg-light py-2">
         <div class="container">
-            <h1 class="mt-4 p-2 text-center text-primary">d01t</h1>
-            <p class="lead text-center">d01t er ei enkel sjekkliste nettsida.</p>
+            <h1 class="mt-4 p-2 text-center text-primary">D01T</h1>
+            <p class="lead text-center">D01T er ei enkel sjekkliste nettsida.</p>
         </div>
 
         <div class="container py-4">

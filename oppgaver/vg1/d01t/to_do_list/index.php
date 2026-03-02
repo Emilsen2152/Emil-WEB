@@ -39,10 +39,9 @@ $canShare  = $isOwner;
 // - dersom lista ikkje har owner_id: alle kan slette (men berre om public)
 $canDelete = $hasOwner ? $isOwner : empty($to_do_list['private']);
 
-// Forlat: berre innlogga, lista har owner_id, og du er ikkje eigar (altså delt liste)
-$canLeave = $user && $hasOwner && !$isOwner;
-
 $hasDirectAccess = $isOwner || check_if_shared($pdo, $config, $to_do_listId);
+
+$canLeave = !$isOwner && $hasDirectAccess;
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +50,7 @@ $hasDirectAccess = $isOwner || check_if_shared($pdo, $config, $to_do_listId);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($to_do_list['name']) ?> - d01t</title>
+    <title><?= htmlspecialchars($to_do_list['name']) ?> - D01T</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
@@ -64,6 +63,10 @@ $hasDirectAccess = $isOwner || check_if_shared($pdo, $config, $to_do_listId);
             <p class="lead text-center">Dette er <?= $to_do_list['private'] ? ' den private' : '' ?> sjekklista "<?= htmlspecialchars($to_do_list['name']) ?>".</p>
 
             <div class="d-flex justify-content-center gap-2 mt-3 flex-wrap">
+                <a class="btn btn-primary" href="../">
+                    Tilbake til alle lister
+                </a>
+
                 <?php if ($canShare): ?>
                     <button class="btn btn-outline-primary" type="button"
                         data-bs-toggle="modal" data-bs-target="#shareModal">

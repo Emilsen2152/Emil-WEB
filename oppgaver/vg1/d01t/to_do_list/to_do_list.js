@@ -164,6 +164,8 @@
                     body: JSON.stringify({ description }),
                 });
 
+                addItemForm.reset();
+
                 loadItems().catch((err) => {
                     console.error('Feil ved oppretting av oppgåve:', err);
                     window.location.reload();
