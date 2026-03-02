@@ -51,7 +51,7 @@ if ($user) {
                     <?php if (!empty($user_to_do_lists)): ?>
                         <?php foreach ($user_to_do_lists as $list): ?>
                             <div class="col-md-6 col-lg-5">
-                                <a href="/oppgaver/vg1/d01t/to_do_list/<?= htmlspecialchars($list['id']) ?>"
+                                <a href="to_do_list/<?= htmlspecialchars($list['id']) ?>"
                                     class="text-decoration-none">
                                     <div class="card shadow-sm h-100 list-card">
                                         <div class="card-body">
