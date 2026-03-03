@@ -22,7 +22,7 @@ form.addEventListener('submit', async (e) => {
     }
 
     try {
-        const response = await fetch('https://emil.elevweb.no/users', {
+        const response = await fetch('../../../../../api/users', {
             method: 'POST',
             credentials: 'include',
             headers: {

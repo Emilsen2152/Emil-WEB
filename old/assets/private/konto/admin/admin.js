@@ -1,4 +1,4 @@
-const API_BASE = 'https://emil.elevweb.no';
+const API_BASE = '../../../../../api';
 
 // --- Fetch user info on page load ---
 try {
