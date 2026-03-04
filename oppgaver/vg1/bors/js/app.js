@@ -3,8 +3,8 @@
 
     // Opprettelse av spillvariabler.
     const player = {
-        navn: prompt("Hva er navnet ditt?") || "Spiller 1",
-        saldo: 20000
+        navn: prompt("Hva er navnet ditt?") || "Deg",
+        saldo: 25_000
     };
 
     const NPCBuyers = [
