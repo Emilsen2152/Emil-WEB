@@ -71,7 +71,13 @@
         { navn: "Telenor", price: 100, available: 400, owned: 0, npcOwned: {}, category: 3 },
         { navn: "Tine", price: 45.5, available: 250, owned: 0, npcOwned: {}, category: 0 },
         { navn: "PingPanik", price: 15, available: 100000, owned: 0, npcOwned: {}, category: 3 },
-        { navn: "Apple", price: 3299, available: 2300, owned: 0, npcOwned: {}, category: 3 }
+        { navn: "Apple", price: 3299, available: 2300, owned: 0, npcOwned: {}, category: 3 },
+        { navn: "Klofta Taxi", price: 60, available: 200, owned: 0, npcOwned: {}, category: 1 },
+        { navn: "Oslo Buss", price: 120, available: 300, owned: 0, npcOwned: {}, category: 1 },
+        { navn: "Oslo Lufthavn", price: 250, available: 150, owned: 0, npcOwned: {}, category: 1 },
+        { navn: "Norsk Sjømat", price: 80, available: 400, owned: 0, npcOwned: {}, category: 0 },
+        { navn: "Boombox", price: 220, available: 350, owned: 0, npcOwned: {}, category: 0 },
+        { navn: "Voss Kommunikasjon", price: 90, available: 300, owned: 0, npcOwned: {}, category: 3 },
     ]
 
 
