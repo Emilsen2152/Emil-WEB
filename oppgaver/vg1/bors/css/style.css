@@ -1,0 +1,22 @@
+:root {
+    --brand: #0d6efd;
+}
+
+h1 {
+    border-left: 6px solid var(--brand);
+    padding-left: .75rem;
+}
+
+.card {
+    border-radius: 1rem;
+}
+
+.table td,
+.table th {
+    white-space: nowrap;
+}
+
+.leaderboard-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}

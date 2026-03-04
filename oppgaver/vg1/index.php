@@ -46,6 +46,10 @@
                 [
                     "title" => 'd01t',
                     "url" => "d01t/"
+                ],
+                [
+                    "title" => 'Børs Spelet',
+                    "url" => "bors/"
                 ]
             ];
             ?>
