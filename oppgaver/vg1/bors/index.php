@@ -1,18 +1,17 @@
+<!-- index.php / oslo-bors.php -->
 <!DOCTYPE html>
 <html lang="no">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D01T - EmilWEB</title>
+    <title>Oslo Børs - EmilWEB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body class="bg-dark">
-    <?php
-    include '../../../includes/navbar.php';
-    ?>
+    <?php include '../../../includes/navbar.php'; ?>
 
     <div class="container-fluid bg-light">
         <div class="container py-4">
@@ -47,6 +46,38 @@
                                 <span class="text-muted">Saldo</span>
                                 <span id="balance" class="fs-5 fw-bold">0</span>
                             </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted">Nettoformue</span>
+                                <span id="netWorth" class="fw-bold">0</span>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <span class="text-muted">Stemning</span>
+                                <span id="sentiment" class="fw-semibold">---</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News -->
+                    <div class="card shadow-sm mt-3">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h5 class="card-title m-0">Nyheter</h5>
+                                <span class="text-muted small">Hendingar påverkar prisar</span>
+                            </div>
+                            <div id="newsBody" class="feed-scroll"></div>
+                        </div>
+                    </div>
+
+                    <!-- Top movers -->
+                    <div class="card shadow-sm mt-3">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h5 class="card-title m-0">Dagens rørsler</h5>
+                                <span class="text-muted small">Topp opp/ned</span>
+                            </div>
+                            <div id="moversBody" class="small"></div>
                         </div>
                     </div>
 
@@ -112,17 +143,27 @@
                         </div>
                     </div>
 
+                    <!-- Trade log -->
+                    <div class="card shadow-sm mt-3">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h5 class="card-title m-0">Handelslogg</h5>
+                                <span class="text-muted small">Siste transaksjonar</span>
+                            </div>
+                            <div id="tradeBody" class="feed-scroll"></div>
+                        </div>
+                    </div>
+
                     <div class="alert alert-info mt-3 mb-0">
-                        Tips: Prisane endrar seg berre på kvardagar, men prisane endrar seg på mandagen basert på helga. Du kan planlegge kjøp og salg i helga og det vil skje på mandag.
+                        Tips: Prisane endrar seg berre på kvardagar, men prisane endrar seg på mandagen basert på helga.
+                        Du kan planlegge kjøp og salg i helga og det vil skje på mandag.
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php
-    include '../../../includes/footer.php';
-    ?>
+    <?php include '../../../includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
