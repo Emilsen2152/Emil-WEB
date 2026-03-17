@@ -50,6 +50,10 @@
                 [
                     "title" => 'Børs Spelet',
                     "url" => "bors/"
+                ],
+                [
+                    "title" => 'The Cunt Hunt',
+                    "url" => "the-cunt-hunt/"
                 ]
             ];
             ?>
