@@ -404,20 +404,24 @@
     }
 
     function generateDailyPercentChange(s, stockID) {
-        // base -30%..+30%
-        let pct = (Math.random() * 0.6) - 0.3;
+        // Base: -12%..+12% (mye meir realistisk og gjer events merkbare)
+        let pct = (Math.random() * 0.24) - 0.12;
 
-        // category volatility
+        // category volatility (mindre ekstremt)
         pct *= categoryVolatility(s.category);
 
-        // tiny bias: if price is far above original -> slight pull down; far below -> slight pull up
-        const valuation = (s.price - s.originalPrice) / s.originalPrice; // +/- %
-        pct += clamp(-valuation * 0.05, -0.05, 0.05);
+        // mean reversion (litt sterkare)
+        const valuation = (s.price - s.originalPrice) / s.originalPrice;
+        pct += clamp(-valuation * 0.08, -0.06, 0.06);
 
-        // add event effects
-        pct += effectPctForStock(stockID);
+        // event effects: forsterk (og litt meir på samme category)
+        const eff = effectPctForStock(stockID);
+        pct += eff * 1.8;
 
-        return clamp(pct, -0.45, 0.45);
+        // litt ekstra “medvind” for category når det er hype i category (valfritt, men gøy)
+        // (sjå Fix B for ein reinare variant)
+
+        return clamp(pct, -0.35, 0.35);
     }
 
     function applyPercentChangeToStock(s, pct) {
@@ -435,6 +439,8 @@
             s.available = 0;
             s.owned = 0;
             s.npcOwned.clear();
+
+            addNews(`💥 ${s.navn} har gått konkurs! Aksjene er nå verdiløse.`);
             return;
         }
 
@@ -649,7 +655,6 @@
         if (game.date.getDay() !== 1) return;
 
         addNews("🗓️ Ny veke! Børsen er open — planlagte transaksjonar blir gjennomført no.");
-        alert("Ny veka! Børsen er no åpen, planlagte transaksjoner for denne veka blir no gjennomført.");
 
         for (const t of plannedTransactions) {
             const res = trade({
