@@ -17,7 +17,7 @@
         <!-- Header -->
         <div class="text-center mb-4">
             <h1 class="fw-bold display-5 mb-2">The Cunt Hunt</h1>
-            <p class="text-secondary mb-0">Klikk, samle poeng og prøv å nå målet.</p>
+            <p class="text-secondary mb-0">Skyt ballongene på minst mogleg tid.</p>
         </div>
 
         <!-- Main Card -->
@@ -26,17 +26,37 @@
 
                 <!-- Top Bar -->
                 <div class="row align-items-center g-3 mb-4">
-                    <div class="col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="d-flex align-items-center gap-2">
-                            <span class="fw-semibold text-light">Poeng:</span>
-                            <span id="poeng" class="badge bg-primary fs-6 px-3 py-2 rounded-pill">0 / 10</span>
+                            <span class="fw-semibold text-light">Antall skutt:</span>
+                            <span id="skutt" class="badge bg-primary fs-6 px-3 py-2 rounded-pill">0 / 10</span>
                         </div>
                     </div>
 
-                    <div class="col-md-6 text-md-end">
-                        <button id="restartGame" class="btn btn-primary px-4">
-                            Restart
-                        </button>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fw-semibold text-light">Tid brukt:</span>
+                            <span id="tid" class="badge bg-primary fs-6 px-3 py-2 rounded-pill">0 s</span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex justify-content-md-end align-items-center gap-2">
+                            <span class="fw-semibold text-light">Rekord:</span>
+
+                            <button id="rekord"
+                                class="btn btn-primary btn-sm rounded-pill px-3 py-2 fw-semibold">
+                                0 s
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex justify-content-md-end">
+                            <button id="restartGame" class="btn btn-primary px-4">
+                                Restart
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -46,29 +66,6 @@
                         <canvas id="game" class="w-100 h-100 bg-light rounded-3"></canvas>
                     </div>
                 </div>
-
-                <!-- Bottom Info -->
-                <div class="row g-3 mt-4 text-center">
-                    <div class="col-md-4">
-                        <div class="bg-dark border border-secondary rounded-3 py-3 h-100">
-                            <div class="fw-semibold text-white">Mål</div>
-                            <div class="text-secondary small">10 poeng</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="bg-dark border border-secondary rounded-3 py-3 h-100">
-                            <div class="fw-semibold text-white">Status</div>
-                            <div class="text-secondary small">Spelet er klart</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="bg-dark border border-secondary rounded-3 py-3 h-100">
-                            <div class="fw-semibold text-white">Kontroll</div>
-                            <div class="text-secondary small">Bruk mus / touch</div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
