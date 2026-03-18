@@ -2,29 +2,477 @@
 <html lang="no">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gymnashaugen rundt</title>
-    <meta name="description" content="Meld på bedrifta di på Gymnashaugen rundt!">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gymnashaugen rundt - Nedtelling</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --bg: rgba(255, 255, 255, 0.92);
+            --border: rgba(255, 255, 255, 0.55);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+            --text: #143552;
+            --muted: #6b7f92;
+            --accent: #0d6efd;
+            --danger: #dc3545;
+            --danger-dark: #b02a37;
+            --warning: #fd7e14;
+            --success: #20c997;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 1920px;
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            border-radius: 26px;
+            padding: 22px 34px;
+            background:
+                radial-gradient(circle at top right, rgba(13, 110, 253, 0.08), transparent 26%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(246, 250, 255, 0.92));
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+        }
+
+        .card.final-countdown {
+            box-shadow:
+                0 0 0 2px rgba(220, 53, 69, 0.18),
+                0 12px 36px rgba(220, 53, 69, 0.18);
+            background:
+                radial-gradient(circle at top right, rgba(220, 53, 69, 0.12), transparent 26%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 246, 0.95));
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 14px;
+        }
+
+        .eyebrow {
+            margin: 0;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            transition: color 0.2s ease;
+        }
+
+        .card.final-countdown .eyebrow {
+            color: var(--danger);
+        }
+
+        .title {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text);
+        }
+
+        .meta {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .divider {
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), #7ab8ff);
+            margin-bottom: 16px;
+            transition: background 0.2s ease;
+        }
+
+        .card.final-countdown .divider {
+            background: linear-gradient(90deg, var(--danger), var(--warning));
+        }
+
+        .countdown-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            min-height: 96px;
+        }
+
+        .unit {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .value {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--text);
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+        }
+
+        .label {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--muted);
+        }
+
+        .sep {
+            font-size: 3rem;
+            color: #a8bbcf;
+            line-height: 1;
+        }
+
+        .footer {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--muted);
+            min-height: 1.5em;
+        }
+
+        .seconds-flash {
+            animation: secondsFlash 2.5s linear infinite;
+        }
+
+        @keyframes secondsFlash {
+            0% {
+                color: var(--accent);
+                text-shadow: 0 0 0 rgba(13, 110, 253, 0);
+            }
+
+            25% {
+                color: var(--success);
+                text-shadow: 0 0 10px rgba(32, 201, 151, 0.20);
+            }
+
+            50% {
+                color: var(--warning);
+                text-shadow: 0 0 12px rgba(253, 126, 20, 0.24);
+            }
+
+            75% {
+                color: var(--danger);
+                text-shadow: 0 0 14px rgba(220, 53, 69, 0.28);
+            }
+
+            100% {
+                color: var(--accent);
+                text-shadow: 0 0 0 rgba(13, 110, 253, 0);
+            }
+        }
+
+        .seconds-final {
+            animation: secondsFinal 0.35s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes secondsFinal {
+            0% {
+                color: var(--danger-dark);
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(220, 53, 69, 0);
+            }
+
+            25% {
+                color: var(--danger);
+                transform: scale(1.06);
+                text-shadow: 0 0 12px rgba(220, 53, 69, 0.35);
+            }
+
+            50% {
+                color: var(--warning);
+                transform: scale(1.12);
+                text-shadow: 0 0 18px rgba(253, 126, 20, 0.40);
+            }
+
+            75% {
+                color: #ff0033;
+                transform: scale(1.08);
+                text-shadow: 0 0 22px rgba(255, 0, 51, 0.45);
+            }
+
+            100% {
+                color: var(--danger-dark);
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(220, 53, 69, 0);
+            }
+        }
+
+        .card-final-pulse {
+            animation: cardFinalPulse 0.6s ease-in-out infinite;
+        }
+
+        @keyframes cardFinalPulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.003);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .topbar {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 6px;
+            }
+
+            .meta {
+                text-align: center;
+            }
+
+            .countdown-row {
+                gap: 8px;
+            }
+
+            .unit {
+                gap: 6px;
+                padding: 4px 6px;
+            }
+
+            .label {
+                display: none;
+            }
+
+            .value {
+                font-size: 3.6rem;
+            }
+
+            .sep {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <main>
-        <div class="card p-4 m-1">
-            <div class="card-body">
-                <p id="nedtelling" class="fs-2 fs-md-2 fw-bold text-secondary mb-1"></p>
-            </div>
-        </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <div class="wrap">
+        <div class="card" id="card">
 
-    <script src="obs-timer.js"></script>
+            <div class="topbar">
+                <div>
+                    <p class="eyebrow">Nedtelling</p>
+                    <h1 class="title">Gymnashaugen rundt</h1>
+                </div>
+                <div class="meta">8. april 2026 kl. 14:45</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="countdown-row">
+                <div class="unit" id="daysUnit">
+                    <span class="value" id="daysValue">0</span>
+                    <span class="label" id="daysLabel">dagar</span>
+                </div>
+
+                <div class="sep" id="sep1">:</div>
+
+                <div class="unit" id="hoursUnit">
+                    <span class="value" id="hoursValue">00</span>
+                    <span class="label" id="hoursLabel">timar</span>
+                </div>
+
+                <div class="sep" id="sep2">:</div>
+
+                <div class="unit" id="minutesUnit">
+                    <span class="value" id="minutesValue">00</span>
+                    <span class="label">min</span>
+                </div>
+
+                <div class="sep" id="sep3">:</div>
+
+                <div class="unit" id="secondsUnit">
+                    <span class="value" id="secondsValue">00</span>
+                    <span class="label" id="secondsLabel">sek</span>
+                </div>
+            </div>
+
+            <div class="footer" id="footerText">Klar til start</div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const sekundTest = params.get("sekundTest");
+
+        let targetDate = new Date("2026-04-08T14:45:00+02:00").getTime();
+
+        if (sekundTest) {
+            const parsed = parseInt(sekundTest, 10);
+            if (!isNaN(parsed)) {
+                targetDate = Date.now() + parsed * 1000;
+            }
+        }
+
+        const card = document.getElementById("card");
+
+        const daysUnit = document.getElementById("daysUnit");
+        const hoursUnit = document.getElementById("hoursUnit");
+        const minutesUnit = document.getElementById("minutesUnit");
+        const secondsUnit = document.getElementById("secondsUnit");
+
+        const daysValue = document.getElementById("daysValue");
+        const hoursValue = document.getElementById("hoursValue");
+        const minutesValue = document.getElementById("minutesValue");
+        const secondsValue = document.getElementById("secondsValue");
+
+        const daysLabel = document.getElementById("daysLabel");
+        const hoursLabel = document.getElementById("hoursLabel");
+        const secondsLabel = document.getElementById("secondsLabel");
+
+        const sep1 = document.getElementById("sep1");
+        const sep2 = document.getElementById("sep2");
+        const sep3 = document.getElementById("sep3");
+
+        const footerText = document.getElementById("footerText");
+
+        function pad(n) {
+            return String(n).padStart(2, "0");
+        }
+
+        function show(el) {
+            el.style.display = "";
+        }
+
+        function hide(el) {
+            el.style.display = "none";
+        }
+
+        function updateSeparators() {
+            const units = [daysUnit, hoursUnit, minutesUnit, secondsUnit];
+            const seps = [sep1, sep2, sep3];
+
+            for (let i = 0; i < seps.length; i++) {
+                const currentVisible = units[i].style.display !== "none";
+                const nextVisible = units[i + 1].style.display !== "none";
+                seps[i].style.display = currentVisible && nextVisible ? "block" : "none";
+            }
+        }
+
+        function resetFinalClasses() {
+            secondsValue.classList.remove("seconds-flash", "seconds-final");
+            card.classList.remove("final-countdown", "card-final-pulse");
+        }
+
+        function updateEffects(diff) {
+            resetFinalClasses();
+
+            if (diff <= 10000) {
+                secondsValue.classList.add("seconds-final");
+                card.classList.add("final-countdown", "card-final-pulse");
+            } else if (diff <= 60000) {
+                secondsValue.classList.add("seconds-flash");
+            }
+        }
+
+        function updateCountdown() {
+            const now = Date.now();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                hide(daysUnit);
+                hide(hoursUnit);
+                hide(minutesUnit);
+                show(secondsUnit);
+
+                secondsLabel.style.display = "none";
+
+                hide(sep1);
+                hide(sep2);
+                hide(sep3);
+
+                resetFinalClasses();
+                card.classList.remove("final-countdown");
+
+                secondsValue.textContent = "Startar no!";
+                footerText.textContent = "Lykke til!";
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(diff / 86400000);
+            const hours = Math.floor((diff % 86400000) / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+
+            if (days > 0) {
+                show(daysUnit);
+                daysValue.textContent = days;
+                daysLabel.textContent = days === 1 ? "dag" : "dagar";
+            } else {
+                hide(daysUnit);
+            }
+
+            if (hours > 0) {
+                show(hoursUnit);
+                hoursValue.textContent = pad(hours);
+                hoursLabel.textContent = hours === 1 ? "time" : "timar";
+            } else {
+                hide(hoursUnit);
+            }
+
+            if (minutes > 0) {
+                show(minutesUnit);
+                minutesValue.textContent = pad(minutes);
+            } else {
+                hide(minutesUnit);
+            }
+
+            show(secondsUnit);
+            secondsValue.textContent = pad(seconds);
+
+            updateSeparators();
+            updateEffects(diff);
+
+            if (diff <= 10000) {
+                footerText.textContent = `Final countdown - ${seconds}`;
+            } else if (days > 0) {
+                footerText.textContent = "Me nærmar oss start";
+            } else if (hours > 0 || minutes > 0) {
+                footerText.textContent = "Snart klart for løpet";
+            } else {
+                footerText.textContent = "No skjer det straks";
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 100);
+        updateCountdown();
+    </script>
 </body>
 
 </html>
