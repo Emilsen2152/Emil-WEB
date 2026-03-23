@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gymnashaugen OBS Overlay</title>
+
+    <style>
+        :root {
+            --bg: rgba(255, 255, 255, 0.95);
+            --accent: #0d6efd;
+            --text: #143552;
+            --muted: #6b7f92;
+            --border: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1920px;
+            /* Standard Full HD bredde */
+            height: 1080px;
+            overflow: hidden;
+            background: transparent;
+            /* Viktig for OBS */
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* Container som posisjonerer grafikken nede til venstre */
+        .overlay-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            display: flex;
+            align-items: stretch;
+            animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Startnummer-boks (Venstre del) */
+        .start-badge {
+            background: var(--accent);
+            color: white;
+            padding: 10px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px 0 0 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .start-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .start-nr {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        /* Namn og Lag-boks (Høgre del) */
+        .info-card {
+            background: var(--bg);
+            padding: 15px 40px 15px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 0 15px 15px 0;
+            border: 1px solid var(--border);
+            border-left: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 400px;
+        }
+
+        .name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .team {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* Enkel animasjon for innlasting */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="overlay-container" id="overlay">
+        <div class="start-badge">
+            <span class="start-label">Startnr</span>
+            <span class="start-nr" id="displayStartnr">--</span>
+        </div>
+        <div class="info-card">
+            <p class="name" id="displayName">Henter navn...</p>
+            <p class="team" id="displayTeam">Henter lag...</p>
+        </div>
+    </div>
+
+    <script>
+    // Me pakkar alt inn i ein async-funksjon som køyrer med ein gong (IIFE)
+    (async () => {
+        const params = new URLSearchParams(window.location.search);
+
+        // 1. Hent startnummer frå URL eller Prompt
+        let startnr = params.get("nr");
+        if (!startnr) {
+            startnr = prompt("Skriv inn startnummer for denne deltakaren:");
+        }
+
+        // 2. Variablar for namn og lag
+        let navn = params.get("navn");
+        let lag = params.get("lag");
+
+        // 3. Viss me manglar namn, hentar me frå databasen via PHP
+        if (!navn && startnr) {
+            try {
+                const response = await fetch(`deltakere/get.php?nr=${startnr}`);
+                const deltaker = await response.json();
+
+                console.log("Data frå databasen:", deltaker);
+
+                // Sjekkar om me faktisk fekk data tilbake (tilpassa din get.php-struktur)
+                if (deltaker.data) {
+                    navn = deltaker.data.navn;
+                    lag = deltaker.data.lag;
+                } else {
+                    navn = "Ukjent Deltakar";
+                    lag = "Ikkje funne i liste";
+                }
+            } catch (error) {
+                console.error("Kunne ikkje hente deltakar:", error);
+                navn = "Feil ved henting";
+                lag = "Sjekk nettverk/URL";
+            }
+        }
+
+        // 4. Oppdater HTML-elementa
+        document.getElementById("displayStartnr").textContent = startnr || "0";
+        document.getElementById("displayName").textContent = navn || "Namn manglar";
+        document.getElementById("displayTeam").textContent = lag || "Lag manglar";
+    })();
+</script>
+</body>
+
+</html>
