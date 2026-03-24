@@ -1,3 +1,67 @@
+/* --- Base Styles & Mobile View --- */
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    overscroll-behavior-y: contain; 
+    overflow-x: hidden;
+}
+
+/* Remove side padding on mobile to maximize space */
+@media (max-width: 576px) {
+    .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .card {
+        border-radius: 0 !important;
+        border: none !important;
+    }
+}
+
+.game-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70svh; 
+    background: #eee;
+    touch-action: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
 #game {
-    cursor: url('gfx/pointer.png'), auto;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #f8f9fa;
+}
+
+@media (min-width: 768px) {
+    .py-md-5 {
+        padding-top: 1.5rem !important; 
+        padding-bottom: 0 !important;
+    }
+
+    .game-wrapper {
+        aspect-ratio: 16 / 9;
+        height: auto;
+        max-height: 420px; 
+        max-width: 900px;
+        margin: 0 auto;
+        cursor: url('gfx/pointer.png') 16 16, auto;
+    }
+
+    .display-6 {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .game-wrapper {
+        border-radius: 0;
+    }
+    .stat-label { font-size: 0.55rem; }
+    .stat-value { font-size: 0.8rem; }
+    .card-body { padding: 0.4rem !important; }
+    #restartGame { padding: 0.25rem; font-size: 0.8rem; }
 }

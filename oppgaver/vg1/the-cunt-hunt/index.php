@@ -13,60 +13,38 @@
 
     <?php include '../../../includes/navbar.php'; ?>
 
-    <div class="container py-5" style="max-width: 950px;">
-
-        <!-- Header -->
-        <div class="text-center mb-4">
-            <h1 class="fw-bold display-5 mb-2">The Cunt Hunt</h1>
-            <p class="text-secondary mb-0">Skyt ballongene på minst mogleg tid.</p>
-        </div>
-
-        <!-- Main Card -->
+    <div class="container-fluid py-3 py-md-5" style="max-width: 1000px;">
         <div class="card bg-black border-secondary shadow-lg">
-            <div class="card-body p-4 p-md-5">
+            <div class="card-body">
 
-                <!-- Top Bar -->
-                <div class="row align-items-center g-3 mb-4">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="fw-semibold text-light">Antall skutt:</span>
-                            <span id="skutt" class="badge bg-primary fs-6 px-3 py-2 rounded-pill">0 / 10</span>
+                <div class="row g-1 g-md-2 mb-2 text-center">
+                    <div class="col-3">
+                        <div class="stat-box border border-secondary rounded bg-black py-2">
+                            <small class="stat-label d-block text-secondary text-uppercase fw-bold">Skutt</small>
+                            <span id="skutt" class="stat-value fw-bold text-primary">0 / 10</span>
                         </div>
                     </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="fw-semibold text-light">Tid brukt:</span>
-                            <span id="tid" class="badge bg-primary fs-6 px-3 py-2 rounded-pill">0 s</span>
+                    <div class="col-3">
+                        <div class="stat-box border border-secondary rounded bg-black py-2">
+                            <small class="stat-label d-block text-secondary text-uppercase fw-bold">Tid</small>
+                            <span id="tid" class="stat-value fw-bold text-primary">0.00</span>
                         </div>
                     </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex justify-content-md-end align-items-center gap-2">
-                            <span class="fw-semibold text-light">Rekord:</span>
-
-                            <button id="rekord"
-                                class="btn btn-primary btn-sm rounded-pill px-3 py-2 fw-semibold">
-                                0 s
-                            </button>
+                    <div class="col-3">
+                        <div class="stat-box border border-secondary rounded bg-black py-2" id="rekord-btn" style="cursor:pointer">
+                            <small class="stat-label d-block text-secondary text-uppercase fw-bold">Rekord</small>
+                            <span id="rekord" class="stat-value fw-bold text-success">0.00</span>
                         </div>
                     </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex justify-content-md-end">
-                            <button id="restartGame" class="btn btn-primary px-4">
-                                Restart
-                            </button>
-                        </div>
+                    <div class="col-3 d-grid">
+                        <button id="restartGame" class="btn btn-primary fw-bold btn-sm btn-md-lg">Start</button>
                     </div>
                 </div>
 
-                <!-- Canvas Wrapper -->
-                <div class="bg-dark border border-secondary rounded-4 p-3 p-md-4">
-                    <div class="ratio ratio-16x9">
-                        <canvas id="game" class="w-100 h-100 bg-light rounded-3"></canvas>
-                    </div>
+                <div class="game-wrapper border border-secondary shadow">
+                    <canvas id="game"></canvas>
                 </div>
+
             </div>
         </div>
 
@@ -74,7 +52,7 @@
 
     <?php include '../../../includes/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 
