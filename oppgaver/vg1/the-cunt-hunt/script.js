@@ -47,7 +47,7 @@ const navn = [
 
 function makeBalloon() {
     const baseScale = Math.min(canvas.width, canvas.height);
-    const size = baseScale * (0.12 + Math.random() * 0.05);
+    const size = baseScale * (0.12 + Math.random() * 0.03);
 
     return {
         size,
