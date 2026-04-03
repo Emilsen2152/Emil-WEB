@@ -438,7 +438,7 @@
                 hide(daysUnit);
             }
 
-            if (hours > 0) {
+            if (hours > 0 || days > 0) {
                 show(hoursUnit);
                 hoursValue.textContent = pad(hours);
                 hoursLabel.textContent = hours === 1 ? "time" : "timar";
@@ -446,7 +446,7 @@
                 hide(hoursUnit);
             }
 
-            if (minutes > 0) {
+            if (minutes > 0 || hours > 0 || days > 0) {
                 show(minutesUnit);
                 minutesValue.textContent = pad(minutes);
             } else {
