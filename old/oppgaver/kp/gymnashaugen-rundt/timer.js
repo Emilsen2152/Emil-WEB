@@ -1,6 +1,6 @@
 // Mål-dato: 8. april 2026 kl. 14:45 CET
-const targetDate = new Date("2026-04-08T14:45:00+01:00").getTime(); // Standard
-// const targetDate = new Date("2025-10-28T18:11:00+01:00").getTime(); // Test
+const targetDate = new Date("2026-04-08T14:45:00+02:00").getTime(); // Standard
+// const targetDate = new Date("2025-10-28T18:11:00+02:00").getTime(); // Test
 const countdownElement = document.getElementById("nedtelling");
 const countdownHeadElement = document.getElementById("nedtelling-head");
 
