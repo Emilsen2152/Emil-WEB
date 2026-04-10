@@ -54,6 +54,10 @@
                 [
                     "title" => 'The Cunt Hunt',
                     "url" => "the-cunt-hunt/"
+                ],
+                [
+                    "title" => 'Møtesystem Voss',
+                    "url" => "mote-sys-voss/"
                 ]
             ];
             ?>
