@@ -1,10 +1,11 @@
 <?php
-require_once __DIR__ . '/../../api/bootstrap.php';
+require_once __DIR__ . '/../../../api/bootstrap.php';
+require_once __DIR__ . '/api/bootstrap.php';
 
-$user = current_user($pdo, $config);
+$adminUser = check_admin($pdo, $config);
 
-if (!$user) {
-    header('Location: ../../../konto/login');
+if (!$adminUser) {
+    header('Location: ../../../konto/?error=not_admin');
     exit;
 }
 ?>
@@ -19,18 +20,43 @@ if (!$user) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
-<body class="bg-dark">
-    <?php
+<body class="bg-dark text-white"> <?php
     include '../../../includes/navbar.php';
     ?>
 
-    <div class="container-fluid bg-light py-2">
-        <div class="container">
+    <div class="container-fluid bg-light py-5 text-dark"> <div class="container text-center mb-5">
             <h1 class="display-4">Møtesystem Voss</h1>
             <p class="lead">Velkommen til Møtesystemet originalt laga for Heradsstyremøtet 16.04.2026</p>
         </div>
 
-        
+        <div class="container">
+            <h2 class="mb-4 text-center">Her er alle data-feltene du kan endra på.</h2>
+            
+            <div id="data-fields" class="row gy-4 justify-content-center">
+                
+                <?php // FIKS: Endra frå <? til <?php for å unngå "Undefined variable" feilen
+                foreach (get_all_rows($pdo)['data'] as $row): ?>
+                    
+                    <div class="col-md-6 col-lg-5">
+                        <div class="card shadow-sm text-center"> <div class="card-body">
+                                <h5 class="card-title fw-bold"><?= htmlspecialchars($row['data_name']) ?></h5>
+                                <p class="card-text">Nåværende verdi: <br><strong class="fs-5"><?= htmlspecialchars($row['data_value']) ?></strong></p>
+                                
+                                <form method="POST" action="" class="update-form">
+                                    <div class="mb-3 text-start"> <label for="value-<?= htmlspecialchars($row['data_name']) ?>" class="form-label small">Ny verdi</label>
+                                        <input type="text" class="form-control" id="value-<?= htmlspecialchars($row['data_name']) ?>" name="value" required>
+                                    </div>
+                                    <input type="hidden" name="name" value="<?= htmlspecialchars($row['data_name']) ?>">
+                                    <button type="submit" class="btn btn-primary px-4">Oppdater</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <?php endforeach; ?>
+                
+            </div>
+        </div>
     </div>
 
     <?php
