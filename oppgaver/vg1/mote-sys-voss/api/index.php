@@ -47,7 +47,7 @@ function path(): string
     $uriPath = str_replace('/emil/', '/', $uriPath);
     $uriPath = str_replace('/oppgaver/', '/', $uriPath);
     $uriPath = str_replace('/vg1/', '/', $uriPath);
-    $uriPath = str_replace('/d01t/', '/', $uriPath);
+    $uriPath = str_replace('/mote-sys-voss/', '/', $uriPath);
     $uriPath = str_replace('/api/', '/', $uriPath);
 
     // Support "/index.php/..." style too
@@ -111,10 +111,12 @@ if ($m === 'GET' && match_route('/data/{name}', $p, $params)) {
 
 $params = [];
 if ($m === 'PATCH' && match_route('/data/{name}', $p, $params)) {
-    $admin = require_auth($pdo, $config);
-    require_admin($config, $admin);
-
-    respond(update_row($pdo, $params['name'], $value));
+    $input = json_decode(file_get_contents('php://input'), true);
+    if (!is_array($input) || !isset($input['value'])) {
+        json_response(400, create_response(false, null, 'Invalid input: missing "value" field', 400));
+        exit;
+    }
+    respond(update_row($pdo, $params['name'], $input['value']));
     exit;
 }
 
