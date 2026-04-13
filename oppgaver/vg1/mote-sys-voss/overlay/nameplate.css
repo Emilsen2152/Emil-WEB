@@ -1,0 +1,54 @@
+/* overlay.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: transparent;
+}
+
+.background.nameplate {
+    background-color: white;
+    border-left: 8px solid rgba(0, 51, 102, 0.9);
+    padding: 18px 26px;
+    display: inline-block;
+    border-radius: 0 6px 6px 0;
+    min-width: 400px;
+    max-width: 700px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+    /* Definerer korleis animasjonen skal vere når den går TILBAKE til normal tilstand */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    
+    /* Normal tilstand (visning) */
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Tilstanden elementet har når det er skjult */
+.hidden {
+    opacity: 0 !important;
+    transform: translateX(-50px) !important; /* Startposisjon for slide-effekten */
+    pointer-events: none;
+    
+    /* Valfritt: Gjer ut-animasjonen litt raskare enn inn-animasjonen */
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in !important;
+}
+
+.speaker-name {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: black;
+}
+
+.speaker-group {
+    font-size: 1.4em;
+    font-weight: 400;
+    color: #333; /* Litt mørkare grå for betre lesbarhet på kvit bakgrunn */
+    margin-top: 5px;
+    font-style: italic;
+}
