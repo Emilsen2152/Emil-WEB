@@ -31,6 +31,14 @@ if (!$adminUser) {
             <p class="lead">Velkommen til Møtesystemet originalt laga for Heradsstyremøtet 16.04.2026</p>
         </div>
 
+        <div class="container m-2">
+            <h2 class="text-center">Lenker til overlay:</h2>
+            <ul class="list-unstyled text-center">
+                <li><a href="overlay/sak-info" class="text-decoration-none">Sak info</a></li>
+                <li><a href="overlay/nameplate" class="text-decoration-none">Nameplate</a></li>
+            </ul>
+        </div>
+
         <div class="container">
             <h2 class="mb-4 text-center">Her er alle data-feltene du kan endra på.</h2>
 
