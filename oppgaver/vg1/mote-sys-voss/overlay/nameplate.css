@@ -17,11 +17,11 @@ body {
     min-width: 400px;
     max-width: 700px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-
-    /* Definerer korleis animasjonen skal vere når den går TILBAKE til normal tilstand */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     
-    /* Normal tilstand (visning) */
+    /* ADDED: This makes the container a reference for its children's font size */
+    container-type: inline-size;
+
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     opacity: 1;
     transform: translateX(0);
 }
@@ -37,18 +37,30 @@ body {
 }
 
 .speaker-name {
-    font-size: 2.5em;
+    /* Changed to cqi (container query inline units) so it scales with width */
+    font-size: clamp(1.5em, 8cqi, 2.5em); 
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.2;
     color: black;
+
+    /* Prevent wrapping */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if it still exceeds max-width */
 }
 
 .speaker-group {
-    font-size: 1.4em;
+    /* Scales slightly smaller than the name */
+    font-size: clamp(1em, 5cqi, 1.4em);
     font-weight: 400;
-    color: #333; /* Litt mørkare grå for betre lesbarhet på kvit bakgrunn */
+    color: #333;
     margin-top: 5px;
     font-style: italic;
+
+    /* Prevent wrapping */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
