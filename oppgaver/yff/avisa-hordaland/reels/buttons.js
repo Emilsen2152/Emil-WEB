@@ -1,4 +1,14 @@
-// JAVASCRIPT FOR INTERAKSJON
+// Get url parameters
+const urlParams = new URLSearchParams(window.location.search);
+const reelId = urlParams.get('reelId');
+
+// Scroll til den spesifikke reelen hvis reelId er i URL-en
+if (reelId) {
+    const targetReel = document.querySelector(`.reel-container[data-index="${reelId}"]`);
+    if (targetReel) {
+        targetReel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
 
 // Like-funksjonalitet
 document.querySelectorAll('.bi-heart').forEach(btn => {
@@ -37,7 +47,7 @@ document.querySelectorAll('.bi-share').forEach(btn => {
             navigator.share({
                 title: 'Avisa Hordaland - Reels',
                 text: 'Sjekk ut denne saka!',
-                url: window.location.href
+                url: window.location.origin + window.location.pathname + '?reelId=' + reelId
             }).catch(console.error);
         } else {
             alert("Delingslenka er kopiert til utklippstavla (Simulert for Reel " + reelId + ")");

@@ -21,6 +21,20 @@
                 Denne delen av sida er kun for å visa korleis det hadde sett ut og har ikkje innhald. Du kan samanlikne denne sida med <a href="https://www.avisa-hordaland.no/">Avisa Hordaland</a> for å sjå korleis det er laga. Dette er altso klassisk avis oppsett.
             </p>
         </div>
+        <div class="container mt-4">
+            <h1 class="mb-3">Ide</h1>
+            <p>
+                Me har vald å legge inn ideen vår her:
+                Appen er eit tiktok format med vekt på videoar og små sammendrag av avisartikler.
+                Appen er for ungdommar.
+                Den virker fordi ungdommar har lettare for å få med seg innhold i videoformat. Dei korte sammandraga som kjem mellom blir eit form for avbrekk som gjer at ungdommane kanskje blir inspirert til å lesa fulle artiklar.
+
+                Nederst på kvar video blir det ein knapp for å gå til den fulle artikkelen.
+
+                Det skal og vera: Like, kommenter og share funksjonar.
+
+            </p>
+        </div>
     </main>
 
     <?php

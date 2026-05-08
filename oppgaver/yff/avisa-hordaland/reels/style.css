@@ -156,3 +156,22 @@ main::-webkit-scrollbar {
     color: white;
     text-decoration: none;
 }
+
+/* --- Progress Bar --- */
+.video-progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Tynn og diskret */
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 10; /* Må liggja over videoen */
+}
+
+.video-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #fff; /* Kvit linje som på TikTok/Instagram */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: width 0.1s linear;
+}
