@@ -1,21 +1,6 @@
 <?php
 $reels = [
     [
-        'type' => 'text',
-        'title' => 'Ordet fritt: Friskule',
-        'bg_image' => '../images/voss-friskule.jpg',
-        'description' => 'Voss Friskule: Eit supplement - ikkje ein trussel',
-        'article_url' => 'https://www.avisa-hordaland.no/voss-friskule-eit-supplement-ikkje-ein-trussel/o/5-132-1106390',
-    ],
-    [
-        'type' => 'video',
-        'title' => 'Renteheving',
-        'video_url' => '../videos/renteheving.mp4',
-        'description' => 'Renta blir heva idag, me har spurd lokale innbyggjarar kva dei synest om det.',
-        'article_url' => 'https://www.avisa-hordaland.no/hever-renta-til-4-25-prosent/s/5-132-1107571',
-        'map_url' => 'https://maps.app.goo.gl/cuRhAioZWwP74mCE8'
-    ],
-    [
         'type' => 'video',
         'title' => 'Gymnashaugen Rundt 2026',
         'video_url' => '../videos/artikkel1.mp4',
@@ -31,7 +16,7 @@ $reels = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avisa Hordaland - Reels</title>
+    <title>Avisa Hordaland - Nær deg</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
