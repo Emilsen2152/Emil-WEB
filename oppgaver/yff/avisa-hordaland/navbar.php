@@ -3,14 +3,14 @@
 include_once __DIR__ . '/../../../includes/config.php';
 
 $topNavItems = [
-    'Tips oss'     => '#',
-    'E-avis'       => '#',
-    'Dødsannonsar' => '#',
-    'Annonsering'  => '#',
-    'Direktesport' => '#',
+    'Tips oss'     => 'https://www.avisa-hordaland.no/vis/info/tips-oss',
+    'E-avis'       => 'https://www.avisa-hordaland.no/vis/e-avis',
+    'Dødsannonsar' => 'https://www.avisa-hordaland.no/vis/dødsannonsar',
+    'Annonsering'  => 'https://www.avisa-hordaland.no/vis/annonsering',
+    'Direktesport' => 'https://www.avisa-hordaland.no/vis/direktesport',
 ];
 
-$baseUrl = url('');
+$baseUrl = url('/oppgaver/yff/avisa-hordaland/');
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
