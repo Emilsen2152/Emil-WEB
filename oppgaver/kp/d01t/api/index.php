@@ -46,7 +46,7 @@ function path(): string
     // Strip your folder prefixes (adjust if you move folders)
     $uriPath = str_replace('/emil/', '/', $uriPath);
     $uriPath = str_replace('/oppgaver/', '/', $uriPath);
-    $uriPath = str_replace('/vg1/', '/', $uriPath);
+    $uriPath = str_replace('/kp/', '/', $uriPath);
     $uriPath = str_replace('/d01t/', '/', $uriPath);
     $uriPath = str_replace('/api/', '/', $uriPath);
 
