@@ -4,10 +4,10 @@ include_once __DIR__ . '/../../../includes/config.php';
 
 $topNavItems = [
     'Tips oss'     => 'https://www.avisa-hordaland.no/vis/info/tips-oss',
-    'E-avis'       => 'https://www.avisa-hordaland.no/vis/e-avis',
-    'Dødsannonsar' => 'https://www.avisa-hordaland.no/vis/dødsannonsar',
-    'Annonsering'  => 'https://www.avisa-hordaland.no/vis/annonsering',
-    'Direktesport' => 'https://www.avisa-hordaland.no/vis/direktesport',
+    'E-avis'       => 'https://eavis.avisa-hordaland.no',
+    'Dødsannonsar' => 'https://www.avisa-hordaland.no/vis/dodsannonser/',
+    'Annonsering'  => 'https://www.avisa-hordaland.no/meiningar',
+    'Direktesport' => 'https://www.direktesport.no/',
 ];
 
 $baseUrl = url('/oppgaver/yff/avisa-hordaland/');

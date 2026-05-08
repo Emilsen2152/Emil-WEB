@@ -3,7 +3,8 @@
 include_once __DIR__ . '/../../../includes/config.php';
 
 $bottomNavItems = [
-    ['label' => 'Klassisk', 'icon' => 'bi-newspaper', 'link' => url('oppgaver/yff/avisa-hordaland/')],
+    ['label' => 'Info', 'icon' => 'bi-info-circle', 'link' => url('oppgaver/yff/avisa-hordaland/')],
+    ['label' => 'Klassisk', 'icon' => 'bi-newspaper', 'link' => url('oppgaver/yff/avisa-hordaland/klassisk/')],
     ['label' => 'Reels', 'icon' => 'bi-camera-video', 'link' => url('oppgaver/yff/avisa-hordaland/reels/')],
     ['label' => 'Nær meg', 'icon' => 'bi-geo-alt', 'link' => url('oppgaver/yff/avisa-hordaland/nearby/')],
 ];
