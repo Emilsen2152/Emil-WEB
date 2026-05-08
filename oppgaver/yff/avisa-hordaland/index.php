@@ -18,7 +18,7 @@
         <div class="container mt-4">
             <h1 class="mb-3">Ingen innhald</h1>
             <p>
-                Denne delen av sida er kun for å visa korleis det hadde sett ut og har ikkje innhold. Du kan samanlikne denne sida med <a href="https://www.avisa-hordaland.no/">Avisa Hordaland</a> for å sjå korleis det er laga. Dette er altso klassisk avis oppsett.
+                Denne delen av sida er kun for å visa korleis det hadde sett ut og har ikkje innhald. Du kan samanlikne denne sida med <a href="https://www.avisa-hordaland.no/">Avisa Hordaland</a> for å sjå korleis det er laga. Dette er altso klassisk avis oppsett.
             </p>
         </div>
     </main>
