@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="no">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oppgåve 4</title>
+</head>
+
+<body>
+    <h1>Oppgåve 4</h1>
+    <script>
+        // Liste med sitat
+        const sitatListe = [
+            "Det er ikke gull alt som glitrer.",
+            "Alle veier fører til Rom.",
+            "Bedre føre var enn etter snar.",
+            "Den som ler sist, ler best.",
+            "Ingen røyk uten ild.",
+            "Morgenstund har gull i munn.",
+            "Tiden leger alle sår.",
+            "Når katten er borte, danser musene på bordet.",
+            "Eplet faller ikke langt fra stammen.",
+            "Det er ingen skam å snu.",
+        ]
+
+        // Velg eit tilfeldig sitat frå listo
+        const tilfeldigSitat = sitatListe[Math.floor(Math.random() * sitatListe.length)];
+
+        // Skriv ut det tilfeldige sitatet
+        document.write("Dagens sitat: " + tilfeldigSitat);
+    </script>
+</body>
+
+</html>

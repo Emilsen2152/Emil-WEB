@@ -1,0 +1,17 @@
+Options -MultiViews
+RewriteEngine On
+
+# Ignorer API (om nokon kjem inn via /emil/api/...)
+RewriteRule ^api(?:/.*)?$ - [L]
+
+# 1) Ikkje rør ekte filer eller mapper
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 2) Clean URL → map til .php eller .html (intern rewrite)
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]

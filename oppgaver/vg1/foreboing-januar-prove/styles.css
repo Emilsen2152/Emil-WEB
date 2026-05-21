@@ -1,0 +1,143 @@
+/* ========== Base (ikkje overstyr classar) ========== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif; /* du hadde denne */
+  margin: 0;
+  padding: 24px;
+  line-height: 1.6;
+  background: #f7f7f7;
+  color: #111;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin: 1.2rem 0 0.6rem;
+}
+
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.4rem; border-bottom: 2px solid #e5e5e5; padding-bottom: 6px; }
+h3 { font-size: 1.1rem; }
+
+p {
+  margin: 0.4rem 0 0.9rem;
+}
+
+/* Lenker */
+a {
+  color: #0a58ca;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Bilete */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+a img {
+  display: inline-block;
+}
+
+/* Lister */
+ul, ol {
+  margin: 0.4rem 0 1rem 1.2rem;
+  padding: 0;
+}
+li {
+  margin: 0.25rem 0;
+}
+
+/* Tabell (utan å bruke HTML border-attributt) */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+}
+th, td {
+  border: 1px solid #cfcfcf;
+  padding: 10px 12px;
+}
+th {
+  background: #f0f0f0;
+  text-align: left;
+}
+
+/* Skjema */
+form {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 520px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+
+button {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+button:hover {
+  filter: brightness(1.08);
+}
+
+/* Litt “struktur” rundt oppgåvene */
+h2 {
+  margin-top: 28px;
+}
+
+/* ========== Dine eksisterande classar (IKKJE endre) ========== */
+.ekstern {
+  text-align: right;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/* Felles styling */
+.box {
+  background: #ddd;
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* FLEXBOX */
+.flex-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* GRID */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
