@@ -3,11 +3,18 @@
 $artiklar = [
     [
         'title' => 'Gymnashaugen Rundt 2026',
-        'reel_url' => '../reels/?reelId=2',
+        'reel_url' => '../reels/?reelId=1',
         'description' => 'I dag var det Gymnashaugen Rundt, se målgangen!',
         'article_url' => 'https://www.avisa-hordaland.no/70-lag-pamelde-her-brakar-det-laus-i-ettermiddag/s/5-132-1093583',
         'map_url' => 'https://www.google.com/maps/place/Voss+gymnas/@60.6275412,6.4257883,342m/data=!3m1!1e3!4m6!3m5!1s0x463dda970a6e9889:0xab94dc0cc9b52a28!8m2!3d60.6269798!4d6.4264102!16s%2Fg%2F1z2crzz7m?hl=no&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D'
     ],
+    [
+        'title' => 'Circle K konkurs',
+        'reel_url' => '../reels/?reelId=5',
+        'description' => 'Circle K på Voss har gått konkurs.',
+        'article_url' => 'https://www.avisa-hordaland.no/stasjonen-gjekk-konkurs-har-ein-million-i-gjeld/s/5-132-1062340',
+        'map_url' => "https://www.google.com/maps/place/Circle+K+Automat+Voss/@60.6283818,6.4255638,166m/data=!3m1!1e3!4m6!3m5!1s0x463dda9653cab9cd:0xfae3cfe1a24f9f44!8m2!3d60.6285797!4d6.4246615!16s%2Fg%2F11cn9rc68f?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+    ]
 ];
 ?>
 <!DOCTYPE html>

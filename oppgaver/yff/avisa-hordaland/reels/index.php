@@ -1,13 +1,6 @@
 <?php
 $reels = [
     [
-        'type' => 'text',
-        'title' => 'Ordet fritt: Friskule',
-        'bg_image' => '../images/voss-friskule.jpg',
-        'description' => 'Voss Friskule: Eit supplement - ikkje ein trussel',
-        'article_url' => 'https://www.avisa-hordaland.no/voss-friskule-eit-supplement-ikkje-ein-trussel/o/5-132-1106390',
-    ],
-    [
         'type' => 'video',
         'title' => 'Renteheving',
         'video_url' => '../videos/renteheving.mp4',
@@ -32,6 +25,13 @@ $reels = [
         'map_url' => "https://www.google.com/maps/place/60%C2%B037'46.4%22N+6%C2%B025'28.2%22E/@60.6295507,6.4238513,102m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d60.62955!4d6.424495?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
     ],
     [
+        'type' => 'text',
+        'title' => 'Ordet fritt: Friskule',
+        'bg_image' => '../images/voss-friskule.jpg',
+        'description' => 'Voss Friskule: Eit supplement - ikkje ein trussel',
+        'article_url' => 'https://www.avisa-hordaland.no/voss-friskule-eit-supplement-ikkje-ein-trussel/o/5-132-1106390',
+    ],
+    [
         'type' => 'video',
         'title' => 'Intervju med Håvard Aldal',
         'video_url' => '../videos/håvardaldal.mp4',
@@ -46,7 +46,7 @@ $reels = [
         'description' => 'Circle K på Voss har gått konkurs.',
         'article_url' => 'https://www.avisa-hordaland.no/stasjonen-gjekk-konkurs-har-ein-million-i-gjeld/s/5-132-1062340',
         'map_url' => "https://www.google.com/maps/place/Circle+K+Automat+Voss/@60.6283818,6.4255638,166m/data=!3m1!1e3!4m6!3m5!1s0x463dda9653cab9cd:0xfae3cfe1a24f9f44!8m2!3d60.6285797!4d6.4246615!16s%2Fg%2F11cn9rc68f?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
-    ],
+    ]
 ];
 ?>
 <!DOCTYPE html>
