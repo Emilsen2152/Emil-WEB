@@ -58,6 +58,10 @@
                 [
                     "title" => 'Møtesystem Voss',
                     "url" => "mote-sys-voss/"
+                ],
+                [
+                    "title" => 'Temadag',
+                    "url" => "temadag/"
                 ]
             ];
             ?>
