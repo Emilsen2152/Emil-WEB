@@ -65,7 +65,7 @@ function get_admin_activities(PDO $pdo, array $config): array
         $activities = $stmt->fetchAll();
     }
 
-    return create_response(true, ['activities' => $activities]);
+    return create_response(true, ['activities' => $activities, 'organizer' => $organizer]);
 }
 
 function get_activities(PDO $pdo, array $config): array
