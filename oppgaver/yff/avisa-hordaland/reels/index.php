@@ -25,6 +25,14 @@ $reels = [
         'map_url' => "https://www.google.com/maps/place/60%C2%B037'46.4%22N+6%C2%B025'28.2%22E/@60.6295507,6.4238513,102m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d60.62955!4d6.424495?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
     ],
     [
+        'type' => 'video',
+        'title' => 'Dataspel',
+        'video_url' => '../videos/dataspel.mp4',
+        'description' => 'Me har snakka med Peter Tharaldsen Byrkje om dataspel.',
+        'article_url' => 'https://www.avisa-hordaland.no/',
+        'map_url' => 'https://www.google.com/maps/place/Voss+gymnas/@60.6275412,6.4257883,342m/data=!3m1!1e3!4m6!3m5!1s0x463dda970a6e9889:0xab94dc0cc9b52a28!8m2!3d60.6269798!4d6.4264102!16s%2Fg%2F1z2crzz7m?hl=no&entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D'
+    ],
+    [
         'type' => 'text',
         'title' => 'Ordet fritt: Friskule',
         'bg_image' => '../images/voss-friskule.jpg',
@@ -33,19 +41,19 @@ $reels = [
     ],
     [
         'type' => 'video',
-        'title' => 'Intervju med Håvard Aldal',
-        'video_url' => '../videos/håvardaldal.mp4',
-        'description' => 'Me har snakka med Håvard Aldal.',
-        'article_url' => 'https://www.avisa-hordaland.no/',
-        'map_url' => "https://www.google.com/maps/place/Ringheimsvegen+4G,+5704+Vossevangen/@60.630555,6.4186717,148m/data=!3m1!1e3!4m6!3m5!1s0x463ddabdc28d6117:0x4f472484976a0d8a!8m2!3d60.6307336!4d6.4191668!16s%2Fg%2F11c1xwb4qs?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
-    ],
-    [
-        'type' => 'video',
         'title' => 'Circle K konkurs',
         'video_url' => '../videos/circlek.mp4',
         'description' => 'Circle K på Voss har gått konkurs.',
         'article_url' => 'https://www.avisa-hordaland.no/stasjonen-gjekk-konkurs-har-ein-million-i-gjeld/s/5-132-1062340',
         'map_url' => "https://www.google.com/maps/place/Circle+K+Automat+Voss/@60.6283818,6.4255638,166m/data=!3m1!1e3!4m6!3m5!1s0x463dda9653cab9cd:0xfae3cfe1a24f9f44!8m2!3d60.6285797!4d6.4246615!16s%2Fg%2F11cn9rc68f?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
+    ],
+    [
+        'type' => 'video',
+        'title' => 'Intervju med Håvard Aldal',
+        'video_url' => '../videos/håvardaldal.mp4',
+        'description' => 'Me har snakka med Håvard Aldal.',
+        'article_url' => 'https://www.avisa-hordaland.no/',
+        'map_url' => "https://www.google.com/maps/place/Ringheimsvegen+4G,+5704+Vossevangen/@60.630555,6.4186717,148m/data=!3m1!1e3!4m6!3m5!1s0x463ddabdc28d6117:0x4f472484976a0d8a!8m2!3d60.6307336!4d6.4191668!16s%2Fg%2F11c1xwb4qs?hl=no&entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D"
     ]
 ];
 ?>
