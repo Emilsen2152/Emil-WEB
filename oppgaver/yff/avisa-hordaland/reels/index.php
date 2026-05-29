@@ -69,7 +69,7 @@ $reels = [
             <div class="reel-container" data-index="<?= $key ?>">
 
                 <?php if ($reel['type'] === 'video'): ?>
-                    <video class="reel-video" loop muted playsinline>
+                    <video class="reel-video" loop muted playsinline webkit-playsinline preload="auto">
                         <source src="<?= $reel['video_url'] ?>" type="video/mp4">
                     </video>
                 <?php else: ?>

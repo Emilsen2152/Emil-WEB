@@ -13,11 +13,9 @@ if (reelId) {
 // Like-funksjonalitet
 document.querySelectorAll('.bi-heart').forEach(btn => {
     btn.addEventListener('click', function () {
-        // Skift mellom tomt og fylt hjarta
         this.classList.toggle('bi-heart');
         this.classList.toggle('bi-heart-fill');
 
-        // Visuelt feedback (raud farge ved like)
         if (this.classList.contains('bi-heart-fill')) {
             this.style.color = '#ff4d4d';
             this.style.transform = 'scale(1.2)';
@@ -26,7 +24,6 @@ document.querySelectorAll('.bi-heart').forEach(btn => {
             this.style.color = 'white';
         }
 
-        // ta opp og ned like tallet (for demonstrasjon, ingen backend)
         const likeCount = this.nextElementSibling;
         if (this.classList.contains('bi-heart-fill')) {
             likeCount.textContent = parseInt(likeCount.textContent) + 1;
@@ -53,58 +50,87 @@ document.querySelectorAll('.bi-share').forEach(btn => {
             alert("Delingslenka er kopiert til utklippstavla (Simulert for Reel " + reelId + ")");
         }
 
-        // Ta opp delingstallet (for demonstrasjon, ingen backend)
         this.style.transform = 'scale(1.2)';
         setTimeout(() => this.style.transform = 'scale(1)', 200);
 
-        // Simuler en økning i delingstallet (for demonstrasjon, ingen backend)
         const shareCount = this.nextElementSibling;
         shareCount.textContent = parseInt(shareCount.textContent) + 1;
     });
 });
 
-// Konfigurasjon for "kikkerten" (Observer)
-// Terskelen 0.6 betyr at 60% av videoen må vere synleg før den startar
+// --- VALIDERT VIDEO-LOGIKK FOR REELS ---
+
 const observerOptions = {
-    root: document.querySelector('main'),
-    threshold: 0.6
+    root: null, // Bruk null (viewport) for å fange opp mobilskjermen helt nøyaktig
+    threshold: 0.25 // Enkel og lav terskel. Har du sett 25% av videoen, skal den spille.
 };
 
-let userDesiredMuted = true; // Global status for lyd
+let userDesiredMuted = true;
+let activeVideo = null;
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         const video = entry.target.querySelector('video');
-        if (!video) return;
+        if (!video) return; // Hopper over tekst-reels
 
-        if (entry.isIntersecting) {
-            // Videoen er i fokus
-            video.muted = userDesiredMuted;
-            video.play().catch(error => console.log("Auto-play blokkert:", error));
-
-            // Oppdater volum-ikonet for denne reelen (viss du har det)
-            updateMuteIcons();
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+            // Hvis vi registrerer en ny video på skjermen, pause den gamle først
+            if (activeVideo && activeVideo !== video) {
+                activeVideo.pause();
+            }
+            activeVideo = video;
+            playCurrentVideo();
         } else {
-            // Videoen er rulla bort
+            // Hvis videoen faller under 25% synlighet, skru den av
+            if (activeVideo === video) {
+                activeVideo = null;
+            }
             video.pause();
-            video.currentTime = 0; // Startar på nytt neste gong
         }
     });
 }, observerOptions);
 
-// Start overvaking av alle reel-containere
+function playCurrentVideo() {
+    if (!activeVideo) return;
+    
+    // Sjekk om vi faktisk TRENGER å endre mute-status for å unngå unødvendig API-kall til videospilleren
+    if (activeVideo.muted !== userDesiredMuted) {
+        activeVideo.muted = userDesiredMuted;
+    }
+    
+    if (activeVideo.paused) {
+        activeVideo.play().catch(error => {
+            console.log("Nettleseren forhindret avspilling:", error);
+        });
+    }
+}
+
+// Start overvåking av alle beholdere
 document.querySelectorAll('.reel-container').forEach(section => {
     observer.observe(section);
+    
+    const video = section.querySelector('video');
+    if (video) {
+        // Sikkerhetsnett: Hvis nettleseren/mobilen pauser videoen uventet (f.eks. pga. buffering),
+        // men videoen fortsatt er den som er aktiv på skjermen, tvinger vi den i gang igjen.
+        video.addEventListener('pause', () => {
+            if (video === activeVideo && !video.ended) {
+                // Bruk requestAnimationFrame for å la nettleseren fullføre interne oppgaver før vi kjører play()
+                requestAnimationFrame(() => {
+                    if (video === activeVideo && video.paused) {
+                        video.play().catch(() => {});
+                    }
+                });
+            }
+        });
+    }
 });
 
-// Funksjon for å skru lyd av/på manuelt (globale innstillingar)
+// Global lydstyring (Mute/Unmute)
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('mute-control')) {
-        const currentVideo = e.target.closest('.reel-container').querySelector('video');
+        userDesiredMuted = !userDesiredMuted;
 
-        userDesiredMuted = !userDesiredMuted; // Snu statusen
-
-        // Oppdater alle videoar på sida til den nye statusen
         document.querySelectorAll('video').forEach(v => {
             v.muted = userDesiredMuted;
         });
