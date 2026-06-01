@@ -70,7 +70,11 @@ function get_admin_activities(PDO $pdo, array $config): array
 
 function get_activities(PDO $pdo, array $config): array
 {
-    $stmt = $pdo->query('SELECT activity_id, name, description, start_time, end_time, max_participants FROM activities');
+    $stmt = $pdo->query('
+        SELECT a.activity_id, a.name, a.description, a.start_time, a.end_time, a.max_participants, o.name AS organizer_name 
+        FROM activities a
+        LEFT JOIN organizers o ON a.organizer_id = o.organizer_id
+    ');
     $activities = $stmt->fetchAll();
 
     return create_response(true, ['activities' => $activities]);

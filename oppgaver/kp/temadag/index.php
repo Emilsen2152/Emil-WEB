@@ -7,16 +7,8 @@ $activitiesResponse = get_activities($pdo, $config);
 // Hent ut sjølve aktivitetslista frå datastrukturen
 $activities = $activitiesResponse['data']['activities'] ?? [];
 
-/*
-Planlegging frontend
-Eg planlegg å ha to sider. Ei for påmelding og ei for administrasjon av aktivitetar. På sida for påmelding vil det vera eit skjema der du kan velga 3 aktivitetar i prioritert rekkefølge, dette gjer eg sidan brukaren prioriterer basert på dei tre dei har mest lyst til å vera på.
-Generelt vil skjemaet ha denne strukturen:
-Namn
-E-post
-Aktivitet 1
-Aktivitet 2
-Aktivitet 3.
-*/
+// Sjekk om det ligg ein hash i URL-en for endring av påmelding
+$urlHash = $_GET['hash'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -27,20 +19,18 @@ Aktivitet 3.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temadag - Påmelding</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="temadag.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body class="bg-light">
-    <?php
-    include 'nav.php';
-    ?>
+    <?php include 'nav.php'; ?>
 
     <main class="container py-5">
-        <h1 class="mb-4">Temadag - Påmelding</h1>
+        <h1 class="mb-4" id="page-title">Temadag - Påmelding</h1>
 
         <h2 class="h4 mb-3">Tilgjengelege aktivitetar</h2>
         <?php if (empty($activities)): ?>
-            <div class="alert alert-info">Det er ingen tilgjengelege aktivitetar for augneblinken.</div>
+            <div class="alert alert-info">Det er ingen tilgjengelege aktivitetar.</div>
         <?php else: ?>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
                 <?php foreach ($activities as $activity): ?>
@@ -59,6 +49,9 @@ Aktivitet 3.
                                 <div class="d-flex justify-content-between mb-1">
                                     <span><strong>Slutt:</strong> <?= date('d.m.Y H:i', strtotime($activity['end_time'])) ?></span>
                                 </div>
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span><strong>Arrangør:</strong> <?= htmlspecialchars($activity['organizer_name']) ?></span>
+                                </div>
                                 <div class="mt-2 pt-2 border-top text-dark fw-semibold">
                                     Maks plassar: <?= htmlspecialchars($activity['max_participants']) ?>
                                 </div>
@@ -72,11 +65,11 @@ Aktivitet 3.
         <hr class="my-5">
 
         <div class="card shadow-sm max-width-form mx-auto" style="max-width: 600px;">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header bg-dark text-white" id="form-header">
                 <h2 class="h5 mb-0">Fyll ut påmeldingsskjema</h2>
             </div>
             <div class="card-body p-4">
-                <form id="registration-form" method="POST" action="process_registration.php">
+                <form id="registration-form" data-hash="<?= htmlspecialchars((string)$urlHash) ?>">
                     <div class="mb-3">
                         <label for="name" class="form-label">Namn</label>
                         <input type="text" class="form-control" id="name" name="name" required>
@@ -119,13 +112,14 @@ Aktivitet 3.
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary w-100 py-2">Meld på</button>
+                    <button type="submit" id="submit-btn" class="btn btn-primary w-100 py-2">Meld på</button>
 
                     <div id="form-message" class="mt-3"></div>
                 </form>
             </div>
         </div>
     </main>
-</body>
 
+    <script src="main.js"></script>
+</body>
 </html>

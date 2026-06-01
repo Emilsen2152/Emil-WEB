@@ -1,0 +1,119 @@
+:root {
+    /* ============================================================
+       PROFILFARGAR - VESTLAND FYLKESKOMMUNE
+       ============================================================ */
+    --vlk-isblaa: #9ADBE8;
+    --vlk-rosa: #E06287;
+    --vlk-lilla: #CAA2DD;
+    --vlk-gulgron: #E1D555;
+    --vlk-turkis: #00C7B1;
+    --vlk-lysegron: #B7DD79;
+    --vlk-gul: #FDDA25;
+    --vlk-oransje: #FF5C39;
+    --vlk-morkegron: #50A684;
+    --vlk-mint: #3CDBC0;
+    --vlk-morkeoransje: #FF9E1B;
+    --vlk-lysrosa: #F8B5C4;
+
+    /* ============================================================
+       OVERSTYRING AV BOOTSTRAP-VARIABLAR
+       ============================================================ */
+    
+    /* Lyseblå/Isblå settes som primærfarge */
+    --bs-primary: var(--vlk-isblaa);
+    --bs-primary-rgb: 154, 219, 232;
+
+    /* Suksess (Aktivitet 1): Mørkegrøn */
+    --bs-success: #378262; 
+    
+    /* Info (Aktivitet 2): Justert turkis for betre tekstkontrast */
+    --bs-info: #009483; 
+    --bs-info-rgb: 0, 148, 131;
+
+    /* Warning (Aktivitet 3): Justert oransje */
+    --bs-warning: #e04724; 
+    --bs-danger: var(--vlk-oransje);
+
+    /* Bakgrunnsfarge for nettsida */
+    --bs-body-bg: #f4f8f9; /* Subtil isblå/grå tone i bakgrunnen */
+    --bs-body-color: #252a2d;
+}
+
+/* ============================================================
+   KUSTOMISERING AV ELEMENT
+   ============================================================ */
+
+/* Korta med aktivitetar */
+.card {
+    border: 1px solid rgba(154, 219, 232, 0.4);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(154, 219, 232, 0.25) !important;
+}
+
+/* Sidan hovudfargen er lyseblå, må overskrifter i kort ha ein 
+   mørkare blåtone for å vera lesbare mot kvit bakgrunn */
+.card-title.text-primary {
+    color: #2b6a77 !important; 
+}
+
+/* Tekstfargane for prioriteringane i skjemaet */
+.text-success {
+    color: var(--vlk-morkegron) !important;
+}
+
+.text-info {
+    color: #008576 !important;
+}
+
+.text-warning {
+    color: #c94426 !important;
+}
+
+/* Primærknappen (Meld på): Lyseblå bakgrunn med MØRK tekst for god kontrast */
+.btn-primary {
+    background-color: var(--vlk-isblaa);
+    border-color: var(--vlk-isblaa);
+    color: #1a3a40; /* Mørk blågrå tekst i staden for kvit */
+    font-weight: 600;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #7ecad9;
+    border-color: #7ecad9;
+    color: #1a3a40;
+}
+
+/* Fokus-ring på inputfelt og nedtrekksmenyar blir lyseblå */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--vlk-isblaa);
+    box-shadow: 0 0 0 0.25rem rgba(154, 219, 232, 0.5);
+}
+
+/* Bakgrunnen på korthovudet til skjemaet */
+.card-header.bg-dark {
+    background-color: #1d2d30 !important; /* Mørk sval blågrå i staden for heilt svart */
+}
+
+/* Endringsmodus (Når skjemaet har ein hash) */
+.bg-warning {
+    background-color: var(--vlk-gul) !important;
+    color: #252a2d !important;
+}
+
+.btn-warning {
+    background-color: var(--vlk-morkeoransje);
+    border-color: var(--vlk-morkeoransje);
+    color: #fff;
+    font-weight: 600;
+}
+.btn-warning:hover {
+    background-color: #e0830d;
+    border-color: #e0830d;
+    color: #fff;
+}
